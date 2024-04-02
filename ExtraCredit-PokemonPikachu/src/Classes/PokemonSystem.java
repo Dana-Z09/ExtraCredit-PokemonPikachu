@@ -4,6 +4,6 @@ package Classes;
  *
  * @author Danna Star
  */
-public class PokettoMonsutaSystem {
+public class PokemonSystem {
     
 }
