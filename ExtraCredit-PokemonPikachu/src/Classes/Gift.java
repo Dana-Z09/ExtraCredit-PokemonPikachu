@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Classes;
 
 /**
@@ -26,6 +22,11 @@ public class Gift {
      * Aumento que proporciona el regalo a la relación.
      */
     private int relationshipBoost;
+
+    /**
+     * Cantidad del regalo que ha recibido el pokemon
+     */
+    private int quantity;
 
     /**
      * Constructor para crear un nuevo regalo con un nombre, costo y efecto en
@@ -94,6 +95,27 @@ public class Gift {
      */
     public void setRelationshipBoost(int relationshipBoost) {
         this.relationshipBoost = relationshipBoost;
+    }
+
+    /**
+     * Obtiene cantidad de esa instancia de la clase regalo que ha recibido el
+     * pokemon.
+     *
+     * @return numero que representa la cantidad de esa instancia de la clase
+     * regalo que ha recibido el pokemon.
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * Establece cantidad de esa instancia de la clase regalo que ha recibido el
+     * pokemon.
+     *
+     * @param quantity El nuevo valor que tendra el atributo, para aumentar la cantidad.
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     /**

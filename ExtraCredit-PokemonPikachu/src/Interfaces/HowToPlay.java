@@ -1,22 +1,24 @@
 package Interfaces;
 
+import Functions.Pictures;
 import javax.swing.ImageIcon;
 
 /**
  *
- * @author Danna Star
+ * @author Daniela Zambrano
  */
 public class HowToPlay extends javax.swing.JFrame {
-    ImageIcon pachirisuPic = new ImageIcon("179.png");
-    ImageIcon pokemonPic = new ImageIcon("pokemonlogo.png");
-    ImageIcon fondoPic = new ImageIcon("fondo.jpg");
+    Pictures pic=new Pictures();
+    ImageIcon mareepPic = pic.getMareepPic();
+    ImageIcon pokemonPic = pic.getPokemonPic();
+    ImageIcon fondoPic = pic.getFondoPic();
     /**
      * Creates new form InicialMenu
      */
     public HowToPlay() {
         initComponents();
         this.setLocationRelativeTo(null);
-        pachirisuLabel.setIcon(pachirisuPic);
+        pachirisuLabel.setIcon(mareepPic);
         pachirisuLabel.setText("");
         pokemonLabel.setIcon(pokemonPic);
         pokemonLabel.setText("");
