@@ -132,11 +132,13 @@ public class Game implements Serializable {
         return toReturn;
     }
 
-    public Pokemon getPokemonOfRelationShip() {
-        Pokemon toReturn = null;
+    public String getNamePokemonOfRelationShip() {
+        String toReturn;
+        Pokemon PokemonInGame = null;
 
-        toReturn = this.getRelationship().getCurrentPokemon();
-
+        PokemonInGame = this.getRelationship().getCurrentPokemon();
+        toReturn = PokemonInGame.getName();
+        
         return toReturn;
     }
 
@@ -175,7 +177,7 @@ public class Game implements Serializable {
         Pictures photos = new Pictures();
 
         if (numOfPokemon == 1) {        // Primer pokemon reemplazar los photos.get con la direccion deseada
-
+ 
             // happy
             String name1 = "Feliz";
             ImageIcon statehappy = photos.getHappyShinxPic();
@@ -243,4 +245,21 @@ public class Game implements Serializable {
     }
 
     //Funciones para los botones
+    
+    // Funciones de la tienda
+    
+    // comprar 
+    // if watts es menor no deja comprar 
+    // else resta 
+    
+    // restar watts 
+    /*
+    public void actualizateRelationShipRange(){
+        if(this.relationShipRange>0){
+        int current = this.getRelationShipRange();
+        int newCurrent = current--;
+        this.setRelationShipRange(newCurrent);
+        } 
+    }
+    */
 }
