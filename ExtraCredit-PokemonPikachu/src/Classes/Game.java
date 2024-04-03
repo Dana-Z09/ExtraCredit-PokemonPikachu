@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Classes;
 
+
+import Functions.Pictures;
 import EDD.AVLTree;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
@@ -23,7 +21,7 @@ public class Game implements Serializable {
     private boolean running;           // Estado del juego, si se esta ejecutando es true, de lo contrario es false
 
     // Constructor de Game
-    public Game(int numOfPokemon) {
+    public Game() {
         this.startTime = System.currentTimeMillis();
         this.timeInSeconds = 0;
         this.timeToShow = formatTime(0, 0, 0);
@@ -85,7 +83,7 @@ public class Game implements Serializable {
         this.setRunning(false);
     }
 
-    public void StartGame(int numOfPokemon) {
+    public void StartGame() {
         this.setRunning(true);
 
         while (this.running) {
@@ -137,11 +135,13 @@ public class Game implements Serializable {
         return toReturn;
     }
 
-    public Pokemon getPokemonOfRelationShip() {
-        Pokemon toReturn = null;
+    public String getNamePokemonOfRelationShip() {
+        String toReturn;
+        Pokemon PokemonInGame = null;
 
-        toReturn = this.getRelationship().getCurrentPokemon();
-
+        PokemonInGame = this.getRelationship().getCurrentPokemon();
+        toReturn = PokemonInGame.getName();
+        
         return toReturn;
     }
 
@@ -180,34 +180,34 @@ public class Game implements Serializable {
         Pictures photos = new Pictures();
 
         if (numOfPokemon == 1) {        // Primer pokemon reemplazar los photos.get con la direccion deseada
-
+ 
             // happy
             String name1 = "Feliz";
-            ImageIcon statehappy = photos.get();
+            ImageIcon statehappy = photos.getHappyShinxPic();
             EmotionalState toAddIn0 = new EmotionalState(name1, statehappy);
             states[0] = toAddIn0;
 
             // normal
             String name2 = "Normal";
-            ImageIcon stateNormal = photos.get();
+            ImageIcon stateNormal = photos.getNormalShinxPic();
             EmotionalState toAddIn1 = new EmotionalState(name2, stateNormal);
             states[1] = toAddIn1;
 
             // Inspired
             String name3 = "Inspirado";
-            ImageIcon stateInspired = photos.get();
+            ImageIcon stateInspired = photos.getInspireShinxPic();
             EmotionalState toAddIn2 = new EmotionalState(name3, stateInspired);
             states[2] = toAddIn2;
 
             // sad
             String name4 = "Triste";
-            ImageIcon stateSad = photos.get();
+            ImageIcon stateSad = photos.getDeterminationShinxPic();
             EmotionalState toAddIn3 = new EmotionalState(name4, stateSad);
             states[3] = toAddIn3;
 
             // sigh 
             String name5 = "Fatigado";
-            ImageIcon stateSigh = photos.get();
+            ImageIcon stateSigh = photos.getSighShinxPic();
             EmotionalState toAddIn4 = new EmotionalState(name5, stateSigh);
             states[4] = toAddIn4;
 
@@ -215,38 +215,38 @@ public class Game implements Serializable {
 
             //Happy
             String name1 = "Feliz";
-            ImageIcon statehappy = photos.get();
+            ImageIcon statehappy = photos.getHappyPikachuPic();
             EmotionalState toAddIn0 = new EmotionalState(name1, statehappy);
             states[0] = toAddIn0;
 
             // normal
             String name2 = "Normal";
-            ImageIcon stateNormal = photos.get();
+            ImageIcon stateNormal = photos.getNormalPikachuPic();
             EmotionalState toAddIn1 = new EmotionalState(name2, stateNormal);
             states[1] = toAddIn1;
 
             // Inspired
             String name3 = "Inspirado";
-            ImageIcon stateInspired = photos.get();
+            ImageIcon stateInspired = photos.getInspirePikachuPic();
             EmotionalState toAddIn2 = new EmotionalState(name3, stateInspired);
             states[2] = toAddIn2;
 
             // sad
             String name4 = "Triste";
-            ImageIcon stateSad = photos.get();
+            ImageIcon stateSad = photos.getDeterminationPikachuPic();
             EmotionalState toAddIn3 = new EmotionalState(name4, stateSad);
             states[3] = toAddIn3;
 
             // sigh 
             String name5 = "Fatigado";
-            ImageIcon stateSigh = photos.get();
+            ImageIcon stateSigh = photos.getSighPikachuPic();
             EmotionalState toAddIn4 = new EmotionalState(name5, stateSigh);
             states[4] = toAddIn4;
         }
 
         return states;
     }
-    
+
     //Funcionalidades 
     
     // Funciones de la tienda
