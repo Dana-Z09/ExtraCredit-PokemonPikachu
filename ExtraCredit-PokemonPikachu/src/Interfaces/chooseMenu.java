@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Classes.Game;
 import javax.swing.ImageIcon;
 
 /**
@@ -133,20 +134,23 @@ public class chooseMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void shinxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shinxActionPerformed
-        //En este boton crea el sistema o el juego principal con Shinx
+        Game mainGame= new Game(1);
+        mainGame.prepareGame(1);
+        
         //y se lleva a la página principal
         //sistem == una caracteristicas de shinx
         this.setVisible(false);
         MainMenu mainPage= new MainMenu();
+        MainMenu.CurrentGame= mainGame;
         mainPage.setVisible(true);
     }//GEN-LAST:event_shinxActionPerformed
 
     private void pikachuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pikachuActionPerformed
-        //En este boton crea el sistema o el juego principal con Pikachu
-        //y se lleva a la página principal
-        //sistem == una caracteristicas de pikachu
+        Game mainGame= new Game(2);
+        mainGame.prepareGame(2);
         this.setVisible(false);
         MainMenu mainPage= new MainMenu();
+        MainMenu.CurrentGame= mainGame;
         mainPage.setVisible(true);
     }//GEN-LAST:event_pikachuActionPerformed
 

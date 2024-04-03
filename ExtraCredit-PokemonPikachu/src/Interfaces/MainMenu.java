@@ -1,7 +1,7 @@
 package Interfaces;
 
+import Classes.Game;
 import Functions.Pictures;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
@@ -11,7 +11,9 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
  * @author Danna Star
  */
 public class MainMenu extends javax.swing.JFrame {
+    static Game CurrentGame;
     Pictures pic= new Pictures();
+    
     /**
      * Creates new form InicialMenu
      */

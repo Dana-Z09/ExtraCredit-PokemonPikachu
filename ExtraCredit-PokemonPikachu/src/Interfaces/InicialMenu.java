@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Classes.Game;
 import Functions.Helpers;
 import Functions.Pictures;
 import javax.swing.JOptionPane;
@@ -149,12 +150,10 @@ public class InicialMenu extends javax.swing.JFrame {
     private void newGameButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtomActionPerformed
         Helpers help = new Helpers();
         String[] options= {"Sí","No"};
-        
         if (help.saveExist()){
             int answer =JOptionPane.showOptionDialog(null, "¡Cuidado! Se borraran todos los datos guardados de su mascota.\nPresionse sí, si quierie continuar y reiniciar los valores del juego.\nPresione no, en el caso contrario.", "Confirmación de Inicio de Nuevo Juego", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
             if  (answer==0){
-                //si dice que si se borra el archivo y se lleva a la pestaña de seleccion 
-                //funcion que borra archivo
+                help.borrarArchivo();
                 this.setVisible(false);
                 chooseMenu selection = new chooseMenu();
                 selection.setVisible(true);
@@ -165,19 +164,15 @@ public class InicialMenu extends javax.swing.JFrame {
         chooseMenu selection = new chooseMenu();
         selection.setVisible(true);
         }
-        
-        
-        
     }//GEN-LAST:event_newGameButtomActionPerformed
 
     private void startGameButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtomActionPerformed
         Helpers help = new Helpers();
-        
         if (help.saveExist()) {
-            //leer archivo y crear sistema apartir de los datos cargados
-            
+            Game mainGame=null;// = funcion de leer y cargar archivo que retorna un objeto Game 
             this.setVisible(false);
             MainMenu mainPage= new MainMenu();
+            mainPage.CurrentGame= mainGame;
             mainPage.setVisible(true);
         }else{
         JOptionPane.showMessageDialog(null, "No se ha  encontrado ninguna información previa del juego.\nInténtelo nuevamente, o inicie una nueva partida.", "Información", INFORMATION_MESSAGE, null);
