@@ -4,10 +4,15 @@
  */
 package Functions;
 
+import java.io.File;
+
 /**
  *
- * @author Danna Star
+ * @author Diego Mendez
  */
 public class Helpers {
-    
+    public void saveExist() {
+    File archivo = new File(System.getProperty("user.dir") + "\\src\\PokeFile\\pokesave.txt");
+        System.out.println(archivo.exists());
+    }
 }
