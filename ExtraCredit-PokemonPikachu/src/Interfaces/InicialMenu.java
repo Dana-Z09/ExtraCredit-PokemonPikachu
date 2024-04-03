@@ -1,20 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interfaces;
+
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Danna Star
  */
 public class InicialMenu extends javax.swing.JFrame {
-
+    ImageIcon pikachuPic = new ImageIcon("pikachu.png");
+    ImageIcon pokemonPic = new ImageIcon("pokemonlogo.png");
+    ImageIcon shinxPic = new ImageIcon("shinx1.png");
+    ImageIcon fondoPic = new ImageIcon("fondo.jpg");
     /**
      * Creates new form InicialMenu
      */
     public InicialMenu() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        pikachulabel1.setIcon(pikachuPic);
+        pikachulabel1.setText("");
+        pokemonLabel.setIcon(pokemonPic);
+        pokemonLabel.setText("");
+        shinxLabel1.setIcon(shinxPic);
+        shinxLabel1.setText("");
+        fondoLabel.setIcon(fondoPic);
+        fondoLabel.setText("");
     }
 
     /**
@@ -26,21 +36,106 @@ public class InicialMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        pokemonLabel = new javax.swing.JLabel();
+        pikachulabel1 = new javax.swing.JLabel();
+        shinxLabel1 = new javax.swing.JLabel();
+        fondoLabel = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(600, 650));
+        setResizable(false);
+        setType(java.awt.Window.Type.UTILITY);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(150, 10, 45));
+        jPanel2.setForeground(new java.awt.Color(220, 10, 45));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setBackground(new java.awt.Color(222, 222, 222));
+        jButton1.setFont(new java.awt.Font("Pokemon Solid", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(36, 36, 36));
+        jButton1.setText("Nuevo Juego");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, 240, 40));
+
+        jButton3.setBackground(new java.awt.Color(222, 222, 222));
+        jButton3.setFont(new java.awt.Font("Pokemon Solid", 0, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(36, 36, 36));
+        jButton3.setText("Continuar Juego");
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 530, 220, 40));
+
+        jButton4.setBackground(new java.awt.Color(222, 222, 222));
+        jButton4.setFont(new java.awt.Font("Pokemon Solid", 0, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(36, 36, 36));
+        jButton4.setText("Créditos");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 220, 40));
+
+        jButton5.setBackground(new java.awt.Color(222, 222, 222));
+        jButton5.setFont(new java.awt.Font("Pokemon Solid", 0, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(36, 36, 36));
+        jButton5.setText("Cómo se Juega");
+        jButton5.setToolTipText("");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 240, 40));
+
+        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pokemonLabel.setText("jLabel3");
+        jPanel3.add(pokemonLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 360, 120));
+
+        pikachulabel1.setText("jLabel4");
+        jPanel3.add(pikachulabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 240, 370));
+
+        shinxLabel1.setText("jLabel4");
+        jPanel3.add(shinxLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 290, 310));
+
+        fondoLabel.setText("jLabel1");
+        jPanel3.add(fondoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 490));
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 490));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.setVisible(false);
+        Credits creditos = new Credits();
+        creditos.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.setVisible(false);
+        HowToPlay howToPlayPage = new HowToPlay();
+        howToPlayPage.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(true);
+        chooseMenu selection = new chooseMenu();
+        selection.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +173,15 @@ public class InicialMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel fondoLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel pikachulabel1;
+    private javax.swing.JLabel pokemonLabel;
+    private javax.swing.JLabel shinxLabel1;
     // End of variables declaration//GEN-END:variables
 }
