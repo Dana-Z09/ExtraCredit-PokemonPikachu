@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Functions.Pictures;
 import javax.swing.ImageIcon;
 
 /**
@@ -7,9 +8,10 @@ import javax.swing.ImageIcon;
  * @author Danna Star
  */
 public class Credits extends javax.swing.JFrame {
-    ImageIcon pachirisuPic = new ImageIcon("pachirisu.png");
-    ImageIcon pokemonPic = new ImageIcon("pokemonlogo.png");
-    ImageIcon fondoPic = new ImageIcon("fondo.jpg");
+    Pictures  pic = new Pictures();
+    ImageIcon pachirisuPic = pic.getPachirisuPic();
+    ImageIcon pokemonPic = pic.getPokemonPic();
+    ImageIcon fondoPic = pic.getFondoPic();
     /**
      * Creates new form InicialMenu
      */
@@ -27,8 +29,6 @@ public class Credits extends javax.swing.JFrame {
 
 
                         Imagenes:
-                      
-                      
                         -https://pokemon.fandom.com/wiki/Pikachu
                       
                         -background prairie pokemon screencapture by nemotrex,
@@ -54,7 +54,8 @@ public class Credits extends javax.swing.JFrame {
 
                         - Ares Ramírez
                         - Daniela Zambrano
-                        - Diego Méndez""");
+                        - Diego Méndez
+                      """);
     }
 
     /**

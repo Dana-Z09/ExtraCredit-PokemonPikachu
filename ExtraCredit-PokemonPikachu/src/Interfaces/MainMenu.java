@@ -1,29 +1,46 @@
 package Interfaces;
 
+import Functions.Pictures;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 /**
  *
  * @author Danna Star
  */
 public class MainMenu extends javax.swing.JFrame {
-    ImageIcon pikachuPic = new ImageIcon("pikachu.png");
-    ImageIcon pokemonPic = new ImageIcon("pokemonlogo.png");
-    ImageIcon shinxPic = new ImageIcon("shinx1.png");
-    ImageIcon fondoPic = new ImageIcon("fondo.jpg");
-    
+    Pictures pic= new Pictures();
     /**
      * Creates new form InicialMenu
      */
     public MainMenu() {
         initComponents();
-        pikachulabel.setIcon(pikachuPic);
-        pikachulabel.setText("");
         this.setLocationRelativeTo(null);
-        pokemonLabel1.setIcon(pokemonPic);
+        pokemonLabel1.setIcon(pic.getPokemonPic());
         pokemonLabel1.setText("");
-        fondoLabel.setIcon(fondoPic);
+        fondoLabel.setIcon(pic.getFondoPic());
         fondoLabel.setText("");
+        
+        //dependiendo del pokemon que se halla creado  en sistema 
+        // Entonces se colocala imagen de pikachu o de shinx
+        //se setea 
+        pikachulabel.setIcon(pic.getPikachuPic());
+        pikachulabel.setText("");
+        
+        
+        //aqui deberia colocar el while
+        timeLabel.setText("tiempo del game");
+        wattsLabel.setText("watts del game");
+        relationchipLabel.setText("cantidad de relacion del game");
+        mainPhoto.setText("");
+        mainPhoto.setIcon(null);//la imagen des estado
+        pokemonStatus.setText("nombre del estado");
+        
+        
+        
+        
     }
 
     /**
@@ -94,7 +111,7 @@ public class MainMenu extends javax.swing.JFrame {
         playButton.setBackground(new java.awt.Color(222, 222, 222));
         playButton.setFont(new java.awt.Font("Pokemon Solid", 0, 18)); // NOI18N
         playButton.setForeground(new java.awt.Color(36, 36, 36));
-        playButton.setText("Minijuegos");
+        playButton.setText("Minijuego");
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playButtonActionPerformed(evt);
@@ -183,26 +200,35 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-        this.setVisible(false);
-        Credits creditos = new Credits();
-        creditos.setVisible(true);
+       
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void saveButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtomActionPerformed
-        // TODO add your handling code here:
+        boolean saveAll=true;
+        //=Funcion de guardar juego 
+        
+        if(saveAll){
+        JOptionPane.showMessageDialog(null, "Se ha guardado correctamente la información de la partida.", "Guardado Exitoso", INFORMATION_MESSAGE, null);
+        }else{
+        JOptionPane.showMessageDialog(null, "No se ha guardado correctamente la información de la partida.\nInténtelo nuevamente.", "Eror de Guardado", ERROR_MESSAGE, null);
+        }
     }//GEN-LAST:event_saveButtomActionPerformed
 
     private void storeButtom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeButtom1ActionPerformed
-        // TODO add your handling code here:
+        
+        //parar el tiempo
+        StorePage store = new StorePage();
+        this.setVisible(false);
+        store.setVisible(true);
     }//GEN-LAST:event_storeButtom1ActionPerformed
 
     private void inventoryButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtomActionPerformed
-        this.setVisible(false);
-        HowToPlay howToPlayPage = new HowToPlay();
-        howToPlayPage.setVisible(true);
+        
     }//GEN-LAST:event_inventoryButtomActionPerformed
 
     private void menuButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtomActionPerformed
+        ////option pane con una cofirmation 
+        
         this.setVisible(false);
         InicialMenu menu = new InicialMenu();
         menu.setVisible(true);
