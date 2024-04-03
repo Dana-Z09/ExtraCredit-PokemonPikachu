@@ -1,8 +1,11 @@
 package Classes;
 
+
 import Functions.Pictures;
+import EDD.AVLTree;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -126,7 +129,7 @@ public class Game implements Serializable {
     public String summaryToTest() {
         String toReturn;
 
-        toReturn = "Resumen de prueba:" + "\n" + "Tiempo de juego: " + getTimeToShow() + "\n" + "Watts: " + getWatts();
+        toReturn = "Resumen de prueba:" + "\n" + "Tiempo de juego: " + getTimeToShow() + "\n" + "Watts: " + getWatts()+"\n";
         // Hacer con un stringBuilder y agregar el resto de los elementos
 
         return toReturn;
@@ -244,22 +247,36 @@ public class Game implements Serializable {
         return states;
     }
 
-    //Funciones para los botones
+    //Funcionalidades 
     
     // Funciones de la tienda
     
-    // comprar 
-    // if watts es menor no deja comprar 
-    // else resta 
+    // comprar recibe el objeto gift
     
-    // restar watts 
-    /*
-    public void actualizateRelationShipRange(){
-        if(this.relationShipRange>0){
-        int current = this.getRelationShipRange();
-        int newCurrent = current--;
-        this.setRelationShipRange(newCurrent);
-        } 
+    public void buyGiftInShop(Gift giftBoughted){
+        
+        if (this.getWatts()<giftBoughted.getCost()) {
+            JOptionPane.showMessageDialog(null, "No posee los watts suficientes.");
+        } else {
+           this.reduceWatts(giftBoughted.getCost());
+           JOptionPane.showMessageDialog(null, "Compra realizada.");
+           
+            AVLTree inventoryOfPokemon = this.getRelationship().getCurrentPokemon().getInventory();
+            if () {
+                
+            } else {
+            }
+        }
+        
+        
+        
     }
-    */
+    
+    public void reduceWatts(int numToReduce){
+        if (this.getWatts()>0) {
+            int current = this.getWatts();
+            int newValue = current - numToReduce;
+            this.setWatts(newValue);
+        }
+    }
 }

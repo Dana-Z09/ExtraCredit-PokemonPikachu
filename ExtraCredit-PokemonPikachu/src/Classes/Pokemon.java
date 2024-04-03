@@ -19,9 +19,14 @@ public class Pokemon {
      * Estado emocional actual del Pokémon.
      */
     private EmotionalState currentState;
+    
+    /**
+     * Inventario, guardado en un arbol AVL
+     */
+    private AVLTree inventory;
 
     /**
-     * Inventario, guardado en un árbol AVL.
+     * Historial de regalos recibidos, guardado en un árbol AVL.
      */
     private AVLTree recordOfGifts;
 
@@ -40,6 +45,7 @@ public class Pokemon {
     public Pokemon(String name, EmotionalState[] states) {
         this.name = name;
         this.currentState = states[0]; // Inicializar con el primer estado
+        this.inventory = new AVLTree();
         this.recordOfGifts = new AVLTree();
         this.pokemonStates = states;
 
@@ -79,6 +85,24 @@ public class Pokemon {
      */
     public void setCurrentState(EmotionalState currentState) {
         this.currentState = currentState;
+    }
+
+    /**
+     * Devuelve el árbol AVL que representa el inventario de regalos del Pokémon.
+     *
+     * @return El árbol AVL con el inventario de regalos recibidos.
+     */
+    public AVLTree getInventory() {
+        return inventory;
+    }
+
+    /**
+     * Establece el árbol AVL que representa el inventario de regalos del Pokémon.
+     *
+     * @param inventory El árbol AVL con el nuevo inventario de regalos.
+     */
+    public void setInventory(AVLTree inventory) {
+        this.inventory = inventory;
     }
 
     /**
