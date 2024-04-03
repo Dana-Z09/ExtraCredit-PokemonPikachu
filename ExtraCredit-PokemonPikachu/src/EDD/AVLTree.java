@@ -297,8 +297,6 @@ public class AVLTree {
         return n;
     }
     
-    
-    
     private NodeAVL balanceRightBranch(NodeAVL n, Logical highChange){
             NodeAVL auxNode;
             
@@ -328,4 +326,19 @@ public class AVLTree {
             }
             return n;
     }
+
+    public NodeAVL SearchNodeInBST(NodeAVL pRoot, int numNodeOfCurrentOperation) throws Exception {
+
+        if (pRoot == null) {
+            throw new Exception("No se encuentra.");
+        } else if (pRoot.isEqual(numNodeOfCurrentOperation)) {
+            return pRoot;
+        } else if (pRoot.isGreaterThan(numNodeOfCurrentOperation)) {
+            return SearchNodeInBST(pRoot.getpLeft(), numNodeOfCurrentOperation);
+        } else {
+            return SearchNodeInBST(pRoot.getpRight(), numNodeOfCurrentOperation);
+        }
+    }
+
+
 }
