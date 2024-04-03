@@ -15,7 +15,7 @@ public class RelationShip {
     /**
      * Numero que indica el rango de relación actual.
      */
-    private int relationShipRange = 0;
+    private int relationShipRange;
 
     /**
      * El Pokémon que tiene la relacion e interactua con el jugador.
@@ -25,7 +25,7 @@ public class RelationShip {
     /**
      * Arreglo que almacena los Pokemones del jugador, en este caso 2.
      */
-    private Pokemon[] pokemons = new Pokemon[2];
+    private Pokemon[] pokemons;
 
     /**
      * Crea una instancia de la clase Relationship, asignando el pokemon
@@ -34,7 +34,10 @@ public class RelationShip {
      * @param currentPokemon Pokemon elegido por el usuario
      */
     public RelationShip(Pokemon currentPokemon) {
+        this.relationShipRange = 0;
         this.currentPokemon = currentPokemon;
+        this.pokemons=new Pokemon[2];
+        this.pokemons[0]= currentPokemon;
     }
 
     /**
@@ -81,7 +84,7 @@ public class RelationShip {
     public Pokemon[] getPokemons() {
         return pokemons;
     }
-
+    
     /**
      * Establece el arreglo de Pokémon.
      *
@@ -93,6 +96,14 @@ public class RelationShip {
         } else {
             throw new IllegalArgumentException("Debe haber exactamente dos Pokémon.");
         }
+    }
+    
+    public void actualizateRelationShipRange(){
+        if(this.relationShipRange>0){
+        int current = this.getRelationShipRange();
+        int newCurrent = current--;
+        this.setRelationShipRange(newCurrent);
+        } 
     }
     
     /**
