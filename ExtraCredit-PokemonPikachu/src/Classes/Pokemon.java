@@ -4,17 +4,36 @@
  */
 package Classes;
 
+import EDD.AVLTree;
+
 /**
+ * Clase Pokemon. Esta clase define los atributos y el comportamiento de un
+ * objeto del tipo Pokemon.
  *
  * @author AresR
  */
 public class Pokemon {
 
-    private String name;                           // Nombre del Pokémon
-    private EmotionalState currentState;           // Estado emocional actual del Pokémon
-    private AVLTree recordOfGifts;                 // Inventario, guardado en un árbol AVL
-    private EmotionalState[] pokemonStates;        // Lista de estados emocionales posibles
-    
+    /**
+     * Nombre del Pokémon.
+     */
+    private String name;
+
+    /**
+     * Estado emocional actual del Pokémon.
+     */
+    private EmotionalState currentState;
+
+    /**
+     * Inventario, guardado en un árbol AVL.
+     */
+    private AVLTree recordOfGifts;
+
+    /**
+     * Lista de estados emocionales del pokemon.
+     */
+    private EmotionalState[] pokemonStates;
+
     /**
      * Constructor para instanciar la clase Pokemon, asignando el nombre y los
      * estados emocionales que tendrá el poquemon
@@ -102,4 +121,15 @@ public class Pokemon {
         this.pokemonStates = pokemonStates;
     }
 
+    /**
+     *
+     * @return 
+     */
+    public String summaryForPrint(){
+        String toReturn;
+        
+        toReturn = "";                      //terminar
+        
+        return toReturn;
+    }
 }
