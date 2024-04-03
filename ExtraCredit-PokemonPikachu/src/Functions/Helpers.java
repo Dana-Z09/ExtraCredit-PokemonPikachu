@@ -33,4 +33,12 @@ public class Helpers {
         pokeFichero.write("pepino");
         pokeFichero.close();
     }
+    public void borrarArchivo() {
+        File archivo = new File(System.getProperty("user.dir") + "\\src\\PokeFile\\pokesave.txt");
+        if (archivo.delete()) {
+   
+        } else{
+   
+        }
+    }
 }
