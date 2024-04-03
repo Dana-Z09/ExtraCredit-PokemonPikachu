@@ -149,12 +149,12 @@ public class InicialMenu extends javax.swing.JFrame {
     private void newGameButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtomActionPerformed
         Helpers help = new Helpers();
         String[] options= {"Sí","No"};
-        //si el archivo existe 
-        //sale un joptionpane para confirmar si se borra o no los datos del anterior juego
-        if (help.existCSV()){
+        
+        if (help.saveExist()){
             int answer =JOptionPane.showOptionDialog(null, "¡Cuidado! Se borraran todos los datos guardados de su mascota.\nPresionse sí, si quierie continuar y reiniciar los valores del juego.\nPresione no, en el caso contrario.", "Confirmación de Inicio de Nuevo Juego", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
             if  (answer==0){
                 //si dice que si se borra el archivo y se lleva a la pestaña de seleccion 
+                //funcion que borra archivo
                 this.setVisible(false);
                 chooseMenu selection = new chooseMenu();
                 selection.setVisible(true);
@@ -171,11 +171,11 @@ public class InicialMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_newGameButtomActionPerformed
 
     private void startGameButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtomActionPerformed
-        //si el archivo existe entonces 
-        
         Helpers help = new Helpers();
-        if (help.existCSV()) {
+        
+        if (help.saveExist()) {
             //leer archivo y crear sistema apartir de los datos cargados
+            
             this.setVisible(false);
             MainMenu mainPage= new MainMenu();
             mainPage.setVisible(true);

@@ -18,9 +18,14 @@ public class Helpers {
     return true;
     }
     
-    public void saveExist() {
+    public boolean saveExist() {
     File archivo = new File(System.getProperty("user.dir") + "\\src\\PokeFile\\pokesave.txt");
-        System.out.println(archivo.exists());
+    if (archivo.exists()) {
+        return true;
+    } else {
+        return false;
+    }
+       
     }
     public void crearSave() throws IOException {
         
