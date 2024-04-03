@@ -18,7 +18,7 @@ public class Game implements Serializable {
     private boolean running;           // Estado del juego, si se esta ejecutando es true, de lo contrario es false
 
     // Constructor de Game
-    public Game(int numOfPokemon) {
+    public Game() {
         this.startTime = System.currentTimeMillis();
         this.timeInSeconds = 0;
         this.timeToShow = formatTime(0, 0, 0);
@@ -80,7 +80,7 @@ public class Game implements Serializable {
         this.setRunning(false);
     }
 
-    public void StartGame(int numOfPokemon) {
+    public void StartGame() {
         this.setRunning(true);
 
         while (this.running) {

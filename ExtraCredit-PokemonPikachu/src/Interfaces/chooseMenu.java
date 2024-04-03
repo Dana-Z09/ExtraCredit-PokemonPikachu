@@ -134,23 +134,16 @@ public class chooseMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void shinxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shinxActionPerformed
-        Game mainGame= new Game(1);
-        mainGame.prepareGame(1);
-        
-        //y se lleva a la página principal
-        //sistem == una caracteristicas de shinx
-        this.setVisible(false);
+        MainMenu.CurrentGame.prepareGame(1);
         MainMenu mainPage= new MainMenu();
-        MainMenu.CurrentGame= mainGame;
+        this.setVisible(false);
         mainPage.setVisible(true);
     }//GEN-LAST:event_shinxActionPerformed
 
     private void pikachuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pikachuActionPerformed
-        Game mainGame= new Game(2);
-        mainGame.prepareGame(2);
-        this.setVisible(false);
+        MainMenu.CurrentGame.prepareGame(2);
         MainMenu mainPage= new MainMenu();
-        MainMenu.CurrentGame= mainGame;
+        this.setVisible(false);
         mainPage.setVisible(true);
     }//GEN-LAST:event_pikachuActionPerformed
 

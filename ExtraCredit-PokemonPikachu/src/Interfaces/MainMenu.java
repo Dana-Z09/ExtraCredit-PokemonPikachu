@@ -11,7 +11,9 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
  * @author Danna Star
  */
 public class MainMenu extends javax.swing.JFrame {
-    static Game CurrentGame;
+    
+    public static Game CurrentGame = new Game();
+    
     Pictures pic= new Pictures();
     
     /**
@@ -25,21 +27,16 @@ public class MainMenu extends javax.swing.JFrame {
         fondoLabel.setIcon(pic.getFondoPic());
         fondoLabel.setText("");
         
-        //dependiendo del pokemon que se halla creado  en sistema 
-        // Entonces se colocala imagen de pikachu o de shinx
-        //se setea 
-        pikachulabel.setIcon(pic.getPikachuPic());
-        pikachulabel.setText("");
-        
-        
-        //aqui deberia colocar el while
-        timeLabel.setText("tiempo del game");
-        wattsLabel.setText("watts del game");
-        relationchipLabel.setText("cantidad de relacion del game");
+        CurrentGame.StartGame();
+              
+        while(CurrentGame.isRunning()){
+        timeLabel.setText(CurrentGame.getTimeToShow());
+        wattsLabel.setText(String.valueOf(CurrentGame.getWatts()));
+        relationchipLabel.setText(String.valueOf(CurrentGame.getRelationship().getRelationShipRange()));
         mainPhoto.setText("");
-        mainPhoto.setIcon(null);//la imagen des estado
-        pokemonStatus.setText("nombre del estado");
-        
+        mainPhoto.setIcon(CurrentGame.getRelationship().getCurrentPokemon().getCurrentState().getImage());
+        pokemonStatus.setText(CurrentGame.getRelationship().getCurrentPokemon().getCurrentState().getName());
+        }
         
         
         
@@ -62,16 +59,16 @@ public class MainMenu extends javax.swing.JFrame {
         playButton = new javax.swing.JButton();
         inventoryButtom = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        pikachulabel = new javax.swing.JLabel();
         fondoLabel = new javax.swing.JLabel();
-        storeButtom1 = new javax.swing.JButton();
+        mainPhoto = new javax.swing.JLabel();
         pokemonStatus = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        storeButtom1 = new javax.swing.JButton();
         timeLabel = new javax.swing.JLabel();
         wattsLabel = new javax.swing.JLabel();
         title3 = new javax.swing.JLabel();
         title2 = new javax.swing.JLabel();
         title1 = new javax.swing.JLabel();
-        mainPhoto = new javax.swing.JLabel();
         relationchipLabel = new javax.swing.JLabel();
 
         pokemonLabel.setText("jLabel3");
@@ -136,11 +133,18 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pikachulabel.setText("jLabel4");
-        jPanel3.add(pikachulabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 240, 380));
-
         fondoLabel.setText("jLabel1");
         jPanel3.add(fondoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 410));
+
+        mainPhoto.setText("jLabel1");
+        jPanel3.add(mainPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 180, 180));
+
+        pokemonStatus.setFont(new java.awt.Font("Peace Sans", 0, 24)); // NOI18N
+        pokemonStatus.setForeground(new java.awt.Color(213, 213, 213));
+        pokemonStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pokemonStatus.setText("...");
+        jPanel3.add(pokemonStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 210, -1));
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 320, 60));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 320, 370));
 
@@ -155,12 +159,6 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
         jPanel2.add(storeButtom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 180, 40));
-
-        pokemonStatus.setFont(new java.awt.Font("Peace Sans", 0, 24)); // NOI18N
-        pokemonStatus.setForeground(new java.awt.Color(213, 213, 213));
-        pokemonStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pokemonStatus.setText("...");
-        jPanel2.add(pokemonStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, 210, -1));
 
         timeLabel.setFont(new java.awt.Font("Peace Sans", 0, 18)); // NOI18N
         timeLabel.setForeground(new java.awt.Color(213, 213, 213));
@@ -186,9 +184,6 @@ public class MainMenu extends javax.swing.JFrame {
         title1.setForeground(new java.awt.Color(213, 213, 213));
         title1.setText("Tiempo: ");
         jPanel2.add(title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, -1, -1));
-
-        mainPhoto.setText("jLabel1");
-        jPanel2.add(mainPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 180, 180));
 
         relationchipLabel.setFont(new java.awt.Font("Peace Sans", 0, 24)); // NOI18N
         relationchipLabel.setForeground(new java.awt.Color(213, 213, 213));
@@ -275,11 +270,11 @@ public class MainMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fondoLabel;
     private javax.swing.JButton inventoryButtom;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel mainPhoto;
     private javax.swing.JButton menuButtom;
-    private javax.swing.JLabel pikachulabel;
     private javax.swing.JButton playButton;
     private javax.swing.JLabel pokemonLabel;
     private javax.swing.JLabel pokemonLabel1;
