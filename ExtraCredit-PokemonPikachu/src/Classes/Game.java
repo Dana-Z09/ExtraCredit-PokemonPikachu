@@ -4,55 +4,112 @@
  */
 package Classes;
 
+import java.io.Serializable;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author AresR
  */
-public class Game {
-    
-    private long startTime; // Momento de inicio del juego en milisegundos.
-    private int timeInSeconds; // Tiempo transcurrido en segundos desde el inicio.
-    private String timeToShow; // Tiempo transcurrido en formato HH:mm:ss.
-    private int watts; // Balance actual del jugador en watts (dinero del juego).
-    private RelationShip relationship; // La relación actual con los Pokémon.
+public class Game implements Serializable {
 
-    // Otros atributos necesarios...
+    private long startTime;            // Momento de inicio del juego en milisegundos.
+    private int timeInSeconds;         // Tiempo transcurrido en segundos desde el inicio.      
+    private String timeToShow;         // Tiempo transcurrido en formato HH:mm:ss.              
+    private int watts;                 // Balance actual del jugador en watts (dinero del juego).       
+    private RelationShip relationship; // La relación actual con los Pokémon.           
+    private boolean running;           // Estado del juego, si se esta ejecutando es true, de lo contrario es false
 
     // Constructor de Game
-    public Game() {
+    public Game(int numOfPokemon) {
         this.startTime = System.currentTimeMillis();
         this.timeInSeconds = 0;
         this.timeToShow = formatTime(0, 0, 0);
-        
-        // Inicializa otros atributos como watts y relación.
-        this.watts = 0;
-        //this.relationship = new RelationShip();
-        // ... inicialización de otros atributos necesarios.
+        this.watts = -1;
+        this.relationship = null;
+    }
 
-        /*
-        
-        Codigo de la prueba realizada
-    Se debe colocar un while para el tiempo.
-    
-    Game game = new Game();
+    public long getStartTime() {
+        return startTime;
+    }
 
-    // Ejecuta un bucle para actualizar y mostrar el tiempo cada segundo.
-        
-        while (true) {
-            
-            System.out.println("Tiempo transcurrido: " + game.getTimeToShow());
-            try {
-                Thread.sleep(1000); // Pausa de 1 segundo entre actualizaciones
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public int getTimeInSeconds() {
+        return timeInSeconds;
+    }
+
+    public void setTimeInSeconds(int timeInSeconds) {
+        this.timeInSeconds = timeInSeconds;
+    }
+
+    public String getTimeToShow() {
+        return timeToShow;
+    }
+
+    public void setTimeToShow(String timeToShow) {
+        this.timeToShow = timeToShow;
+    }
+
+    public int getWatts() {
+        return watts;
+    }
+
+    public void setWatts(int watts) {
+        this.watts = watts;
+    }
+
+    public RelationShip getRelationship() {
+        return relationship;
+    }
+
+    public void setRelationship(RelationShip relationship) {
+        this.relationship = relationship;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
+
+    // Funciones basicas para el sistema
+    public void prepareGame(int numOfPokemon) {
+        this.setRelationship(this.createRelationShip(numOfPokemon));
+        this.setRunning(false);
+    }
+
+    public void StartGame(int numOfPokemon) {
+        this.setRunning(true);
+
+        while (this.running) {
+            this.updateValues();
         }
-    
-     */
+
+    }
+
+    public void continueGame() {
+        this.setRunning(true);
+    }
+
+    public void StopGame() {
+        this.setRunning(false);
+    }
+
+    public void LoadGame() {
+        // Funciones de Diego
+    }
+
+    public void SaveGame() {
+        // Funciones de Diego
     }
 
     // Actualiza el tiempo transcurrido y el formato del tiempo mostrado.
-    public void updateTime() {
+    public void updateValues() {
         long currentTime = System.currentTimeMillis();
         this.timeInSeconds = (int) ((currentTime - this.startTime) / 1000);
         this.watts += 1; // Añade 1 watt por cada segundo transcurrido.
@@ -60,6 +117,7 @@ public class Game {
         int minutes = (timeInSeconds % 3600) / 60;
         int seconds = timeInSeconds % 60;
         this.timeToShow = formatTime(hours, minutes, seconds);
+        this.relationship.actualizateRelationShipRange();           //Actualiza el rango de la relacion
     }
 
     // Formatea el tiempo en horas, minutos y segundos.
@@ -67,45 +125,125 @@ public class Game {
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
-    // Método para obtener el tiempo transcurrido en formato de cadena.
-    public String getTimeToShow() {
-        return timeToShow;
-    }
-
-    // Obtiene el balance actual de watts del jugador.
-    public int getWatts() {
-        return watts;
-    }
-
-    // Añade o sustrae watts del balance del jugador.
-    public void setWatts(int amount) {
-        this.watts += amount;
-        // Validar que los watts no sean negativos. (Validar amount)
-    }
-
-    // Dani, por aqui deberia estar inventario
-    public void goToShop() {
-        
-    }
-
-    // Hacer recorrido del AVL en el orden necesario para imprimir esa vaina bien
-    public void recordOfInventory(){
-        
-    }
-    
-    // Seleccionar pokemon para el juego
-    public void viewPokemons() {
-    }
-
-    // Juegos
-
     // Método para ejecutar acciones de prueba.
     public String summaryToTest() {
         String toReturn;
-        
-        toReturn = "Resumen de prueba:"+"\n" + "Tiempo de juego: "+getTimeToShow()+"\n"+"Watts: " + getWatts();
+
+        toReturn = "Resumen de prueba:" + "\n" + "Tiempo de juego: " + getTimeToShow() + "\n" + "Watts: " + getWatts();
         // Hacer con un stringBuilder y agregar el resto de los elementos
-        
+
         return toReturn;
     }
+
+    public Pokemon getPokemonOfRelationShip() {
+        Pokemon toReturn = null;
+
+        toReturn = this.getRelationship().getCurrentPokemon();
+
+        return toReturn;
+    }
+
+    public RelationShip createRelationShip(int numOfPokemon) {
+        RelationShip toReturn;
+
+        Pokemon newPokemon = createPokemon(numOfPokemon);
+
+        RelationShip newRelationShip = new RelationShip(newPokemon);
+
+        toReturn = newRelationShip;
+
+        return toReturn;
+    }
+
+    public Pokemon createPokemon(int numOfPokemon) {
+        Pokemon toReturn;
+        String name;
+        EmotionalState[] states = this.createEmotionalStates(numOfPokemon);
+
+        if (numOfPokemon == 1) {
+            name = "";              // Colocar
+
+        } else {
+            name = "";              // Colocar
+        }
+
+        toReturn = new Pokemon(name, states);
+
+        return toReturn;
+    }
+
+    public EmotionalState[] createEmotionalStates(int numOfPokemon) {
+        EmotionalState[] states = new EmotionalState[5];
+
+        Pictures photos = new Pictures();
+
+        if (numOfPokemon == 1) {        // Primer pokemon reemplazar los photos.get con la direccion deseada
+
+            // happy
+            String name1 = "Feliz";
+            ImageIcon statehappy = photos.get();
+            EmotionalState toAddIn0 = new EmotionalState(name1, statehappy);
+            states[0] = toAddIn0;
+
+            // normal
+            String name2 = "Normal";
+            ImageIcon stateNormal = photos.get();
+            EmotionalState toAddIn1 = new EmotionalState(name2, stateNormal);
+            states[1] = toAddIn1;
+
+            // Inspired
+            String name3 = "Inspirado";
+            ImageIcon stateInspired = photos.get();
+            EmotionalState toAddIn2 = new EmotionalState(name3, stateInspired);
+            states[2] = toAddIn2;
+
+            // sad
+            String name4 = "Triste";
+            ImageIcon stateSad = photos.get();
+            EmotionalState toAddIn3 = new EmotionalState(name4, stateSad);
+            states[3] = toAddIn3;
+
+            // sigh 
+            String name5 = "Fatigado";
+            ImageIcon stateSigh = photos.get();
+            EmotionalState toAddIn4 = new EmotionalState(name5, stateSigh);
+            states[4] = toAddIn4;
+
+        } else {                        //Segundo Pokemon reemplazar los photos.get con la direccion deseada
+
+            //Happy
+            String name1 = "Feliz";
+            ImageIcon statehappy = photos.get();
+            EmotionalState toAddIn0 = new EmotionalState(name1, statehappy);
+            states[0] = toAddIn0;
+
+            // normal
+            String name2 = "Normal";
+            ImageIcon stateNormal = photos.get();
+            EmotionalState toAddIn1 = new EmotionalState(name2, stateNormal);
+            states[1] = toAddIn1;
+
+            // Inspired
+            String name3 = "Inspirado";
+            ImageIcon stateInspired = photos.get();
+            EmotionalState toAddIn2 = new EmotionalState(name3, stateInspired);
+            states[2] = toAddIn2;
+
+            // sad
+            String name4 = "Triste";
+            ImageIcon stateSad = photos.get();
+            EmotionalState toAddIn3 = new EmotionalState(name4, stateSad);
+            states[3] = toAddIn3;
+
+            // sigh 
+            String name5 = "Fatigado";
+            ImageIcon stateSigh = photos.get();
+            EmotionalState toAddIn4 = new EmotionalState(name5, stateSigh);
+            states[4] = toAddIn4;
+        }
+
+        return states;
+    }
+
+    //Funciones para los botones
 }

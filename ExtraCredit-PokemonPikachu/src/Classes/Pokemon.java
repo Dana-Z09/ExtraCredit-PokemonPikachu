@@ -39,9 +39,9 @@ public class Pokemon {
      */
     public Pokemon(String name, EmotionalState[] states) {
         this.name = name;
-        this.pokemonStates = states;
-        this.recordOfGifts = new AVLTree();
         this.currentState = states[0]; // Inicializar con el primer estado
+        this.recordOfGifts = new AVLTree();
+        this.pokemonStates = states;
 
     }
 
