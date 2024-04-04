@@ -1,6 +1,5 @@
 package Interfaces;
 
-import Classes.Gift;
 import Functions.Pictures;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
@@ -14,9 +13,11 @@ public class storePage extends javax.swing.JFrame {
     /**
      * Creates new form InicialMenu
      */
-    public storePage() {
+    public storePage(){}
+    public storePage(int wattsGame) {
         initComponents();
         this.setLocationRelativeTo(null);
+        
         BayaAranjaLabel.setIcon(pic.getBayaAranjaPic());
         BayaCaquicLabel.setIcon(pic.getBayaCaquicPic());
         BayaEnigmaLabel.setIcon(pic.getBayaEnigmaPic());
@@ -26,8 +27,10 @@ public class storePage extends javax.swing.JFrame {
         BayaZrezaLabel.setIcon(pic.getBayaZrezaPic());
         pokeballLabel.setIcon(pic.getPokeballPic());
         candyLabel.setIcon(pic.getCarameloPic());
+        
         moneyLabelPic.setText("");
         moneyLabelPic.setIcon(pic.getWattPic());
+        watts.setText(String.valueOf(wattsGame));
     }
 
     /**

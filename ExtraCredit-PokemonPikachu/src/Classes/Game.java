@@ -1,6 +1,5 @@
 package Classes;
 
-
 import Functions.Pictures;
 import EDD.AVLTree;
 import EDD.NodeAVL;
@@ -20,7 +19,8 @@ public class Game implements Serializable {
     private int timeInSeconds;         // Tiempo transcurrido en segundos desde el inicio.      
     private String timeToShow;         // Tiempo transcurrido en formato HH:mm:ss.              
     private int watts;                 // Balance actual del jugador en watts (dinero del juego).       
-    private RelationShip relationship; // La relación actual con los Pokémon.           
+    private RelationShip relationship; // La relación actual con los Pokémon.
+    private boolean canSecondPokemon;
 
     // Constructor de Game
     public Game() {
@@ -29,6 +29,7 @@ public class Game implements Serializable {
         this.timeToShow = formatTime(0, 0, 0);
         this.watts = -1;
         this.relationship = null;
+        this.canSecondPokemon = false;
     }
 
     public long getStartTime() {
@@ -71,7 +72,15 @@ public class Game implements Serializable {
         this.relationship = relationship;
     }
 
-        // Funciones basicas para el sistema
+    public boolean getCanSecondPokemon() {
+        return canSecondPokemon;
+    }
+
+    public void setCanSecondPokemon(boolean canSecondPokemon) {
+        this.canSecondPokemon = canSecondPokemon;
+    }
+
+    // Funciones basicas para el sistema
     public void prepareGame(int numOfPokemon) {
         this.setRelationship(this.createRelationShip(numOfPokemon));
     }
@@ -89,6 +98,7 @@ public class Game implements Serializable {
 
     // Actualiza el tiempo transcurrido y el formato del tiempo mostrado.
     public void updateValues() {
+
         long currentTime = System.currentTimeMillis();
         this.timeInSeconds = (int) ((currentTime - this.startTime) / 1000);
         this.watts += 1; // Añade 1 watt por cada segundo transcurrido.
@@ -97,6 +107,38 @@ public class Game implements Serializable {
         int seconds = timeInSeconds % 60;
         this.timeToShow = formatTime(hours, minutes, seconds);
         this.relationship.actualizateRelationShipRange();           //Actualiza el rango de la relacion
+        this.updatePhoto(this.getWatts());
+
+        if (!canSecondPokemon) {
+            this.setCanSecondPokemon(this.verifyCanSecondPokemon());
+        } 
+
+    }
+
+    public void updatePhoto(int watts) {
+
+        switch (watts) {
+            case 2000 -> {
+                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[1];
+                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+            }
+            case 4000 -> {
+                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[2];
+                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+            }
+            case 6000 -> {
+                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[3];
+                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+            }
+            case 8000 -> {
+                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[4];
+                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+            }
+            default -> {
+
+            }
+        }
+
     }
 
     // Formatea el tiempo en horas, minutos y segundos.
@@ -108,7 +150,7 @@ public class Game implements Serializable {
     public String summaryToTest() {
         String toReturn;
 
-        toReturn = "Resumen de prueba:" + "\n" + "Tiempo de juego: " + getTimeToShow() + "\n" + "Watts: " + getWatts()+"\n";
+        toReturn = "Resumen de prueba:" + "\n" + "Tiempo de juego: " + getTimeToShow() + "\n" + "Watts: " + getWatts() + "\n";
         // Hacer con un stringBuilder y agregar el resto de los elementos
 
         return toReturn;
@@ -120,7 +162,7 @@ public class Game implements Serializable {
 
         PokemonInGame = this.getRelationship().getCurrentPokemon();
         toReturn = PokemonInGame.getName();
-        
+
         return toReturn;
     }
 
@@ -159,144 +201,146 @@ public class Game implements Serializable {
         Pictures photos = new Pictures();
 
         if (numOfPokemon == 1) {        // Primer pokemon reemplazar los photos.get con la direccion deseada
- 
-            // happy
-            String name1 = "Feliz";
-            ImageIcon statehappy = photos.getHappyShinxPic();
-            EmotionalState toAddIn0 = new EmotionalState(name1, statehappy);
+
+            // sigh             
+            String name1 = "Fatigado";
+            ImageIcon stateSigh = photos.getSighShinxPic();
+            EmotionalState toAddIn0 = new EmotionalState(name1, stateSigh);
             states[0] = toAddIn0;
 
-            // normal
-            String name2 = "Normal";
-            ImageIcon stateNormal = photos.getNormalShinxPic();
-            EmotionalState toAddIn1 = new EmotionalState(name2, stateNormal);
+            // sad
+            String name2 = "Triste";
+            ImageIcon stateSad = photos.getDeterminationShinxPic();
+            EmotionalState toAddIn1 = new EmotionalState(name2, stateSad);
             states[1] = toAddIn1;
 
-            // Inspired
-            String name3 = "Inspirado";
-            ImageIcon stateInspired = photos.getInspireShinxPic();
-            EmotionalState toAddIn2 = new EmotionalState(name3, stateInspired);
+            // normal
+            String name3 = "Normal";
+            ImageIcon stateNormal = photos.getNormalShinxPic();
+            EmotionalState toAddIn2 = new EmotionalState(name3, stateNormal);
             states[2] = toAddIn2;
 
-            // sad
-            String name4 = "Triste";
-            ImageIcon stateSad = photos.getDeterminationShinxPic();
-            EmotionalState toAddIn3 = new EmotionalState(name4, stateSad);
+            // happy
+            String name4 = "Feliz";
+            ImageIcon statehappy = photos.getHappyShinxPic();
+            EmotionalState toAddIn3 = new EmotionalState(name4, statehappy);
             states[3] = toAddIn3;
 
-            // sigh 
-            String name5 = "Fatigado";
-            ImageIcon stateSigh = photos.getSighShinxPic();
-            EmotionalState toAddIn4 = new EmotionalState(name5, stateSigh);
+            // Inspired
+            String name5 = "Inspirado";
+            ImageIcon stateInspired = photos.getInspireShinxPic();
+            EmotionalState toAddIn4 = new EmotionalState(name5, stateInspired);
             states[4] = toAddIn4;
 
         } else {                        //Segundo Pokemon reemplazar los photos.get con la direccion deseada
 
-            //Happy
-            String name1 = "Feliz";
-            ImageIcon statehappy = photos.getHappyPikachuPic();
-            EmotionalState toAddIn0 = new EmotionalState(name1, statehappy);
+            // sigh 
+            String name1 = "Fatigado";
+            ImageIcon stateSigh = photos.getSighPikachuPic();
+            EmotionalState toAddIn0 = new EmotionalState(name1, stateSigh);
             states[0] = toAddIn0;
 
-            // normal
-            String name2 = "Normal";
-            ImageIcon stateNormal = photos.getNormalPikachuPic();
-            EmotionalState toAddIn1 = new EmotionalState(name2, stateNormal);
+            // sad
+            String name2 = "Triste";
+            ImageIcon stateSad = photos.getDeterminationPikachuPic();
+            EmotionalState toAddIn1 = new EmotionalState(name2, stateSad);
             states[1] = toAddIn1;
 
-            // Inspired
-            String name3 = "Inspirado";
-            ImageIcon stateInspired = photos.getInspirePikachuPic();
-            EmotionalState toAddIn2 = new EmotionalState(name3, stateInspired);
+            // normal
+            String name3 = "Normal";
+            ImageIcon stateNormal = photos.getNormalPikachuPic();
+            EmotionalState toAddIn2 = new EmotionalState(name3, stateNormal);
             states[2] = toAddIn2;
 
-            // sad
-            String name4 = "Triste";
-            ImageIcon stateSad = photos.getDeterminationPikachuPic();
-            EmotionalState toAddIn3 = new EmotionalState(name4, stateSad);
+            //Happy
+            String name4 = "Feliz";
+            ImageIcon statehappy = photos.getHappyPikachuPic();
+            EmotionalState toAddIn3 = new EmotionalState(name4, statehappy);
             states[3] = toAddIn3;
 
-            // sigh 
-            String name5 = "Fatigado";
-            ImageIcon stateSigh = photos.getSighPikachuPic();
-            EmotionalState toAddIn4 = new EmotionalState(name5, stateSigh);
+            // Inspired
+            String name5 = "Inspirado";
+            ImageIcon stateInspired = photos.getInspirePikachuPic();
+            EmotionalState toAddIn4 = new EmotionalState(name5, stateInspired);
             states[4] = toAddIn4;
         }
-
         return states;
     }
 
-    //Funcionalidades 
-    
-    // Funciones de la tienda
-    
-    // comprar recibe el objeto gift
-    
-    public void buyGiftInShop(String name, int cost, int relationshipBoost){       
+    public boolean verifyCanSecondPokemon() {
+        if (this.watts == 8000) {
+            return true;
+        } else {
+            return false;
+        }
 
-        // Pensar si se pasa el objeto gift o los 3 atributos separados
-        /*
-        Creo que mejor los tres separados porque quantity sera 1 y luego hay que 
-        sumarlo y es como raro crear el objeto afuera si al final ese no es el objeto 
-        que voy a agregar al nodo por quantity
-        
-        */
-        
-        if (this.getWatts()<cost) {
+    }
+
+    //Funcionalidades 
+    // Funciones de la tienda
+    // comprar recibe el objeto gift
+    public void buyGiftInShop(String name, int cost, int relationshipBoost) {
+
+        if (this.getWatts() < cost) {
             JOptionPane.showMessageDialog(null, "No posee los watts suficientes.");
         } else {
-           this.reduceWatts(cost);
-           JOptionPane.showMessageDialog(null, "Compra realizada.");
-           
+            this.decreaseWatts(cost);
+            JOptionPane.showMessageDialog(null, "Compra realizada.");
+
             AVLTree inventoryOfPokemon = this.getRelationship().getCurrentPokemon().getInventory();
-            
+
             NodeAVL inTree;
-            try{
+            try {
                 inTree = inventoryOfPokemon.SearchNodeInAVL(inventoryOfPokemon.getRoot(), cost);
-                
-            }catch(Exception e){
+
+            } catch (Exception e) {
                 inTree = null;
-                
             }
-            
+
             if (inTree != null) {
                 Gift GiftWithNewQuantity, GiftInTree;
-                
-                try{
-                GiftInTree = (Gift) inventoryOfPokemon.SearchNodeInAVL(inventoryOfPokemon.getRoot(), cost).getContent();
-                
-                GiftInTree.upgradeQuantity();
-                
-                GiftWithNewQuantity = GiftInTree;  
-                
-                this.getRelationship().getCurrentPokemon().getInventory().insertNewDataInNode(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), cost, GiftWithNewQuantity);
-                
-                JOptionPane.showMessageDialog(null, "Cantidad actualizada en el inventario.");
-                
-                } catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Error actualizando la cantidad en el inventario.");
-                
+
+                try {
+                    GiftInTree = (Gift) inventoryOfPokemon.SearchNodeInAVL(inventoryOfPokemon.getRoot(), cost).getContent();
+
+                    GiftInTree.upgradeQuantity();
+
+                    GiftWithNewQuantity = GiftInTree;
+
+                    this.getRelationship().getCurrentPokemon().getInventory().insertNewDataInNode(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), cost, GiftWithNewQuantity);
+
+                    JOptionPane.showMessageDialog(null, "Cantidad actualizada en el inventario.");
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error actualizando la cantidad en el inventario.");
                 }
-                
-                
+
             } else {
-                Gift newGift = new Gift(name,cost,relationshipBoost);
-                
+                Gift newGift = new Gift(name, cost, relationshipBoost);
+
                 try {
                     this.getRelationship().getCurrentPokemon().getInventory().insert(newGift);
                     JOptionPane.showMessageDialog(null, "Guardado en el inventario.");
-                
-                } catch(Exception e){
+
+                } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Error al insertar en el arbol.");
-                }           
+                }
             }
-        }   
+        }
     }
-    
-    public void reduceWatts(int numToReduce){
-        if (this.getWatts()>0) {
+
+    public void decreaseWatts(int numToReduce) {
+        if (this.getWatts() > 0) {
             int current = this.getWatts();
             int newValue = current - numToReduce;
+            this.setWatts(newValue);
+        }
+    }
+
+    public void increaseWatts(int numToIncrease) {
+        if (this.getWatts() > 0) {
+            int current = this.getWatts();
+            int newValue = current + numToIncrease;
             this.setWatts(newValue);
         }
     }
