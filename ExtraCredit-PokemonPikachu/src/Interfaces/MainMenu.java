@@ -247,11 +247,12 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-
+                    //Codigo del juego correspondiente de pendiendo de cada pokemon
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void saveButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtomActionPerformed
-        //agregar +10 watts
+        MainMenu.CurrentGame.increaseWatts(10);
+
         boolean saveAll = true;
         //=Funcion de guardar juego 
 
@@ -273,10 +274,13 @@ public class MainMenu extends javax.swing.JFrame {
     private void inventoryButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtomActionPerformed
         MainMenu.CurrentGame.increaseWatts(10);
         MainMenu.running=false;
+        
+        InventoryPage invt = new InventoryPage();
+        this.setVisible(false);
+        
+        invt.setVisible(true);
         //agregar inventario
         /**
-         * this.setVisible(false);
-            invt.setVisible(true);
          */
     }//GEN-LAST:event_inventoryButtomActionPerformed
 
@@ -296,10 +300,17 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void pokemon2ButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokemon2ButtomActionPerformed
         // TODO add your handling code here:
+        /*Terminar de definir que sucede con la vaina de creacion
+        
+        
+        */
     }//GEN-LAST:event_pokemon2ButtomActionPerformed
 
     private void Historial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Historial1ActionPerformed
-        // TODO add your handling code here:
+        MainMenu.CurrentGame.increaseWatts(10);
+        MainMenu.running=false;
+        //Aqui se llama a la pagina historial
+        
     }//GEN-LAST:event_Historial1ActionPerformed
 
     /**
