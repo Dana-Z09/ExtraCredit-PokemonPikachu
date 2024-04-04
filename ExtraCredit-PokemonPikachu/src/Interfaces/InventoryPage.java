@@ -246,25 +246,25 @@ public class InventoryPage extends javax.swing.JFrame {
         int answer = JOptionPane.showOptionDialog(null, "Baya Ziuela.\nEfecto: +850 relación.\n¿Desea darle una Baya Ziuela a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
-            //MainMenu.CurrentGame.buyGiftInShop("Baya Ziuela", 600, 850);
+            //MainMenu.CurrentGame.giveGift(600);
         }
     }//GEN-LAST:event_ziuelaActionPerformed
 
     private void aranjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aranjaActionPerformed
        String[] options = {"Sí", "No"};
-        int answer = JOptionPane.showOptionDialog(null, "Baya Aranja.\nEfecto: +100 relación.\n¿Desea cdarle una Baya Aranja a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
+        int answer = JOptionPane.showOptionDialog(null, "Baya Aranja.\nEfecto: +100 relación.\n¿Desea darle una Baya Aranja a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
-            //MainMenu.CurrentGame.buyGiftInShop("Baya Aranja", 100, 100);
+            //MainMenu.CurrentGame.giveGift(100);
         }
     }//GEN-LAST:event_aranjaActionPerformed
 
     private void caquicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caquicActionPerformed
         String[] options = {"Sí", "No"};
-        int answer = JOptionPane.showOptionDialog(null, "Baya Caquic.\nEfecto: +250 relación.\n¿Desea cdarle una Baya Caquic a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
+        int answer = JOptionPane.showOptionDialog(null, "Baya Caquic.\nEfecto: +250 relación.\n¿Desea darle una Baya Caquic a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
-            //MainMenu.CurrentGame.buyGiftInShop("Baya Caquic", 200, 250);
+            //MainMenu.CurrentGame.giveGift(200);
         }
     }//GEN-LAST:event_caquicActionPerformed
 
@@ -273,7 +273,7 @@ public class InventoryPage extends javax.swing.JFrame {
         int answer = JOptionPane.showOptionDialog(null, "Caramelo raro.\nEfecto: +1300 relación.\n¿Desea darle una Caramelo Raro a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
-            //MainMenu.CurrentGame.buyGiftInShop("Caramelo Raro", 900, 1300);
+            //MainMenu.CurrentGame.giveGift(900);
         }
     }//GEN-LAST:event_carameloActionPerformed
 
@@ -282,7 +282,7 @@ public class InventoryPage extends javax.swing.JFrame {
         int answer = JOptionPane.showOptionDialog(null, "Baya Zreza.\nEfecto: +550 relación.\n¿Desea darle una Baya Zreza a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
-            //MainMenu.CurrentGame.buyGiftInShop("Baya Zreza", 400, 550);
+            //MainMenu.CurrentGame.giveGift(400);
         }
     }//GEN-LAST:event_zrezaActionPerformed
 
@@ -291,7 +291,7 @@ public class InventoryPage extends javax.swing.JFrame {
         int answer = JOptionPane.showOptionDialog(null, "Pokeball.\nEfecto: +400 relación.\n¿Desea darle una Pokeball a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
-            //MainMenu.CurrentGame.buyGiftInShop("Pokeball", 300, 400);
+            //MainMenu.CurrentGame.giveGift(, 
         }
     }//GEN-LAST:event_pokeballActionPerformed
 
@@ -300,7 +300,7 @@ public class InventoryPage extends javax.swing.JFrame {
         int answer = JOptionPane.showOptionDialog(null, "Baya Zanama.\nEfecto: +700 relación.\n¿Desea darle una Baya Zanama a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
-            //MainMenu.CurrentGame.buyGiftInShop("Baya Zanama", 500, 700);
+            //MainMenu.CurrentGame.giveGift(500);
         }
     }//GEN-LAST:event_zanamaActionPerformed
 
@@ -309,7 +309,7 @@ public class InventoryPage extends javax.swing.JFrame {
         int answer = JOptionPane.showOptionDialog(null, "Baya Zidra.\nEfecto: +1000 relación.\n¿Desea darle una Baya Zidra a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
-            //MainMenu.CurrentGame.buyGiftInShop("Baya Zidra", 700, 1000);
+            //MainMenu.CurrentGame.giveGift(700);
         }
     }//GEN-LAST:event_zidraActionPerformed
 
@@ -318,7 +318,7 @@ public class InventoryPage extends javax.swing.JFrame {
         int answer = JOptionPane.showOptionDialog(null, "Baya Enigma.\nEfecto: +1150 relación.\n¿Desea darle una Baya Enigma a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
-            //MainMenu.CurrentGame.buyGiftInShop("Baya Enigma", 800, 1150);
+            //MainMenu.CurrentGame.giveGift(800);
         }
     }//GEN-LAST:event_enigmaActionPerformed
 

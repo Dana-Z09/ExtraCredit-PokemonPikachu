@@ -1,5 +1,9 @@
 package EDD;
 
+
+
+import Classes.Gift;
+
 import java.io.Serializable;
 
 /**
@@ -102,5 +106,13 @@ public class NodeAVL implements Comparator, Serializable{
     @Override
     public boolean isGreaterThan(int otherNodeID) {
         return this.nodeID > otherNodeID;
+    }
+    
+    public String getSummaryOfObjectGift(NodeAVL nodeInTree){
+        
+        Gift giftInNode = (Gift) nodeInTree.getContent();
+        String toReturn = giftInNode.summaryForPrint();
+        
+        return toReturn;
     }
 }

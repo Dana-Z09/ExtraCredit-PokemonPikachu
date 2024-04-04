@@ -197,42 +197,34 @@ public class AVLTree implements Serializable {
 
     private NodeAVL removeAVL(NodeAVL root, Object nodeContent, Logical highChange) throws Exception {
         NodeAVL auxNode = new NodeAVL(nodeContent);
-        
+
         if (root == null) {
             throw new Exception("Nodo no encontrado");
-        } 
-        
-        else if (auxNode.isLessThan(root.getNodeID())) {//el nodo a insertar es menor que el valor del nodo raiz
+        } else if (auxNode.isLessThan(root.getNodeID())) {//el nodo a insertar es menor que el valor del nodo raiz
             NodeAVL leftNode;
             leftNode = removeAVL((NodeAVL) root.getpLeft(), nodeContent, highChange);
             root.setpLeft(leftNode);
-            
+
             if (highChange.getValue()) {
                 root = balanceLeftBranch(root, highChange);
             }
-        } 
-        
-        else if (auxNode.isGreaterThan(root.getNodeID())) {
+        } else if (auxNode.isGreaterThan(root.getNodeID())) {
             NodeAVL rightNode;
             rightNode = removeAVL((NodeAVL) root.getpRight(), nodeContent, highChange);
             root.setpRight(rightNode);
             if (highChange.getValue()) {
                 root = balanceRightBranch(root, highChange);
             }
-        } 
-        
-        else {//Nodo encontrado
+        } else {//Nodo encontrado
             NodeAVL theOne = root; // el nodo que se quiere eliminar del arbol   
-            
+
             if (theOne.getpLeft() == null) { //no tiene rama izquierda
                 root = (NodeAVL) theOne.getpRight();
                 highChange.setValue(true);
-            } 
-            else if (theOne.getpRight() == null) { //no tiene rama derecha
+            } else if (theOne.getpRight() == null) { //no tiene rama derecha
                 root = (NodeAVL) theOne.getpLeft();
                 highChange.setValue(true);
-            } 
-            else {//tiene rama izquierda y derecha
+            } else {//tiene rama izquierda y derecha
                 NodeAVL left;
                 left = replace(root, (NodeAVL) root.getpLeft(), highChange);
                 root.setpLeft(left);
@@ -240,93 +232,90 @@ public class AVLTree implements Serializable {
                     root = balanceLeftBranch(root, highChange);
                 }
 
-                
             }
             theOne = null;
         }
-        
+
         return root;
     }
 
-    private NodeAVL replace(NodeAVL oldNode, NodeAVL newNode, Logical highChange){
-        if (newNode.getpRight()!=null)
-        {
+    private NodeAVL replace(NodeAVL oldNode, NodeAVL newNode, Logical highChange) {
+        if (newNode.getpRight() != null) {
             NodeAVL right;
-            right=  replace(oldNode,(NodeAVL) newNode.getpRight(),highChange);
+            right = replace(oldNode, (NodeAVL) newNode.getpRight(), highChange);
             newNode.setpRight(right);
-            if(highChange.getValue()){
-                newNode=balanceRightBranch(newNode,highChange);}
-        }
-        else
-        {
+            if (highChange.getValue()) {
+                newNode = balanceRightBranch(newNode, highChange);
+            }
+        } else {
             oldNode.setContent(newNode.getContent());
-            oldNode=newNode;
+            oldNode = newNode;
             newNode = (NodeAVL) newNode.getpLeft();
-            oldNode=null;
+            oldNode = null;
             highChange.setValue(true);
         }
         return newNode;
     }
-    
-    private NodeAVL balanceLeftBranch(NodeAVL n, Logical highChange){
+
+    private NodeAVL balanceLeftBranch(NodeAVL n, Logical highChange) {
         NodeAVL auxNode;
-        
-        switch(n.getBalanceFactor()){
-            case -1 -> { n.setBalanceFactor(0);
-                        break;
-}
-            case 0 ->  {n.setBalanceFactor(1);
-                    highChange.setValue(false);
-                    break;
-}
+
+        switch (n.getBalanceFactor()) {
+            case -1 -> {
+                n.setBalanceFactor(0);
+                break;
+            }
+            case 0 -> {
+                n.setBalanceFactor(1);
+                highChange.setValue(false);
+                break;
+            }
             case 1 -> { //se aplica un tipo de rotacion derecha
-                auxNode=(NodeAVL) n.getpRight();
-                if(auxNode.getBalanceFactor()>=0){
-                    if(auxNode.getBalanceFactor()==0){//la altura no vuelve a disminuir
+                auxNode = (NodeAVL) n.getpRight();
+                if (auxNode.getBalanceFactor() >= 0) {
+                    if (auxNode.getBalanceFactor() == 0) {//la altura no vuelve a disminuir
                         highChange.setValue(false);
                     }
-                    n=rotationRR(n,auxNode);
-                }
-                else
-                {
-                    n=rotationRL(n,auxNode);
+                    n = rotationRR(n, auxNode);
+                } else {
+                    n = rotationRL(n, auxNode);
                 }
                 break;
-            
+
             }
-        
+
         }
         return n;
     }
-    
-    private NodeAVL balanceRightBranch(NodeAVL n, Logical highChange){
-            NodeAVL auxNode;
-            
-            switch(n.getBalanceFactor()){
-                case -1:{//Se aplica un tipo de rotacion izquierda
-                        auxNode=(NodeAVL) n.getpLeft();
-                        if(auxNode.getBalanceFactor()<=0)
-                        {
-                            if(auxNode.getBalanceFactor()==0){highChange.setValue(false);}
-                            n = rotationLL(n, auxNode);
-                        }
-                        else
-                        {
-                            n=rotationLR(n, auxNode);
-                        }
-                        break;}
-                case 0:{
-                        n.setBalanceFactor(-1);
+
+    private NodeAVL balanceRightBranch(NodeAVL n, Logical highChange) {
+        NodeAVL auxNode;
+
+        switch (n.getBalanceFactor()) {
+            case -1: {//Se aplica un tipo de rotacion izquierda
+                auxNode = (NodeAVL) n.getpLeft();
+                if (auxNode.getBalanceFactor() <= 0) {
+                    if (auxNode.getBalanceFactor() == 0) {
                         highChange.setValue(false);
-                        break;
-                        }
-                    
-                case 1:{
-                        n.setBalanceFactor(0);
-                        break;
-                        }
+                    }
+                    n = rotationLL(n, auxNode);
+                } else {
+                    n = rotationLR(n, auxNode);
+                }
+                break;
             }
-            return n;
+            case 0: {
+                n.setBalanceFactor(-1);
+                highChange.setValue(false);
+                break;
+            }
+
+            case 1: {
+                n.setBalanceFactor(0);
+                break;
+            }
+        }
+        return n;
     }
 
     public NodeAVL SearchNodeInAVL(NodeAVL pRoot, int numNodeOfCurrentOperation) throws Exception {
@@ -341,7 +330,6 @@ public class AVLTree implements Serializable {
             return SearchNodeInAVL(pRoot.getpRight(), numNodeOfCurrentOperation);
         }
     }
-
 
     /**
      * Inserta un nuevo dato en un nodo existente del árbol.
@@ -370,44 +358,47 @@ public class AVLTree implements Serializable {
         }
     }
 
-    
     //Recorrido de un árbol binario en preorden
-    public static void preorden(NodeAVL root){
-        if(root!=null){
-        //root.visit();
-        preorden(root.getpLeft());
-        preorden(root.getpRight());
+    public String preorden(NodeAVL root, StringBuilder temp) {
+        if (root != null) {
+            temp.append(root.getSummaryOfObjectGift(root));
+
+            preorden(root.getpLeft(), temp);
+            preorden(root.getpRight(), temp);
+        }
+        return temp.toString();
+    }
+
+    //Recorrido de un árbol binario en preorden
+    public String inorden(NodeAVL root, StringBuilder temp) {
+        if (root != null) {
+
+            inorden(root.getpLeft(), temp);
+
+            temp.append(root.getSummaryOfObjectGift(root));
+
+            inorden(root.getpRight(), temp);
+        }
+        return temp.toString();
+    }
+
+    //Recorrido de un árbol binario en preorden
+    public String postorden(NodeAVL root, StringBuilder temp) {
+        if (root != null) {
+            postorden(root.getpLeft(), temp);
+            postorden(root.getpRight(), temp);
+
+            temp.append(root.getSummaryOfObjectGift(root));
+
+        }
+        return temp.toString();
+    }
+
+    public int sizeTree(NodeAVL root) {
+        if (root == null) {
+            return 0;
+        } else {
+            return 1 + sizeTree(root.getpLeft()) + sizeTree(root.getpRight());
         }
     }
-    
-    //Recorrido de un árbol binario en preorden
-    public static void inorden(NodeAVL root){
-        if(root!=null){
-        preorden(root.getpLeft());
-        //root.visit();
-        preorden(root.getpRight());
-        }
-    }
-    
-    //Recorrido de un árbol binario en preorden
-    public static void postorden(NodeAVL root){
-        if(root!=null){
-        preorden(root.getpLeft());
-        preorden(root.getpRight());
-        //root.visit();
-        }
-    }
-    
-    public static int sizeTree(NodeAVL root){
-        if(root==null){
-        return 0;
-        }else{
-        return 1+sizeTree(root.getpLeft())+sizeTree(root.getpRight());
-        }
-    
-
-
-
-
-}
 }

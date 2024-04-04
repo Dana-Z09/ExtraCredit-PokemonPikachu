@@ -299,8 +299,8 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_pokemon2ButtomActionPerformed
 
     private void Historial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Historial1ActionPerformed
-        MainMenu.CurrentGame.increaseWatts(10);
-        MainMenu.running=false;
+        MainMenu.CurrentGame.increaseWatts(1000);
+        //MainMenu.running=false;
         //Aqui se llama a la pagina historial
         
     }//GEN-LAST:event_Historial1ActionPerformed

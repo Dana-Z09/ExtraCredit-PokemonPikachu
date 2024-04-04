@@ -262,16 +262,20 @@ public class storePage extends javax.swing.JFrame {
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Ziuela", 600, 850);
+            
+            watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
     }//GEN-LAST:event_ziuelaActionPerformed
 
     private void aranjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aranjaActionPerformed
        String[] options = {"Sí", "No"};
         int answer = JOptionPane.showOptionDialog(null, "Baya Aranja.\nCosto: 100 Watts.\nEfecto: +100 relación.\n¿Desea comprar una Baya Aranja?\nPresionse sí, para realizar la compra.\nPresione no, en el caso contrario.", "Confirmación de Compra", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
-
+        
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Aranja", 100, 100);
+            watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
+        
     }//GEN-LAST:event_aranjaActionPerformed
 
     private void caquicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caquicActionPerformed
@@ -280,6 +284,7 @@ public class storePage extends javax.swing.JFrame {
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Caquic", 200, 250);
+            watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
     }//GEN-LAST:event_caquicActionPerformed
 
@@ -289,6 +294,7 @@ public class storePage extends javax.swing.JFrame {
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Caramelo Raro", 900, 1300);
+            watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
     }//GEN-LAST:event_carameloActionPerformed
 
@@ -298,6 +304,7 @@ public class storePage extends javax.swing.JFrame {
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Zreza", 400, 550);
+            watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
     }//GEN-LAST:event_zrezaActionPerformed
 
@@ -307,6 +314,7 @@ public class storePage extends javax.swing.JFrame {
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Pokeball", 300, 400);
+            watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
     }//GEN-LAST:event_pokeballActionPerformed
 
@@ -316,6 +324,7 @@ public class storePage extends javax.swing.JFrame {
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Zanama", 500, 700);
+            watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
     }//GEN-LAST:event_zanamaActionPerformed
 
@@ -325,6 +334,7 @@ public class storePage extends javax.swing.JFrame {
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Zidra", 700, 1000);
+            watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
     }//GEN-LAST:event_zidraActionPerformed
 
@@ -334,6 +344,7 @@ public class storePage extends javax.swing.JFrame {
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Enigma", 800, 1150);
+            watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
     }//GEN-LAST:event_enigmaActionPerformed
 
