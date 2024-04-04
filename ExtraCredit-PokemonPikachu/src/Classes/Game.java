@@ -90,6 +90,7 @@ public class Game implements Serializable {
 
     public Game LoadGame() throws IOException, ClassNotFoundException {
         Helpers help = new Helpers();
+        return help.cargarSave();
     }
 
     public void SaveGame() throws IOException {
