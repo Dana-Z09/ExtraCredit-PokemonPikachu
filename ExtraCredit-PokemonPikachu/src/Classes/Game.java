@@ -6,8 +6,11 @@ import EDD.NodeAVL;
 import Functions.Helpers;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.InputMismatchException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 /**
  *
@@ -85,14 +88,19 @@ public class Game implements Serializable {
         this.setRelationship(this.createRelationShip(numOfPokemon));
     }
 
-    public void LoadGame() throws IOException, ClassNotFoundException {
+    public Game LoadGame() throws IOException, ClassNotFoundException {
         Helpers help = new Helpers();
-        help.cargarSave();
     }
 
     public void SaveGame() throws IOException {
         Helpers help = new Helpers();
-        help.crearSave(this);
+        try {
+        help.guardarSave(this);
+        JOptionPane.showMessageDialog(null, "Se ha guardado correctamente la información de la partida.", "Guardado Exitoso", INFORMATION_MESSAGE, null);
+        } catch(IOException ex) {
+            JOptionPane.showMessageDialog(null, "No se ha guardado correctamente la información de la partida.\nInténtelo nuevamente.", "Eror de Guardado", ERROR_MESSAGE, null);
+            
+        }
         
     }
 

@@ -32,7 +32,7 @@ public class Helpers {
     }
        
     }
-    public void crearSave(Game juegoGuardado) throws IOException {
+    public void guardarSave(Game juegoGuardado) throws IOException {
         File archivo = new File(System.getProperty("user.dir") + "\\src\\PokeFile\\pokesave.txt");
         FileOutputStream direccion = new FileOutputStream(archivo);
         ObjectOutputStream serializador = new ObjectOutputStream(direccion);

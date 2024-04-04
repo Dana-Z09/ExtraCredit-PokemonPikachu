@@ -1,4 +1,4 @@
-package juegocartasm;
+package Games;
 import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Fuxion
+ * @author Diego Mendez
  */
 public class CartaAlta {
     public boolean cartaAlta() {
