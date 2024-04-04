@@ -1,6 +1,8 @@
 package EDD;
 
+import Classes.Gift;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -401,4 +403,18 @@ public class AVLTree implements Serializable {
             return 1 + sizeTree(root.getpLeft()) + sizeTree(root.getpRight());
         }
     }
+    
+    
+    public ArrayList inordenArray(NodeAVL root){
+        ArrayList lista = null;
+        
+        if(root!=null){
+        inordenArray(root.getpLeft());
+        Gift regalo= (Gift) root.visit();
+        lista.add(regalo);
+        inordenArray(root.getpRight());
+        }
+        return lista;
+    }
+    
 }

@@ -115,4 +115,8 @@ public class NodeAVL implements Comparator, Serializable{
         
         return toReturn;
     }
+
+    public Object visit() {
+        return this.getContent();
+    }
 }
