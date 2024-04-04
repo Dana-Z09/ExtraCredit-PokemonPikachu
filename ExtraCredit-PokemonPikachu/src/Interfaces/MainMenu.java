@@ -89,6 +89,7 @@ public class MainMenu extends javax.swing.JFrame {
         title1 = new javax.swing.JLabel();
         relationshipLabel = new javax.swing.JLabel();
         pokemon2Buttom = new javax.swing.JButton();
+        plata = new javax.swing.JButton();
         Historial1 = new javax.swing.JButton();
         pokeball = new javax.swing.JLabel();
 
@@ -226,6 +227,18 @@ public class MainMenu extends javax.swing.JFrame {
         });
         jPanel2.add(pokemon2Buttom, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, 180, 40));
 
+        plata.setBackground(new java.awt.Color(222, 222, 222));
+        plata.setFont(new java.awt.Font("Pokemon Solid", 0, 18)); // NOI18N
+        plata.setForeground(new java.awt.Color(36, 36, 36));
+        plata.setText("plata");
+        plata.setToolTipText("");
+        plata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plataActionPerformed(evt);
+            }
+        });
+        jPanel2.add(plata, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 110, 40));
+
         Historial1.setBackground(new java.awt.Color(222, 222, 222));
         Historial1.setFont(new java.awt.Font("Pokemon Solid", 0, 18)); // NOI18N
         Historial1.setForeground(new java.awt.Color(36, 36, 36));
@@ -299,11 +312,17 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_pokemon2ButtomActionPerformed
 
     private void Historial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Historial1ActionPerformed
-        MainMenu.CurrentGame.increaseWatts(1000);
-        //MainMenu.running=false;
-        //Aqui se llama a la pagina historial
+        
+        MainMenu.running=false;
+        RecordPage historial = new RecordPage();
+        this.setVisible(false);
+        historial.setVisible(true);
         
     }//GEN-LAST:event_Historial1ActionPerformed
+
+    private void plataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_plataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -354,6 +373,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel mainPhoto;
     private javax.swing.JButton menuButtom;
     private javax.swing.JPanel panelStatus;
+    private javax.swing.JButton plata;
     private javax.swing.JButton playButton;
     private javax.swing.JLabel pokeball;
     private javax.swing.JButton pokemon2Buttom;
