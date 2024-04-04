@@ -115,7 +115,6 @@ public class Game implements Serializable {
             
         }
         
-    }
 
     // Actualiza el tiempo transcurrido y el formato del tiempo mostrado.
     public void updateValues() {
@@ -132,7 +131,7 @@ public class Game implements Serializable {
 
         if (!canSecondPokemon) {
             this.setCanSecondPokemon(this.verifyCanSecondPokemon());
-        } 
+        }
 
     }
 
@@ -298,58 +297,65 @@ public class Game implements Serializable {
     }
 
     //Funcionalidades 
-    // Funciones de la tienda
-    // comprar recibe el objeto gift
+    
+    // Funciones de la tienda e inventario
+    
     public void buyGiftInShop(String name, int cost, int relationshipBoost) {
 
         if (this.getWatts() < cost) {
             JOptionPane.showMessageDialog(null, "No posee los watts suficientes.");
-        } else {
+        } 
+        else {
             this.decreaseWatts(cost);
             JOptionPane.showMessageDialog(null, "Compra realizada.");
-
-            AVLTree inventoryOfPokemon = this.getRelationship().getCurrentPokemon().getInventory();
-
-            NodeAVL inTree;
+            
             try {
-                inTree = inventoryOfPokemon.SearchNodeInAVL(inventoryOfPokemon.getRoot(), cost);
-
-            } catch (Exception e) {
-                inTree = null;
-            }
-
-            if (inTree != null) {
                 Gift GiftWithNewQuantity, GiftInTree;
 
-                try {
-                    GiftInTree = (Gift) inventoryOfPokemon.SearchNodeInAVL(inventoryOfPokemon.getRoot(), cost).getContent();
+                // Arbol para obtener el nodo
+                AVLTree inventoryOfPokemon = this.getRelationship().getCurrentPokemon().getInventory();
+                
+                // Gift guardado en el nodo
+                GiftInTree = (Gift) inventoryOfPokemon.SearchNodeInAVL(inventoryOfPokemon.getRoot(), cost).getContent();
 
-                    GiftInTree.upgradeQuantity();
+                //Aumento su cantidad
+                GiftInTree.upgradeQuantity();
 
-                    GiftWithNewQuantity = GiftInTree;
+                //Le doy el valor a nuevo al objeto a agregar
+                GiftWithNewQuantity = GiftInTree;
 
-                    this.getRelationship().getCurrentPokemon().getInventory().insertNewDataInNode(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), cost, GiftWithNewQuantity);
+                //Agrego el nuevo objeto Gift al nodo en el arbol
+                this.getRelationship().getCurrentPokemon().getInventory().insertNewDataInNode(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), cost, GiftWithNewQuantity);
 
-                    JOptionPane.showMessageDialog(null, "Cantidad actualizada en el inventario.");
+                JOptionPane.showMessageDialog(null, "Cantidad actualizada en el inventario.");
 
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Error actualizando la cantidad en el inventario.");
-                }
-
-            } else {
+            } catch (Exception e) {
+                
+                // Creo el objeto Gift
                 Gift newGift = new Gift(name, cost, relationshipBoost);
 
                 try {
+                    // Inserto en el arbol
                     this.getRelationship().getCurrentPokemon().getInventory().insert(newGift);
                     JOptionPane.showMessageDialog(null, "Guardado en el inventario.");
 
-                } catch (Exception e) {
+                } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Error al insertar en el arbol.");
-                }
+                }   
             }
-        }
+            JOptionPane.showMessageDialog(null, "Llegó.");
+        }   
     }
 
+    public String makeSummaryForRecord(){
+        String toReturn;
+        
+        AVL
+        
+        return toReturn;
+    }
+        
+    
     public void decreaseWatts(int numToReduce) {
         if (this.getWatts() > 0) {
             int current = this.getWatts();
@@ -365,4 +371,6 @@ public class Game implements Serializable {
             this.setWatts(newValue);
         }
     }
+    
+    //giveGift
 }
