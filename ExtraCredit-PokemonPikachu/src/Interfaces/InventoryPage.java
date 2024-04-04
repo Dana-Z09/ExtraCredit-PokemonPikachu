@@ -274,7 +274,7 @@ public class InventoryPage extends javax.swing.JFrame {
 
     private void zrezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zrezaActionPerformed
         String[] options = {"Sí", "No"};
-        int answer = JOptionPane.showOptionDialog(null, "Baya Zreza.\nEfecto: +550 relación.\n¿Desea cdarle una Baya Zreza a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
+        int answer = JOptionPane.showOptionDialog(null, "Baya Zreza.\nEfecto: +550 relación.\n¿Desea darle una Baya Zreza a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Zreza", 400, 550);
@@ -283,7 +283,7 @@ public class InventoryPage extends javax.swing.JFrame {
 
     private void pokeballActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokeballActionPerformed
         String[] options = {"Sí", "No"};
-        int answer = JOptionPane.showOptionDialog(null, "Pokeball.\nEfecto: +400 relación.\n¿Desea cdarle una Pokeball a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
+        int answer = JOptionPane.showOptionDialog(null, "Pokeball.\nEfecto: +400 relación.\n¿Desea darle una Pokeball a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Pokeball", 300, 400);
@@ -292,7 +292,7 @@ public class InventoryPage extends javax.swing.JFrame {
 
     private void zanamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zanamaActionPerformed
         String[] options = {"Sí", "No"};
-        int answer = JOptionPane.showOptionDialog(null, "Baya Zanama.\nEfecto: +700 relación.\n¿Desea cdarle una Baya Zanama a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
+        int answer = JOptionPane.showOptionDialog(null, "Baya Zanama.\nEfecto: +700 relación.\n¿Desea darle una Baya Zanama a "+MainMenu.CurrentGame.getNamePokemonOfRelationShip()+"?\nPresionse sí, para dar regalo.\nPresione no, en el caso contrario.", "Confirmación Regalo", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Zanama", 500, 700);

@@ -93,13 +93,13 @@ public class Game implements Serializable {
         return help.cargarSave();
     }
 
-    public void SaveGame() throws IOException {
+    public void SaveGame() {
         Helpers help = new Helpers();
         try {
         help.guardarSave(this);
         JOptionPane.showMessageDialog(null, "Se ha guardado correctamente la información de la partida.", "Guardado Exitoso", INFORMATION_MESSAGE, null);
         } catch(IOException ex) {
-            JOptionPane.showMessageDialog(null, "No se ha guardado correctamente la información de la partida.\nInténtelo nuevamente.", "Eror de Guardado", ERROR_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, "No se ha guardado correctamente la información de la partida.\nInténtelo nuevamente.", "Error de Guardado", ERROR_MESSAGE, null);
             
         }
         
