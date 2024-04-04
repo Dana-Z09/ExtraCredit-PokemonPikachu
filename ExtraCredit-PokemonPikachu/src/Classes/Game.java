@@ -3,7 +3,6 @@ package Classes;
 import Functions.Pictures;
 import EDD.AVLTree;
 import EDD.NodeAVL;
-import Functions.Validations;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -18,7 +17,8 @@ public class Game implements Serializable {
     private int timeInSeconds;         // Tiempo transcurrido en segundos desde el inicio.      
     private String timeToShow;         // Tiempo transcurrido en formato HH:mm:ss.              
     private int watts;                 // Balance actual del jugador en watts (dinero del juego).       
-    private RelationShip relationship; // La relación actual con los Pokémon.           
+    private RelationShip relationship; // La relación actual con los Pokémon.
+    private boolean canSecondPokemon;
 
     // Constructor de Game
     public Game() {
@@ -27,6 +27,7 @@ public class Game implements Serializable {
         this.timeToShow = formatTime(0, 0, 0);
         this.watts = -1;
         this.relationship = null;
+        this.canSecondPokemon = false;
     }
 
     public long getStartTime() {
@@ -69,6 +70,14 @@ public class Game implements Serializable {
         this.relationship = relationship;
     }
 
+    public boolean getCanSecondPokemon() {
+        return canSecondPokemon;
+    }
+
+    public void setCanSecondPokemon(boolean canSecondPokemon) {
+        this.canSecondPokemon = canSecondPokemon;
+    }
+
     // Funciones basicas para el sistema
     public void prepareGame(int numOfPokemon) {
         this.setRelationship(this.createRelationShip(numOfPokemon));
@@ -93,12 +102,38 @@ public class Game implements Serializable {
         int seconds = timeInSeconds % 60;
         this.timeToShow = formatTime(hours, minutes, seconds);
         this.relationship.actualizateRelationShipRange();           //Actualiza el rango de la relacion
-        this.updatePhoto();
+        this.updatePhoto(this.getWatts());
+
+        if (!canSecondPokemon) {
+            this.setCanSecondPokemon(this.verifyCanSecondPokemon());
+        } 
 
     }
 
-    public void updatePhoto() {
-       // Hacer
+    public void updatePhoto(int watts) {
+
+        switch (watts) {
+            case 2000 -> {
+                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[1];
+                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+            }
+            case 4000 -> {
+                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[2];
+                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+            }
+            case 6000 -> {
+                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[3];
+                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+            }
+            case 8000 -> {
+                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[4];
+                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+            }
+            default -> {
+
+            }
+        }
+
     }
 
     // Formatea el tiempo en horas, minutos y segundos.
@@ -227,17 +262,20 @@ public class Game implements Serializable {
         return states;
     }
 
+    public boolean verifyCanSecondPokemon() {
+        if (this.watts == 8000) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     //Funcionalidades 
     // Funciones de la tienda
     // comprar recibe el objeto gift
     public void buyGiftInShop(String name, int cost, int relationshipBoost) {
 
-        // Pensar si se pasa el objeto gift o los 3 atributos separados
-        /*
-        Creo que mejor los tres separados porque quantity sera 1 y luego hay que 
-        sumarlo y es como raro crear el objeto afuera si al final ese no es el objeto 
-        que voy a agregar al nodo por quantity
-         */
         if (this.getWatts() < cost) {
             JOptionPane.showMessageDialog(null, "No posee los watts suficientes.");
         } else {
@@ -294,18 +332,11 @@ public class Game implements Serializable {
         }
     }
 
-    public void increaseWatts(int numToReduce) {
+    public void increaseWatts(int numToIncrease) {
         if (this.getWatts() > 0) {
             int current = this.getWatts();
-            int newValue = current + numToReduce;
+            int newValue = current + numToIncrease;
             this.setWatts(newValue);
         }
     }
-
-    public boolean canSecondPokemon() {
-        boolean val = false;
-
-        return val;
-    }
-
 }

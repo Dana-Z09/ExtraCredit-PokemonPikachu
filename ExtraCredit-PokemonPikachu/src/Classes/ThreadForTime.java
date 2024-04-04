@@ -48,6 +48,5 @@ public class ThreadForTime extends Thread {
      */
     public void stopThread(){
         MainMenu.running = false;
-        this.interrupt();
     }
 }
