@@ -102,20 +102,20 @@ public class Game implements Serializable {
             JOptionPane.showMessageDialog(null, "No se ha cargado correctamente la información de la partida.\nInténtelo nuevamente.", "Error de Guardado", ERROR_MESSAGE, null);
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-        } 
-          
+        }
+
     }
 
     public void SaveGame() {
         Helpers help = new Helpers();
         try {
-        help.guardarSave(this);
-        JOptionPane.showMessageDialog(null, "Se ha guardado correctamente la información de la partida.", "Guardado Exitoso", INFORMATION_MESSAGE, null);
-        } catch(IOException ex) {
+            help.guardarSave(this);
+            JOptionPane.showMessageDialog(null, "Se ha guardado correctamente la información de la partida.", "Guardado Exitoso", INFORMATION_MESSAGE, null);
+        } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se ha guardado correctamente la información de la partida.\nInténtelo nuevamente.", "Error de Guardado", ERROR_MESSAGE, null);
-            
+
         }
-    }    
+    }
 
     // Actualiza el tiempo transcurrido y el formato del tiempo mostrado.
     public void updateValues() {
@@ -298,38 +298,35 @@ public class Game implements Serializable {
     }
 
     //Funcionalidades 
-    
     // Funciones de la tienda e inventario
-    
     public void buyGiftInShop(String name, int cost, int relationshipBoost) {
 
         if (this.getWatts() < cost) {
             JOptionPane.showMessageDialog(null, "No posee los watts suficientes.");
-        } 
-        else {
+        } else {
             this.decreaseWatts(cost);
-            
+
             try {
                 Gift GiftWithNewQuantity, GiftInTree;
-                
+
                 // Gift guardado en el nodo
                 NodeAVL node = this.getRelationship().getCurrentPokemon().getInventory().SearchNodeInAVL(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), cost);
                 System.out.println("llego1");
                 GiftInTree = (Gift) node.getContent();
-System.out.println("Llego 2");
+                System.out.println("Llego 2");
                 //Aumento su cantidad
                 GiftInTree.upgradeQuantity();
-System.out.println("Llego 3");
+                System.out.println("Llego 3");
                 //Le doy el valor a nuevo al objeto a agregar
                 GiftWithNewQuantity = GiftInTree;
-System.out.println("Llego 4");
+                System.out.println("Llego 4");
                 //Agrego el nuevo objeto Gift al nodo en el arbol
                 this.getRelationship().getCurrentPokemon().getInventory().insertNewDataInNode(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), cost, GiftWithNewQuantity);
-System.out.println("Llego 5");
+                System.out.println("Llego 5");
                 JOptionPane.showMessageDialog(null, "Cantidad actualizada en el inventario.");
 
             } catch (Exception e) {
-                
+
                 // Creo el objeto Gift
                 Gift newGift = new Gift(name, cost, relationshipBoost);
 
@@ -337,51 +334,50 @@ System.out.println("Llego 5");
                     // Inserto en el arbol
                     System.out.println(this.getRelationship().getCurrentPokemon().getInventory());
                     AVLTree temp = this.getRelationship().getCurrentPokemon().getInventory();
-                    temp.insert(cost,newGift);
+                    temp.insert(cost, newGift);
                     this.getRelationship().getCurrentPokemon().setInventory(temp);
                     System.out.println(this.getRelationship().getCurrentPokemon().getInventory().summarizeTree());
                     JOptionPane.showMessageDialog(null, "Guardado en el inventario.");
 
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Error al insertar en el arbol.");
-                }   
+                }
             }
-        }   
+        }
     }
 
-    public String makeSummaryForRecord(){
+    public String makeSummaryForRecord() {
         String toReturn;
-        
+
         AVLTree tree = this.getRelationship().getCurrentPokemon().getRecordOfGifts();
-        
+
         StringBuilder temp = new StringBuilder();
         toReturn = this.getRelationship().getCurrentPokemon().getRecordOfGifts().inorden(tree.getRoot(), temp);
-        
+
         return toReturn;
     }
-       
-    public void giveGiftOfInventory(int costOfGift){
-        
+
+    public void giveGift(int costOfGift) {
+
         AVLTree inventory = this.getRelationship().getCurrentPokemon().getInventory();
-        
+
         try {
             NodeAVL node = inventory.SearchNodeInAVL(inventory.getRoot(), costOfGift);
-            
+
             Gift giftInNode = (Gift) node.getContent();
-            
-            if (giftInNode.getQuantity()==1) {
+
+            if (giftInNode.getQuantity() == 1) {
+                this.increaseRelationShipRange(costOfGift);
                 
             } else {
             }
-                   
-            
-        } catch(Exception e) {
-          JOptionPane.showMessageDialog(null, "No posee ese regalo en su inventario");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No posee ese regalo en su inventario");
         }
-                
-        
+
     }
-    
+
     public void decreaseWatts(int numToReduce) {
         if (this.getWatts() > 0) {
             int current = this.getWatts();
@@ -391,12 +387,23 @@ System.out.println("Llego 5");
     }
 
     public void increaseWatts(int numToIncrease) {
-        if (this.getWatts() > 0) {
-            int current = this.getWatts();
-            int newValue = current + numToIncrease;
-            this.setWatts(newValue);
+        int current = this.getWatts();
+        int newValue = current + numToIncrease;
+        this.setWatts(newValue);
+    }
+
+    public void decreaseRelationShipRange(int numToReduce) {
+        if (this.getRelationship().getRelationShipRange() > 0) {
+            int current = this.getRelationship().getRelationShipRange();
+            int newValue = current - numToReduce;
+            this.getRelationship().setRelationShipRange(newValue);
         }
     }
-    
-    
+
+    public void increaseRelationShipRange(int numToIncrease) {
+        int current = this.getRelationship().getRelationShipRange();
+        int newValue = current + numToIncrease;
+        this.getRelationship().setRelationShipRange(newValue);
+    }
+
 }
