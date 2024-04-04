@@ -1,11 +1,13 @@
 
 package EDD;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Daniela Zambrano
  */
-class Logical {
+class Logical implements Serializable{
     private boolean value;
 
     public Logical(boolean value) {

@@ -1,4 +1,4 @@
-package Games;
+package MiniGames;
 import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

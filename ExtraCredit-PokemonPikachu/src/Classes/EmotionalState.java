@@ -4,13 +4,14 @@
  */
 package Classes;
 
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author AresR
  */
-public class EmotionalState {
+public class EmotionalState implements Serializable {
 
     private String name;    // Nombre del estado emocional
     private ImageIcon image; // Imagen asociada al estado emocional

@@ -1,10 +1,12 @@
 package EDD;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Daniela Zambrano
  */
-public class AVLTree {
+public class AVLTree implements Serializable {
 
     private NodeAVL root;
 

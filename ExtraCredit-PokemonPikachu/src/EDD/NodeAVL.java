@@ -1,10 +1,12 @@
 package EDD;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Daniela Zambrano
  */
-public class NodeAVL implements Comparator{
+public class NodeAVL implements Comparator, Serializable{
     private int balanceFactor; //Factor de Equilibrio
     private int nodeID;
     private Object content;
