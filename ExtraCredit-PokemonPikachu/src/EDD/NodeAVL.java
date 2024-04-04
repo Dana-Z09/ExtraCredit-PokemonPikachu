@@ -23,6 +23,7 @@ public class NodeAVL implements Comparator{
         this.balanceFactor = 0;
         this.content = content;
     }
+    
     public NodeAVL(int nodeID, Object content) {
         this.balanceFactor = 0;
         this.nodeID = nodeID;

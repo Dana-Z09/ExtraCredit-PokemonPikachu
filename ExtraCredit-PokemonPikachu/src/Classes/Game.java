@@ -307,26 +307,24 @@ public class Game implements Serializable {
         } 
         else {
             this.decreaseWatts(cost);
-            JOptionPane.showMessageDialog(null, "Compra realizada.");
             
             try {
                 Gift GiftWithNewQuantity, GiftInTree;
-
-                // Arbol para obtener el nodo
-                AVLTree inventoryOfPokemon = this.getRelationship().getCurrentPokemon().getInventory();
                 
                 // Gift guardado en el nodo
-                GiftInTree = (Gift) inventoryOfPokemon.SearchNodeInAVL(inventoryOfPokemon.getRoot(), cost).getContent();
-
+                NodeAVL node = this.getRelationship().getCurrentPokemon().getInventory().SearchNodeInAVL(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), cost);
+                System.out.println("llego1");
+                GiftInTree = (Gift) node.getContent();
+System.out.println("Llego 2");
                 //Aumento su cantidad
                 GiftInTree.upgradeQuantity();
-
+System.out.println("Llego 3");
                 //Le doy el valor a nuevo al objeto a agregar
                 GiftWithNewQuantity = GiftInTree;
-
+System.out.println("Llego 4");
                 //Agrego el nuevo objeto Gift al nodo en el arbol
                 this.getRelationship().getCurrentPokemon().getInventory().insertNewDataInNode(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), cost, GiftWithNewQuantity);
-
+System.out.println("Llego 5");
                 JOptionPane.showMessageDialog(null, "Cantidad actualizada en el inventario.");
 
             } catch (Exception e) {
@@ -336,14 +334,17 @@ public class Game implements Serializable {
 
                 try {
                     // Inserto en el arbol
-                    this.getRelationship().getCurrentPokemon().getInventory().insert(newGift);
+                    System.out.println(this.getRelationship().getCurrentPokemon().getInventory());
+                    AVLTree temp = this.getRelationship().getCurrentPokemon().getInventory();
+                    temp.insert(cost,newGift);
+                    this.getRelationship().getCurrentPokemon().setInventory(temp);
+                    System.out.println(this.getRelationship().getCurrentPokemon().getInventory().summarizeTree());
                     JOptionPane.showMessageDialog(null, "Guardado en el inventario.");
 
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Error al insertar en el arbol.");
                 }   
             }
-            JOptionPane.showMessageDialog(null, "Llegó.");
         }   
     }
 
@@ -358,10 +359,25 @@ public class Game implements Serializable {
         return toReturn;
     }
        
-    public void giveGiftOfInventory(){
+    public void giveGiftOfInventory(int costOfGift){
         
         AVLTree inventory = this.getRelationship().getCurrentPokemon().getInventory();
         
+        try {
+            NodeAVL node = inventory.SearchNodeInAVL(inventory.getRoot(), costOfGift);
+            
+            Gift giftInNode = (Gift) node.getContent();
+            
+            if (giftInNode.getQuantity()==1) {
+                
+            } else {
+            }
+                   
+            
+        } catch(Exception e) {
+          JOptionPane.showMessageDialog(null, "No posee ese regalo en su inventario");
+        }
+                
         
     }
     

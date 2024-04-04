@@ -106,6 +106,10 @@ public class RelationShip {
         } 
     }
     
+    public void increaseRelationShipRange(int numToIncrease){
+        
+    }
+    
     /**
      * 
      * @return 
