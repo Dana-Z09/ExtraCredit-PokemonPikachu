@@ -114,7 +114,7 @@ public class Game implements Serializable {
             JOptionPane.showMessageDialog(null, "No se ha guardado correctamente la información de la partida.\nInténtelo nuevamente.", "Error de Guardado", ERROR_MESSAGE, null);
             
         }
-        
+    }    
 
     // Actualiza el tiempo transcurrido y el formato del tiempo mostrado.
     public void updateValues() {
@@ -350,11 +350,20 @@ public class Game implements Serializable {
     public String makeSummaryForRecord(){
         String toReturn;
         
-        AVL
+        AVLTree tree = this.getRelationship().getCurrentPokemon().getRecordOfGifts();
+        
+        StringBuilder temp = new StringBuilder();
+        toReturn = this.getRelationship().getCurrentPokemon().getRecordOfGifts().inorden(tree.getRoot(), temp);
         
         return toReturn;
     }
+       
+    public void giveGiftOfInventory(){
         
+        AVLTree inventory = this.getRelationship().getCurrentPokemon().getInventory();
+        
+        
+    }
     
     public void decreaseWatts(int numToReduce) {
         if (this.getWatts() > 0) {
@@ -372,5 +381,5 @@ public class Game implements Serializable {
         }
     }
     
-    //giveGift
+    
 }
