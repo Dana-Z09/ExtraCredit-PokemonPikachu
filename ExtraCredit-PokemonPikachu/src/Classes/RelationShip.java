@@ -4,13 +4,15 @@
  */
 package Classes;
 
+import java.io.Serializable;
+
 /**
  * La clase RelationShip representa la relación entre el jugador y los Pokémon.
  * Incluye el rango de la relación y el estado actual de los Pokémon.
  *
  * @author AresR
  */
-public class RelationShip {
+public class RelationShip implements Serializable {
 
     /**
      * Numero que indica el rango de relación actual.

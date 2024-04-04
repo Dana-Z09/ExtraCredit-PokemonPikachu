@@ -72,7 +72,7 @@ public class InventoryPage extends javax.swing.JFrame {
         setType(java.awt.Window.Type.UTILITY);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(57, 90, 168));
+        jPanel2.setBackground(new java.awt.Color(213, 213, 129));
         jPanel2.setForeground(new java.awt.Color(220, 10, 45));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -91,7 +91,7 @@ public class InventoryPage extends javax.swing.JFrame {
         jPanel2.add(PanelPikachu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         tiendaTitle.setFont(new java.awt.Font("Peace Sans", 0, 60)); // NOI18N
-        tiendaTitle.setForeground(new java.awt.Color(213, 213, 213));
+        tiendaTitle.setForeground(new java.awt.Color(0, 0, 0));
         tiendaTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tiendaTitle.setText("Inventario");
         jPanel2.add(tiendaTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 360, 80));

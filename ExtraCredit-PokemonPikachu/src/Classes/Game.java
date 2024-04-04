@@ -99,10 +99,11 @@ public class Game implements Serializable {
             JOptionPane.showMessageDialog(null, "No hay información guardada de una partida previa.\nInténtelo nuevamente o inicie un nuevo juego.", "Error de Guardado", ERROR_MESSAGE, null);
             return null;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "No se ha cargado correctamente la información de la partida.\nInténtelo nuevamente.", "Error de Guardado", ERROR_MESSAGE, null);
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-        }
+        } 
+          
     }
 
     public void SaveGame() {

@@ -1,10 +1,14 @@
 package EDD;
 
+import Classes.Gift;
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  *
  * @author Daniela Zambrano
  */
-public class AVLTree {
+public class AVLTree implements Serializable {
 
     private NodeAVL root;
 
@@ -441,5 +445,19 @@ public class AVLTree {
             // Cerrar el paréntesis del nodo
             sb.append(")");
         }
+    }
+
+    
+    
+    public ArrayList inordenArray(NodeAVL root){
+        ArrayList lista = null;
+        
+        if(root!=null){
+        inordenArray(root.getpLeft());
+        Gift regalo= (Gift) root.visit();
+        lista.add(regalo);
+        inordenArray(root.getpRight());
+        }
+        return lista;
     }
 }

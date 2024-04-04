@@ -169,9 +169,9 @@ public class InicialMenu extends javax.swing.JFrame {
     private void startGameButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtomActionPerformed
         Helpers help = new Helpers();
         if (help.saveExist()) {
-            MainMenu mainPage= new MainMenu();
             Game auxGame= MainMenu.CurrentGame.LoadGame();
             if(auxGame!=null){
+            MainMenu mainPage= new MainMenu();
             this.setVisible(false);
             mainPage.setVisible(true);
             MainMenu.CurrentGame=auxGame;

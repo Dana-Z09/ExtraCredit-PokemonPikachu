@@ -34,6 +34,7 @@ public class Pictures {
     private ImageIcon pokemonPic = new ImageIcon("pokemonlogo.png");
     private ImageIcon fondoPic = new ImageIcon("fondo.jpg");
     private ImageIcon wattPic = new ImageIcon("watt.png");
+    private ImageIcon storePic = new ImageIcon("tienda.png");
     
     
     /*Regalos*/
@@ -153,5 +154,9 @@ public class Pictures {
         return wattPic;
 
     }    
+
+    public ImageIcon getStorePic() {
+        return storePic;
+    }
     
 }
