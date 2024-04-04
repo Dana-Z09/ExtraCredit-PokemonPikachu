@@ -315,7 +315,7 @@ public class Game implements Serializable {
                 GiftInTree = (Gift) node.getContent();
 
                 //Aumento su cantidad
-                GiftInTree.upgradeQuantity();
+                GiftInTree.increaseQuantity();
 
                 //Le doy el valor a nuevo al objeto a agregar
                 GiftWithNewQuantity = GiftInTree;
