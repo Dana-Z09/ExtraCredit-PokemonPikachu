@@ -4,6 +4,8 @@ package Classes;
 import Functions.Pictures;
 import EDD.AVLTree;
 import EDD.NodeAVL;
+import Functions.Helpers;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -74,12 +76,15 @@ public class Game implements Serializable {
         this.setRelationship(this.createRelationShip(numOfPokemon));
     }
 
-    public void LoadGame() {
-        // Funciones de Diego
+    public void LoadGame() throws IOException, ClassNotFoundException {
+        Helpers ayudadina = new Helpers();
+        ayudadina.cargarSave();
     }
 
-    public void SaveGame() {
-        // Funciones de Diego
+    public void SaveGame() throws IOException {
+        Helpers ayudadina = new Helpers();
+        ayudadina.crearSave(this);
+        
     }
 
     // Actualiza el tiempo transcurrido y el formato del tiempo mostrado.
