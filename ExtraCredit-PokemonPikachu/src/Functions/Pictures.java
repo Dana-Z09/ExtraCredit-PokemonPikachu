@@ -151,16 +151,7 @@ public class Pictures {
 
     public ImageIcon getWattPic() {
         return wattPic;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    }    
     
 }

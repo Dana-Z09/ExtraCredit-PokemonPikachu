@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Classes.Game;
+import Classes.ThreadForTime;
 import Functions.Pictures;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
@@ -11,11 +12,13 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
  * @author Danna Star
  */
 public class MainMenu extends javax.swing.JFrame {
-    
+
     public static Game CurrentGame = new Game();
-    
-    Pictures pic= new Pictures();
-    
+    public static ThreadForTime threadToActualize;
+    public static boolean running;
+
+    Pictures pic = new Pictures();
+
     /**
      * Creates new form InicialMenu
      */
@@ -26,20 +29,23 @@ public class MainMenu extends javax.swing.JFrame {
         pokemonLabel1.setText("");
         fondoLabel.setIcon(pic.getFondoPic());
         fondoLabel.setText("");
+        this.mainPhoto.setText("");
+
+        // Movi esto aqui arriba afuera del ciclo para probar
+        this.mainPhoto.setIcon(MainMenu.CurrentGame.getRelationship().getCurrentPokemon().getCurrentState().getImage());
+
+        MainMenu.running = true;
+        MainMenu.threadToActualize = new ThreadForTime(this);
+        MainMenu.threadToActualize.start(); // Inicia el hilo de actualización.
+
         
-        CurrentGame.StartGame();
-              
-        while(CurrentGame.isRunning()){
+    }
+
+    public void updateLabels() {
         timeLabel.setText(CurrentGame.getTimeToShow());
         wattsLabel.setText(String.valueOf(CurrentGame.getWatts()));
-        relationchipLabel.setText(String.valueOf(CurrentGame.getRelationship().getRelationShipRange()));
-        mainPhoto.setText("");
-        mainPhoto.setIcon(CurrentGame.getRelationship().getCurrentPokemon().getCurrentState().getImage());
+        relationshipLabel.setText(String.valueOf(CurrentGame.getRelationship().getRelationShipRange()));
         pokemonStatus.setText(CurrentGame.getRelationship().getCurrentPokemon().getCurrentState().getName());
-        }
-        
-        
-        
     }
 
     /**
@@ -69,7 +75,7 @@ public class MainMenu extends javax.swing.JFrame {
         title3 = new javax.swing.JLabel();
         title2 = new javax.swing.JLabel();
         title1 = new javax.swing.JLabel();
-        relationchipLabel = new javax.swing.JLabel();
+        relationshipLabel = new javax.swing.JLabel();
 
         pokemonLabel.setText("jLabel3");
 
@@ -185,11 +191,11 @@ public class MainMenu extends javax.swing.JFrame {
         title1.setText("Tiempo: ");
         jPanel2.add(title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, -1, -1));
 
-        relationchipLabel.setFont(new java.awt.Font("Peace Sans", 0, 24)); // NOI18N
-        relationchipLabel.setForeground(new java.awt.Color(213, 213, 213));
-        relationchipLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        relationchipLabel.setText("...");
-        jPanel2.add(relationchipLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 210, -1));
+        relationshipLabel.setFont(new java.awt.Font("Peace Sans", 0, 24)); // NOI18N
+        relationshipLabel.setForeground(new java.awt.Color(213, 213, 213));
+        relationshipLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        relationshipLabel.setText("...");
+        jPanel2.add(relationshipLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 210, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 650));
 
@@ -197,35 +203,35 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-       
+
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void saveButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtomActionPerformed
-        boolean saveAll=true;
+        boolean saveAll = true;
         //=Funcion de guardar juego 
-        
-        if(saveAll){
-        JOptionPane.showMessageDialog(null, "Se ha guardado correctamente la información de la partida.", "Guardado Exitoso", INFORMATION_MESSAGE, null);
-        }else{
-        JOptionPane.showMessageDialog(null, "No se ha guardado correctamente la información de la partida.\nInténtelo nuevamente.", "Eror de Guardado", ERROR_MESSAGE, null);
+
+        if (saveAll) {
+            JOptionPane.showMessageDialog(null, "Se ha guardado correctamente la información de la partida.", "Guardado Exitoso", INFORMATION_MESSAGE, null);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha guardado correctamente la información de la partida.\nInténtelo nuevamente.", "Eror de Guardado", ERROR_MESSAGE, null);
         }
     }//GEN-LAST:event_saveButtomActionPerformed
 
     private void storeButtom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeButtom1ActionPerformed
-        
+
         //parar el tiempo
-        StorePage store = new StorePage();
+        storePage store = new storePage();
         this.setVisible(false);
         store.setVisible(true);
     }//GEN-LAST:event_storeButtom1ActionPerformed
 
     private void inventoryButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtomActionPerformed
-        
+
     }//GEN-LAST:event_inventoryButtomActionPerformed
 
     private void menuButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtomActionPerformed
         ////option pane con una cofirmation 
-        
+
         this.setVisible(false);
         InicialMenu menu = new InicialMenu();
         menu.setVisible(true);
@@ -262,7 +268,11 @@ public class MainMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu().setVisible(true);
+                MainMenu mainMenu = new MainMenu();
+                mainMenu.setVisible(true);
+                MainMenu.running = true;
+                MainMenu.threadToActualize = new ThreadForTime(mainMenu);
+                MainMenu.threadToActualize.start(); // Inicia el hilo de actualización.
             }
         });
     }
@@ -279,7 +289,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel pokemonLabel;
     private javax.swing.JLabel pokemonLabel1;
     private javax.swing.JLabel pokemonStatus;
-    private javax.swing.JLabel relationchipLabel;
+    private javax.swing.JLabel relationshipLabel;
     private javax.swing.JButton saveButtom;
     private javax.swing.JButton storeButtom1;
     private javax.swing.JLabel timeLabel;

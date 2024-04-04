@@ -41,6 +41,7 @@ public class Gift {
         this.name = name;
         this.cost = cost;
         this.relationshipBoost = relationshipBoost;
+        this.quantity = 1;
     }
 
     /**
@@ -112,10 +113,22 @@ public class Gift {
      * Establece cantidad de esa instancia de la clase regalo que ha recibido el
      * pokemon.
      *
-     * @param quantity El nuevo valor que tendra el atributo, para aumentar la cantidad.
+     * @param quantity El nuevo valor que tendra el atributo, para aumentar la
+     * cantidad.
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    /**
+     *      HACER JAVADOC
+     */
+    public void upgradeQuantity() {
+
+        int current = this.getQuantity();
+        current++;
+        int newValue = current;
+        this.setQuantity(newValue);
     }
 
     /**
