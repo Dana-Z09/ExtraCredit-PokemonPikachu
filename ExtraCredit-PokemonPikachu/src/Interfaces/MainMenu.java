@@ -6,6 +6,7 @@ import Functions.Pictures;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 
 /**
  *
@@ -29,6 +30,11 @@ public class MainMenu extends javax.swing.JFrame {
         pokemonLabel1.setText("");
         fondoLabel.setIcon(pic.getFondoPic());
         fondoLabel.setText("");
+        pokeball.setIcon(pic.getPokeballPic());
+        pokeball.setText("");
+        pokemon2Buttom.setVisible(false);
+        
+        
         this.mainPhoto.setText("");
 
         // Movi esto aqui arriba afuera del ciclo para probar
@@ -37,8 +43,10 @@ public class MainMenu extends javax.swing.JFrame {
         MainMenu.running = true;
         MainMenu.threadToActualize = new ThreadForTime(this);
         MainMenu.threadToActualize.start(); // Inicia el hilo de actualización.
-
         
+        
+        //if(MainMenu.CurrentGame.canSecondPokemon){pokemon2Buttom.setVisible(true);}
+
     }
 
     public void updateLabels() {
@@ -46,6 +54,10 @@ public class MainMenu extends javax.swing.JFrame {
         wattsLabel.setText(String.valueOf(CurrentGame.getWatts()));
         relationshipLabel.setText(String.valueOf(CurrentGame.getRelationship().getRelationShipRange()));
         pokemonStatus.setText(CurrentGame.getRelationship().getCurrentPokemon().getCurrentState().getName());
+        mainPhoto.setIcon(MainMenu.CurrentGame.getRelationship().getCurrentPokemon().getCurrentState().getImage());
+        mainPhoto.setIcon(MainMenu.CurrentGame.getRelationship().getCurrentPokemon().getCurrentState().getImage());
+        //if(MainMenu.CurrentGame.canSecondPokemon){pokemon2Buttom.setVisible(true);}
+        
     }
 
     /**
@@ -65,10 +77,10 @@ public class MainMenu extends javax.swing.JFrame {
         playButton = new javax.swing.JButton();
         inventoryButtom = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        fondoLabel = new javax.swing.JLabel();
-        mainPhoto = new javax.swing.JLabel();
         pokemonStatus = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        mainPhoto = new javax.swing.JLabel();
+        panelStatus = new javax.swing.JPanel();
+        fondoLabel = new javax.swing.JLabel();
         storeButtom1 = new javax.swing.JButton();
         timeLabel = new javax.swing.JLabel();
         wattsLabel = new javax.swing.JLabel();
@@ -76,6 +88,9 @@ public class MainMenu extends javax.swing.JFrame {
         title2 = new javax.swing.JLabel();
         title1 = new javax.swing.JLabel();
         relationshipLabel = new javax.swing.JLabel();
+        pokemon2Buttom = new javax.swing.JButton();
+        Historial1 = new javax.swing.JButton();
+        pokeball = new javax.swing.JLabel();
 
         pokemonLabel.setText("jLabel3");
 
@@ -134,23 +149,25 @@ public class MainMenu extends javax.swing.JFrame {
                 inventoryButtomActionPerformed(evt);
             }
         });
-        jPanel2.add(inventoryButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 570, 180, 40));
+        jPanel2.add(inventoryButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, 180, 40));
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        fondoLabel.setText("jLabel1");
-        jPanel3.add(fondoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 410));
-
-        mainPhoto.setText("jLabel1");
-        jPanel3.add(mainPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 180, 180));
 
         pokemonStatus.setFont(new java.awt.Font("Peace Sans", 0, 24)); // NOI18N
         pokemonStatus.setForeground(new java.awt.Color(213, 213, 213));
         pokemonStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pokemonStatus.setText("...");
         jPanel3.add(pokemonStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 210, -1));
-        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 320, 60));
+
+        mainPhoto.setText("jLabel1");
+        jPanel3.add(mainPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 180, 180));
+
+        panelStatus.setBackground(new java.awt.Color(57, 90, 168));
+        jPanel3.add(panelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 320, 60));
+
+        fondoLabel.setText("jLabel1");
+        jPanel3.add(fondoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 410));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 320, 370));
 
@@ -197,6 +214,33 @@ public class MainMenu extends javax.swing.JFrame {
         relationshipLabel.setText("...");
         jPanel2.add(relationshipLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 210, -1));
 
+        pokemon2Buttom.setBackground(new java.awt.Color(222, 222, 222));
+        pokemon2Buttom.setFont(new java.awt.Font("Pokemon Solid", 0, 18)); // NOI18N
+        pokemon2Buttom.setForeground(new java.awt.Color(36, 36, 36));
+        pokemon2Buttom.setText("2do Pokémon");
+        pokemon2Buttom.setToolTipText("");
+        pokemon2Buttom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pokemon2ButtomActionPerformed(evt);
+            }
+        });
+        jPanel2.add(pokemon2Buttom, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, 180, 40));
+
+        Historial1.setBackground(new java.awt.Color(222, 222, 222));
+        Historial1.setFont(new java.awt.Font("Pokemon Solid", 0, 18)); // NOI18N
+        Historial1.setForeground(new java.awt.Color(36, 36, 36));
+        Historial1.setText("Historial");
+        Historial1.setToolTipText("");
+        Historial1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Historial1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Historial1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 530, 180, 40));
+
+        pokeball.setText("jLabel1");
+        jPanel2.add(pokeball, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 90, 90));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 650));
 
         pack();
@@ -207,6 +251,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void saveButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtomActionPerformed
+        //agregar +10 watts
         boolean saveAll = true;
         //=Funcion de guardar juego 
 
@@ -218,24 +263,40 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtomActionPerformed
 
     private void storeButtom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeButtom1ActionPerformed
-
-        //parar el tiempo
+        //agregar +10 watts
+        
+        //MainMenu.CurrentGame.setWatts(10);
+        
         storePage store = new storePage();
         this.setVisible(false);
         store.setVisible(true);
     }//GEN-LAST:event_storeButtom1ActionPerformed
 
     private void inventoryButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtomActionPerformed
-
+        //agregar +10 watts
     }//GEN-LAST:event_inventoryButtomActionPerformed
 
     private void menuButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtomActionPerformed
-        ////option pane con una cofirmation 
+        
+        String[] options = {"Sí", "No"};
+        int answer = JOptionPane.showOptionDialog(null, "¡Cuidado! Si sale al menú no se guardaran de manera automtáica los datos del juego hasta el momento.\n¿Esta segur@ que quiere salir al menú?\nPresionse sí, si quiere salir al menú.\nPresione no, en el caso contrario.", "Confirmación Ir al Menú Inicial", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
-        this.setVisible(false);
-        InicialMenu menu = new InicialMenu();
-        menu.setVisible(true);
+        if (answer == 0) {
+            MainMenu.running=false;
+            MainMenu.threadToActualize.stop();
+            this.setVisible(false);
+            InicialMenu menu = new InicialMenu();
+            menu.setVisible(true);
+        }
     }//GEN-LAST:event_menuButtomActionPerformed
+
+    private void pokemon2ButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokemon2ButtomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pokemon2ButtomActionPerformed
+
+    private void Historial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Historial1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Historial1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,14 +339,17 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Historial1;
     private javax.swing.JLabel fondoLabel;
     private javax.swing.JButton inventoryButtom;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel mainPhoto;
     private javax.swing.JButton menuButtom;
+    private javax.swing.JPanel panelStatus;
     private javax.swing.JButton playButton;
+    private javax.swing.JLabel pokeball;
+    private javax.swing.JButton pokemon2Buttom;
     private javax.swing.JLabel pokemonLabel;
     private javax.swing.JLabel pokemonLabel1;
     private javax.swing.JLabel pokemonStatus;

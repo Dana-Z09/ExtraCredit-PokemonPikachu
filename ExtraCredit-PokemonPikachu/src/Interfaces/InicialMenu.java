@@ -151,13 +151,13 @@ public class InicialMenu extends javax.swing.JFrame {
         Helpers help = new Helpers();
         String[] options= {"Sí","No"};
         if (help.saveExist()){
-            int answer =JOptionPane.showOptionDialog(null, "¡Cuidado! Se borraran todos los datos guardados de su mascota.\nPresionse sí, si quierie continuar y reiniciar los valores del juego.\nPresione no, en el caso contrario.", "Confirmación de Inicio de Nuevo Juego", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
+            int answer =JOptionPane.showOptionDialog(null, "¡Cuidado! Se borraran todos los datos guardados de su mascota.\nPresionse sí, si quiere continuar y reiniciar los valores del juego.\nPresione no, en el caso contrario.", "Confirmación de Inicio de Nuevo Juego", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
             if  (answer==0){
                 help.borrarArchivo();
                 this.setVisible(false);
                 chooseMenu selection = new chooseMenu();
                 selection.setVisible(true);
-            }//si dice que no entonces vuelve al inicial menu  y ya
+            }
         }
         else{
         this.setVisible(false);
