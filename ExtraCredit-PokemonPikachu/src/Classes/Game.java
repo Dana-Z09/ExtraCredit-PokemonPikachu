@@ -86,13 +86,13 @@ public class Game implements Serializable {
     }
 
     public void LoadGame() throws IOException, ClassNotFoundException {
-        Helpers ayudadina = new Helpers();
-        ayudadina.cargarSave();
+        Helpers help = new Helpers();
+        help.cargarSave();
     }
 
     public void SaveGame() throws IOException {
-        Helpers ayudadina = new Helpers();
-        ayudadina.crearSave(this);
+        Helpers help = new Helpers();
+        help.crearSave(this);
         
     }
 
