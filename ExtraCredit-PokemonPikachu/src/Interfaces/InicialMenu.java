@@ -6,13 +6,13 @@ import Functions.Pictures;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
-
 /**
  *
  * @author Danna Star
  */
 public class InicialMenu extends javax.swing.JFrame {
     Pictures pic= new Pictures();
+    Helpers help = new Helpers();
     
     /* Creates new form InicialMenu
      */
@@ -28,9 +28,11 @@ public class InicialMenu extends javax.swing.JFrame {
         fondoLabel.setIcon(pic.getFondoPic());
         fondoLabel.setText("");
         
+        help.PlayMusic("menunormal.wav");
+        
         
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,6 +138,7 @@ public class InicialMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void creditsButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditsButtomActionPerformed
+        help.StopMusic("menunormal.wav");
         this.setVisible(false);
         Credits creditos = new Credits();
         creditos.setVisible(true);

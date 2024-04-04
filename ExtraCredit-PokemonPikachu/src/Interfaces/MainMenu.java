@@ -2,10 +2,9 @@ package Interfaces;
 
 import Classes.Game;
 import Classes.ThreadForTime;
+import Functions.Helpers;
 import Functions.Pictures;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 
 /**
@@ -17,6 +16,7 @@ public class MainMenu extends javax.swing.JFrame {
     public static Game CurrentGame = new Game();
     public static ThreadForTime threadToActualize;
     public static boolean running;
+    Helpers help = new Helpers();
 
     Pictures pic = new Pictures();
 
@@ -33,6 +33,7 @@ public class MainMenu extends javax.swing.JFrame {
         pokeball.setIcon(pic.getPokeballPic());
         pokeball.setText("");
         pokemon2Buttom.setVisible(false);
+        help.PlayMusic("menuprincipal.wav");
         
         
         this.mainPhoto.setText("");
@@ -260,7 +261,7 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-                    //Codigo del juego correspondiente de pendiendo de cada pokemon
+                help.StopMusic("menuprincipal.wav");
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void saveButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtomActionPerformed
@@ -270,6 +271,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void storeButtom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeButtom1ActionPerformed
         MainMenu.CurrentGame.increaseWatts(10);
+        help.StopMusic("menuprincipal.wav");
         MainMenu.running=false;
         storePage store = new storePage(MainMenu.CurrentGame.getWatts());
         this.setVisible(false);
@@ -277,6 +279,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_storeButtom1ActionPerformed
 
     private void inventoryButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtomActionPerformed
+        help.StopMusic("menuprincipal.wav");
         MainMenu.CurrentGame.increaseWatts(10);
         MainMenu.running=false;
         
@@ -312,7 +315,7 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_pokemon2ButtomActionPerformed
 
     private void Historial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Historial1ActionPerformed
-        
+        help.StopMusic("menuprincipal.wav");
         MainMenu.running=false;
         RecordPage historial = new RecordPage();
         this.setVisible(false);

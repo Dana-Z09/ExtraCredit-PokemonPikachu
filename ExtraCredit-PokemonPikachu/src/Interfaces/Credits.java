@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Functions.Helpers;
 import Functions.Pictures;
 import javax.swing.ImageIcon;
 
@@ -12,6 +13,7 @@ public class Credits extends javax.swing.JFrame {
     ImageIcon pachirisuPic = pic.getPachirisuPic();
     ImageIcon pokemonPic = pic.getPokemonPic();
     ImageIcon fondoPic = pic.getFondoPic();
+    Helpers help = new Helpers();
     /**
      * Creates new form InicialMenu
      */
@@ -24,6 +26,7 @@ public class Credits extends javax.swing.JFrame {
         pokemonLabel.setText("");
         fondoLabel.setIcon(fondoPic);
         fondoLabel.setText("");
+        help.PlayMusic("inventario.wav");
         texto.setText("""
                         Música:
 

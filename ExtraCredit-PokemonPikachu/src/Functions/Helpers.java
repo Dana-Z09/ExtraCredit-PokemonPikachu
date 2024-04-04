@@ -4,10 +4,12 @@ import Classes.Game;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -64,4 +66,47 @@ public class Helpers {
     }
     
     
+    public void PlayMusic(String path){
+    
+    try {
+    File musicpath = new File(System.getProperty("user.dir") + "\\src\\Music\\"+path);   
+    
+    if(musicpath.exists()){
+        AudioInputStream audioinput = AudioSystem.getAudioInputStream(musicpath);
+        Clip clip= AudioSystem.getClip();
+        clip.open(audioinput);
+        clip.start();
+    
+    }else{
+        System.out.println("no");}
+    }
+    
+    catch(Exception e){
+        System.out.println("no mira vale");}
+    
+    
+    }
+    
+    
+    
+    public void StopMusic(String path){
+    
+    try {
+    File musicpath = new File(System.getProperty("user.dir") + "\\src\\Music\\"+path);   
+    
+    if(musicpath.exists()){
+        AudioInputStream audioinput = AudioSystem.getAudioInputStream(musicpath);
+        Clip clip= AudioSystem.getClip();
+        clip.open(audioinput);
+        clip.stop();
+    
+    }else{
+        System.out.println("no");}
+    }
+    
+    catch(Exception e){
+        System.out.println("no mira vale");}
+    
+    
+    }
 }

@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Functions.Helpers;
 import Functions.Pictures;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
@@ -10,6 +11,7 @@ import static javax.swing.JOptionPane.QUESTION_MESSAGE;
  */
 public class InventoryPage extends javax.swing.JFrame {
     Pictures pic= new Pictures();
+    Helpers help = new Helpers();
     /**
      * Creates new form InicialMenu
      */
@@ -26,6 +28,7 @@ public class InventoryPage extends javax.swing.JFrame {
         BayaZrezaLabel.setIcon(pic.getBayaZrezaPic());
         pokeballLabel.setIcon(pic.getPokeballPic());
         candyLabel.setIcon(pic.getCarameloPic());
+        help.PlayMusic("inventario.wav");
         
     }
 
@@ -328,6 +331,8 @@ public class InventoryPage extends javax.swing.JFrame {
     
     
     private void backButtom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtom1ActionPerformed
+        
+        help.StopMusic("inventario.wav");
         MainMenu menu = new MainMenu();
         this.setVisible(false);
         menu.setVisible(true);

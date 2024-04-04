@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Functions.Helpers;
 import Functions.Pictures;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
@@ -10,6 +11,7 @@ import static javax.swing.JOptionPane.QUESTION_MESSAGE;
  */
 public class storePage extends javax.swing.JFrame {
     Pictures pic= new Pictures();
+    Helpers help = new Helpers();
     /**
      * Creates new form InicialMenu
      */
@@ -29,6 +31,7 @@ public class storePage extends javax.swing.JFrame {
         candyLabel.setIcon(pic.getCarameloPic());
         tienda.setIcon(pic.getStorePic());
         tienda.setText("");
+        help.PlayMusic("tienda.wav");
         
         moneyLabelPic.setText("");
         moneyLabelPic.setIcon(pic.getWattPic());
@@ -355,6 +358,8 @@ public class storePage extends javax.swing.JFrame {
     }//GEN-LAST:event_enigmaActionPerformed
 
     private void backButtom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtom1ActionPerformed
+        
+        help.StopMusic("tienda.wav");
         MainMenu menu = new MainMenu();
         this.setVisible(false);
         menu.setVisible(true);
