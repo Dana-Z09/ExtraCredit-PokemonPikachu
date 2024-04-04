@@ -40,12 +40,14 @@ public class Helpers {
         serializador.close();
     }
     
-    public void cargarSave() throws IOException, ClassNotFoundException {
+    public Game cargarSave() throws IOException, ClassNotFoundException {
         File archivo = new File(System.getProperty("user.dir") + "\\src\\PokeFile\\pokesave.txt");
         FileInputStream direccion = new FileInputStream(archivo);
         ObjectInputStream serializador = new ObjectInputStream(direccion);
         Game Jueguino = (Game) serializador.readObject();
         serializador.close();
+        return Jueguino;
+                
         
         
     }
