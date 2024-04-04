@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Classes.Game;
+
 import javax.swing.ImageIcon;
 
 /**

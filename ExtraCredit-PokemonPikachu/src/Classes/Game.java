@@ -3,6 +3,7 @@ package Classes;
 
 import Functions.Pictures;
 import EDD.AVLTree;
+import EDD.NodeAVL;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -18,7 +19,6 @@ public class Game implements Serializable {
     private String timeToShow;         // Tiempo transcurrido en formato HH:mm:ss.              
     private int watts;                 // Balance actual del jugador en watts (dinero del juego).       
     private RelationShip relationship; // La relación actual con los Pokémon.           
-    private boolean running;           // Estado del juego, si se esta ejecutando es true, de lo contrario es false
 
     // Constructor de Game
     public Game() {
@@ -69,20 +69,12 @@ public class Game implements Serializable {
         this.relationship = relationship;
     }
 
-    public boolean isRunning() {
-        return running;
-    }
-
-    public void setRunning(boolean running) {
-        this.running = running;
-    }
-
-    // Funciones basicas para el sistema
+        // Funciones basicas para el sistema
     public void prepareGame(int numOfPokemon) {
         this.setRelationship(this.createRelationShip(numOfPokemon));
-        this.setRunning(false);
     }
 
+    /*
     public void StartGame() {
         this.setRunning(true);
 
@@ -90,15 +82,7 @@ public class Game implements Serializable {
             this.updateValues();
         }
 
-    }
-
-    public void continueGame() {
-        this.setRunning(true);
-    }
-
-    public void StopGame() {
-        this.setRunning(false);
-    }
+    }*/
 
     public void LoadGame() {
         // Funciones de Diego
@@ -163,10 +147,10 @@ public class Game implements Serializable {
         EmotionalState[] states = this.createEmotionalStates(numOfPokemon);
 
         if (numOfPokemon == 1) {
-            name = "";              // Colocar
+            name = "Shinx";
 
         } else {
-            name = "";              // Colocar
+            name = "Pikachu";
         }
 
         toReturn = new Pokemon(name, states);
@@ -253,23 +237,65 @@ public class Game implements Serializable {
     
     // comprar recibe el objeto gift
     
-    public void buyGiftInShop(Gift giftBoughted){
+    public void buyGiftInShop(String name, int cost, int relationshipBoost){       
+
+        // Pensar si se pasa el objeto gift o los 3 atributos separados
+        /*
+        Creo que mejor los tres separados porque quantity sera 1 y luego hay que 
+        sumarlo y es como raro crear el objeto afuera si al final ese no es el objeto 
+        que voy a agregar al nodo por quantity
         
-        if (this.getWatts()<giftBoughted.getCost()) {
+        */
+        
+        if (this.getWatts()<cost) {
             JOptionPane.showMessageDialog(null, "No posee los watts suficientes.");
         } else {
-           this.reduceWatts(giftBoughted.getCost());
+           this.reduceWatts(cost);
            JOptionPane.showMessageDialog(null, "Compra realizada.");
            
             AVLTree inventoryOfPokemon = this.getRelationship().getCurrentPokemon().getInventory();
-            if () {
+            
+            NodeAVL inTree;
+            try{
+                inTree = inventoryOfPokemon.SearchNodeInAVL(inventoryOfPokemon.getRoot(), cost);
+                
+            }catch(Exception e){
+                inTree = null;
+                
+            }
+            
+            if (inTree != null) {
+                Gift GiftWithNewQuantity, GiftInTree;
+                
+                try{
+                GiftInTree = (Gift) inventoryOfPokemon.SearchNodeInAVL(inventoryOfPokemon.getRoot(), cost).getContent();
+                
+                GiftInTree.upgradeQuantity();
+                
+                GiftWithNewQuantity = GiftInTree;  
+                
+                this.getRelationship().getCurrentPokemon().getInventory().insertNewDataInNode(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), cost, GiftWithNewQuantity);
+                
+                JOptionPane.showMessageDialog(null, "Cantidad actualizada en el inventario.");
+                
+                } catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error actualizando la cantidad en el inventario.");
+                
+                }
+                
                 
             } else {
+                Gift newGift = new Gift(name,cost,relationshipBoost);
+                
+                try {
+                    this.getRelationship().getCurrentPokemon().getInventory().insert(newGift);
+                    JOptionPane.showMessageDialog(null, "Guardado en el inventario.");
+                
+                } catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Error al insertar en el arbol.");
+                }           
             }
-        }
-        
-        
-        
+        }   
     }
     
     public void reduceWatts(int numToReduce){

@@ -327,18 +327,44 @@ public class AVLTree {
             return n;
     }
 
-    public NodeAVL SearchNodeInBST(NodeAVL pRoot, int numNodeOfCurrentOperation) throws Exception {
+    public NodeAVL SearchNodeInAVL(NodeAVL pRoot, int numNodeOfCurrentOperation) throws Exception {
 
         if (pRoot == null) {
             throw new Exception("No se encuentra.");
         } else if (pRoot.isEqual(numNodeOfCurrentOperation)) {
             return pRoot;
         } else if (pRoot.isGreaterThan(numNodeOfCurrentOperation)) {
-            return SearchNodeInBST(pRoot.getpLeft(), numNodeOfCurrentOperation);
+            return SearchNodeInAVL(pRoot.getpLeft(), numNodeOfCurrentOperation);
         } else {
-            return SearchNodeInBST(pRoot.getpRight(), numNodeOfCurrentOperation);
+            return SearchNodeInAVL(pRoot.getpRight(), numNodeOfCurrentOperation);
         }
     }
 
 
+    /**
+     * Inserta un nuevo dato en un nodo existente del árbol.
+     *
+     * @param pRoot El nodo raíz del subárbol en el que se buscará el nodo a
+     * actualizar.
+     * @param numNodeOfCurrentOperation El número identificador del nodo a
+     * actualizar.
+     * @param newData El nuevo objeto de datos a asignar al nodo.
+     * @return true si la actualización fue exitosa, false en caso contrario.
+     * @throws Exception Si el nodo no se encuentra en el árbol.
+     */
+    public boolean insertNewDataInNode(NodeAVL pRoot, int numNodeOfCurrentOperation, Object newData) throws Exception {
+        if (pRoot == null) {
+            throw new Exception("No se encuentra.");
+
+        } else if (pRoot.isEqual(numNodeOfCurrentOperation)) {
+            pRoot.setContent(newData);
+            return true;
+
+        } else if (pRoot.isGreaterThan(numNodeOfCurrentOperation)) {
+            return insertNewDataInNode(pRoot.getpLeft(), numNodeOfCurrentOperation, newData);
+
+        } else {
+            return insertNewDataInNode(pRoot.getpRight(), numNodeOfCurrentOperation, newData);
+        }
+    }
 }

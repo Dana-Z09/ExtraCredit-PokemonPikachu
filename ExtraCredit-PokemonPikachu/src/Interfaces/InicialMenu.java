@@ -160,7 +160,7 @@ public class InicialMenu extends javax.swing.JFrame {
             }//si dice que no entonces vuelve al inicial menu  y ya
         }
         else{
-        this.setVisible(true);
+        this.setVisible(false);
         chooseMenu selection = new chooseMenu();
         selection.setVisible(true);
         }
