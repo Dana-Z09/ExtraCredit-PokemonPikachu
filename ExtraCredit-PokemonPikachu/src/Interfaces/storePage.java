@@ -262,6 +262,7 @@ public class storePage extends javax.swing.JFrame {
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Ziuela", 600, 850);
+            
             watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
     }//GEN-LAST:event_ziuelaActionPerformed
@@ -269,11 +270,12 @@ public class storePage extends javax.swing.JFrame {
     private void aranjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aranjaActionPerformed
        String[] options = {"Sí", "No"};
         int answer = JOptionPane.showOptionDialog(null, "Baya Aranja.\nCosto: 100 Watts.\nEfecto: +100 relación.\n¿Desea comprar una Baya Aranja?\nPresionse sí, para realizar la compra.\nPresione no, en el caso contrario.", "Confirmación de Compra", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
-
+        
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Aranja", 100, 100);
             watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
+        
     }//GEN-LAST:event_aranjaActionPerformed
 
     private void caquicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caquicActionPerformed
