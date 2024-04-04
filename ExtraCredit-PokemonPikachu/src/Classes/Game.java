@@ -286,8 +286,9 @@ public class Game implements Serializable {
     }
 
     //Funcionalidades 
-    // Funciones de la tienda
-    // comprar recibe el objeto gift
+    
+    // Funciones de la tienda e inventario
+    
     public void buyGiftInShop(String name, int cost, int relationshipBoost) {
 
         if (this.getWatts() < cost) {
@@ -338,6 +339,15 @@ public class Game implements Serializable {
         }
     }
 
+    public String makeSummaryForRecord(){
+        String toReturn;
+        
+        AVL
+        
+        return toReturn;
+    }
+        
+    
     public void decreaseWatts(int numToReduce) {
         if (this.getWatts() > 0) {
             int current = this.getWatts();
@@ -353,4 +363,6 @@ public class Game implements Serializable {
             this.setWatts(newValue);
         }
     }
+    
+    //giveGift
 }

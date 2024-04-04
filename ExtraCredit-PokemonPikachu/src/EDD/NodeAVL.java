@@ -1,5 +1,7 @@
 package EDD;
 
+import Classes.Gift;
+
 /**
  *
  * @author Daniela Zambrano
@@ -100,5 +102,13 @@ public class NodeAVL implements Comparator{
     @Override
     public boolean isGreaterThan(int otherNodeID) {
         return this.nodeID > otherNodeID;
+    }
+    
+    public String getSummaryOfObjectGift(NodeAVL nodeInTree){
+        
+        Gift giftInNode = (Gift) nodeInTree.getContent();
+        String toReturn = giftInNode.summaryForPrint();
+        
+        return toReturn;
     }
 }

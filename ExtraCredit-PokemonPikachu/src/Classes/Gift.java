@@ -141,7 +141,7 @@ public class Gift {
     public String summaryForPrint() {
         String toReturn;
 
-        toReturn = "Nombre:" + this.getName() + ". Costo:" + this.getCost() + ". Efecto: " + this.getRelationshipBoost() + ".";
+        toReturn = "Nombre:" + this.getName() + ". Costo:" + this.getCost() + ". Efecto: " + this.getRelationshipBoost() + ". Cantidad: "+this.getQuantity()+ ".";
 
         return toReturn;
     }
