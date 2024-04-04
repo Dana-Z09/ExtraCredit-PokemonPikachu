@@ -169,11 +169,13 @@ public class InicialMenu extends javax.swing.JFrame {
     private void startGameButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtomActionPerformed
         Helpers help = new Helpers();
         if (help.saveExist()) {
-            Game mainGame=null;// = funcion de leer y cargar archivo que retorna un objeto Game 
-            this.setVisible(false);
             MainMenu mainPage= new MainMenu();
-            mainPage.CurrentGame= mainGame;
+            Game auxGame= MainMenu.CurrentGame.LoadGame();
+            if(auxGame!=null){
+            this.setVisible(false);
             mainPage.setVisible(true);
+            MainMenu.CurrentGame=auxGame;
+            }
         }else{
         JOptionPane.showMessageDialog(null, "No se ha  encontrado ninguna información previa del juego.\nInténtelo nuevamente, o inicie una nueva partida.", "Información", INFORMATION_MESSAGE, null);
         }
