@@ -311,18 +311,18 @@ public class Game implements Serializable {
 
                 // Gift guardado en el nodo
                 NodeAVL node = this.getRelationship().getCurrentPokemon().getInventory().SearchNodeInAVL(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), cost);
-                System.out.println("llego1");
+
                 GiftInTree = (Gift) node.getContent();
-                System.out.println("Llego 2");
+
                 //Aumento su cantidad
                 GiftInTree.upgradeQuantity();
-                System.out.println("Llego 3");
+
                 //Le doy el valor a nuevo al objeto a agregar
                 GiftWithNewQuantity = GiftInTree;
-                System.out.println("Llego 4");
+
                 //Agrego el nuevo objeto Gift al nodo en el arbol
                 this.getRelationship().getCurrentPokemon().getInventory().insertNewDataInNode(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), cost, GiftWithNewQuantity);
-                System.out.println("Llego 5");
+
                 JOptionPane.showMessageDialog(null, "Cantidad actualizada en el inventario.");
 
             } catch (Exception e) {
@@ -346,17 +346,6 @@ public class Game implements Serializable {
         }
     }
 
-    public String makeSummaryForRecord() {
-        String toReturn;
-
-        AVLTree tree = this.getRelationship().getCurrentPokemon().getRecordOfGifts();
-
-        StringBuilder temp = new StringBuilder();
-        toReturn = this.getRelationship().getCurrentPokemon().getRecordOfGifts().inorden(tree.getRoot(), temp);
-
-        return toReturn;
-    }
-
     public void giveGift(int costOfGift) {
 
         AVLTree inventory = this.getRelationship().getCurrentPokemon().getInventory();
@@ -367,15 +356,44 @@ public class Game implements Serializable {
             Gift giftInNode = (Gift) node.getContent();
 
             if (giftInNode.getQuantity() == 1) {
-                this.increaseRelationShipRange(costOfGift);
-                
+                this.increaseRelationShipRange(giftInNode.getRelationshipBoost());
+
+                this.getRelationship().getCurrentPokemon().getInventory().delete(node);
+
+                this.getRelationship().getCurrentPokemon().getRecordOfGifts().insert(giftInNode.getCost(), giftInNode);
+
+                JOptionPane.showConfirmDialog(null, "Objeto dado al pokemon");
+
             } else {
+                this.increaseRelationShipRange(giftInNode.getRelationshipBoost());
+
+                giftInNode.decreaseQuantity();
+
+                //Le doy el valor a nuevo al objeto a agregar
+                Gift GiftWithNewQuantity = giftInNode;
+
+                //Agrego el nuevo objeto Gift al nodo en el arbol
+                this.getRelationship().getCurrentPokemon().getInventory().insertNewDataInNode(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), GiftWithNewQuantity.getCost(), GiftWithNewQuantity);
+
+                JOptionPane.showMessageDialog(null, "Cantidad actualizada en el inventario.");
+
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No posee ese regalo en su inventario");
         }
 
+    }
+
+    public String makeSummaryForRecord() {
+        String toReturn;
+
+        AVLTree tree = this.getRelationship().getCurrentPokemon().getRecordOfGifts();
+
+        StringBuilder temp = new StringBuilder();
+        toReturn = this.getRelationship().getCurrentPokemon().getRecordOfGifts().inorden(tree.getRoot(), temp);
+
+        return toReturn;
     }
 
     public void decreaseWatts(int numToReduce) {
