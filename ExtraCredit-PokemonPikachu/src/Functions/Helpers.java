@@ -33,7 +33,7 @@ public class Helpers {
        
     }
     public void guardarSave(Game juegoGuardado) throws IOException {
-        File archivo = new File(System.getProperty("user.dir") + "\\src\\PokeFile\\pokesave.txt");
+        File archivo = new File(System.getProperty("user.dir") + "\\src\\pokefile\\pokesave.txt");
         FileOutputStream direccion = new FileOutputStream(archivo);
         try (ObjectOutputStream serializador = new ObjectOutputStream(direccion)) {
             serializador.writeObject(juegoGuardado);
@@ -41,7 +41,7 @@ public class Helpers {
     }
     
     public Game cargarSave() throws IOException, ClassNotFoundException {
-        File archivo = new File(System.getProperty("user.dir") + "\\src\\PokeFile\\pokesave.txt");
+        File archivo = new File(System.getProperty("user.dir") + "\\src\\pokefile\\pokesave.txt");
         FileInputStream direccion = new FileInputStream(archivo);
         ObjectInputStream serializador = new ObjectInputStream(direccion);
         Game Jueguino = (Game) serializador.readObject();
