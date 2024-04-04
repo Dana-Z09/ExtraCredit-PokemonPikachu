@@ -263,17 +263,21 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtomActionPerformed
 
     private void storeButtom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeButtom1ActionPerformed
-        //agregar +10 watts
-        
-        //MainMenu.CurrentGame.setWatts(10);
-        
-        storePage store = new storePage();
+        MainMenu.CurrentGame.increaseWatts(10);
+        MainMenu.running=false;
+        storePage store = new storePage(MainMenu.CurrentGame.getWatts());
         this.setVisible(false);
         store.setVisible(true);
     }//GEN-LAST:event_storeButtom1ActionPerformed
 
     private void inventoryButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtomActionPerformed
-        //agregar +10 watts
+        MainMenu.CurrentGame.increaseWatts(10);
+        MainMenu.running=false;
+        //agregar inventario
+        /**
+         * this.setVisible(false);
+            invt.setVisible(true);
+         */
     }//GEN-LAST:event_inventoryButtomActionPerformed
 
     private void menuButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtomActionPerformed
@@ -283,7 +287,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         if (answer == 0) {
             MainMenu.running=false;
-            MainMenu.threadToActualize.stop();
+            MainMenu.threadToActualize.stopThread();
             this.setVisible(false);
             InicialMenu menu = new InicialMenu();
             menu.setVisible(true);
