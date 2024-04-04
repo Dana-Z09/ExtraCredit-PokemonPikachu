@@ -1,8 +1,13 @@
 package Functions;
 
+import Classes.Game;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  *
@@ -27,11 +32,24 @@ public class Helpers {
     }
        
     }
-    public void crearSave() throws IOException {
+    public void crearSave(Game juegoGuardado) throws IOException {
+        File archivo = new File(System.getProperty("user.dir") + "\\src\\PokeFile\\pokesave.txt");
+        FileOutputStream direccion = new FileOutputStream(archivo);
+        ObjectOutputStream serializador = new ObjectOutputStream(direccion);
+        serializador.writeObject(juegoGuardado);
+        serializador.close();
+    }
+    
+    public Game cargarSave() throws IOException, ClassNotFoundException {
+        File archivo = new File(System.getProperty("user.dir") + "\\src\\PokeFile\\pokesave.txt");
+        FileInputStream direccion = new FileInputStream(archivo);
+        ObjectInputStream serializador = new ObjectInputStream(direccion);
+        Game Jueguino = (Game) serializador.readObject();
+        serializador.close();
+        return Jueguino;
+                
         
-        FileWriter pokeFichero = new FileWriter (System.getProperty("user.dir") + "\\src\\PokeFile\\pokesave.txt");
-        pokeFichero.write("pepino");
-        pokeFichero.close();
+        
     }
     public void borrarArchivo() {
         File archivo = new File(System.getProperty("user.dir") + "\\src\\PokeFile\\pokesave.txt");
