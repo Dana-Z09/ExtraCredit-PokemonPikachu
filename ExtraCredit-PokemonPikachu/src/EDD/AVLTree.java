@@ -367,4 +367,45 @@ public class AVLTree {
             return insertNewDataInNode(pRoot.getpRight(), numNodeOfCurrentOperation, newData);
         }
     }
+
+    
+    //Recorrido de un árbol binario en preorden
+    public static void preorden(NodeAVL root){
+        if(root!=null){
+        //root.visit();
+        preorden(root.getpLeft());
+        preorden(root.getpRight());
+        }
+    }
+    
+    //Recorrido de un árbol binario en preorden
+    public static void inorden(NodeAVL root){
+        if(root!=null){
+        preorden(root.getpLeft());
+        //root.visit();
+        preorden(root.getpRight());
+        }
+    }
+    
+    //Recorrido de un árbol binario en preorden
+    public static void postorden(NodeAVL root){
+        if(root!=null){
+        preorden(root.getpLeft());
+        preorden(root.getpRight());
+        //root.visit();
+        }
+    }
+    
+    public static int sizeTree(NodeAVL root){
+        if(root==null){
+        return 0;
+        }else{
+        return 1+sizeTree(root.getpLeft())+sizeTree(root.getpRight());
+        }
+    
+
+
+
+
+}
 }

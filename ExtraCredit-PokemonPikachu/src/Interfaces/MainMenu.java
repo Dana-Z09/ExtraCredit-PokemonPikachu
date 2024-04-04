@@ -252,15 +252,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void saveButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtomActionPerformed
         MainMenu.CurrentGame.increaseWatts(10);
-
-        boolean saveAll = true;
-        //=Funcion de guardar juego 
-
-        if (saveAll) {
-            JOptionPane.showMessageDialog(null, "Se ha guardado correctamente la información de la partida.", "Guardado Exitoso", INFORMATION_MESSAGE, null);
-        } else {
-            JOptionPane.showMessageDialog(null, "No se ha guardado correctamente la información de la partida.\nInténtelo nuevamente.", "Eror de Guardado", ERROR_MESSAGE, null);
-        }
+        MainMenu.CurrentGame.SaveGame();
     }//GEN-LAST:event_saveButtomActionPerformed
 
     private void storeButtom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeButtom1ActionPerformed

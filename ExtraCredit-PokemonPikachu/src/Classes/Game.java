@@ -7,6 +7,8 @@ import Functions.Helpers;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.InputMismatchException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
@@ -88,18 +90,28 @@ public class Game implements Serializable {
         this.setRelationship(this.createRelationShip(numOfPokemon));
     }
 
-    public Game LoadGame() throws IOException, ClassNotFoundException {
+    public Game LoadGame() {
         Helpers help = new Helpers();
-        return help.cargarSave();
+        try {
+            return help.cargarSave();
+        } catch (IOException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "No hay información guardada de una partida previa.\nInténtelo nuevamente o inicie un nuevo juego.", "Error de Guardado", ERROR_MESSAGE, null);
+            return null;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "No se ha cargado correctamente la información de la partida.\nInténtelo nuevamente.", "Error de Guardado", ERROR_MESSAGE, null);
+            return null;
+        }
     }
 
-    public void SaveGame() throws IOException {
+    public void SaveGame() {
         Helpers help = new Helpers();
         try {
         help.guardarSave(this);
         JOptionPane.showMessageDialog(null, "Se ha guardado correctamente la información de la partida.", "Guardado Exitoso", INFORMATION_MESSAGE, null);
         } catch(IOException ex) {
-            JOptionPane.showMessageDialog(null, "No se ha guardado correctamente la información de la partida.\nInténtelo nuevamente.", "Eror de Guardado", ERROR_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, "No se ha guardado correctamente la información de la partida.\nInténtelo nuevamente.", "Error de Guardado", ERROR_MESSAGE, null);
             
         }
         
