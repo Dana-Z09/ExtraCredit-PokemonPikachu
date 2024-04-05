@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Username
+ * @author Diego Mendez
  */
 public class AdivinaLoQuePienso {
     public int Adivina(int wattsApostados, AVLTree historialObjetos) {
@@ -40,15 +40,16 @@ public class AdivinaLoQuePienso {
             }
         }
         Random randomNumber1 = new Random();
+        int Prueba = objetosRecibidosPosibles.size();
+        System.out.println("Cantidad" +Prueba);
         //Se crea un numero aleatorio entre 0 y la length del ArrayList objetosrecibidosPosible
-        int numRandom = randomNumber1.nextInt(objetosRecibidosPosibles.size());
+        int numRandom = randomNumber1.nextInt(Prueba);
         //Luego se toma el numero qeu este en la posicion que haya dicho numRandom
         int numObjeto = (int) objetosRecibidosPosibles.get(numRandom);
         //Si el numObjeto coincide con la posicion del ArrayList historial que elegio el jugador entonces se ganan los watts
         if (answer == numObjeto) {
             //Prueba en terminal
             System.out.println("Ganaste, coincidio " + answer +"con " + numObjeto);
-            JOptionPane.showMessageDialog(null, "yippiee");
             return wattsApostados;
         } else {
             JOptionPane.showMessageDialog(null, "Perdiste");
