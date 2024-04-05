@@ -262,14 +262,16 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-
-                mainClip.stop();
+        mainClip.stop();
+        MainMenu.running=false;
         if (MainMenu.CurrentGame.getNamePokemonOfRelationShip() == "Shinx") {
-            WattsBet ne = new WattsBet();
-            ne.setVisible(true);
+            this.setVisible(false);
+            WattsBet minijuego1 = new WattsBet(MainMenu.CurrentGame.getWatts());
+            minijuego1.setVisible(true);
             
         } else if (MainMenu.CurrentGame.getNamePokemonOfRelationShip() == "Pikachu"){
-            
+            //WattsBet minijuego2 = new WattsBet(MainMenu.CurrentGame.getWatts());
+            //minijuego2.setVisible(true);
         }
     }//GEN-LAST:event_playButtonActionPerformed
 

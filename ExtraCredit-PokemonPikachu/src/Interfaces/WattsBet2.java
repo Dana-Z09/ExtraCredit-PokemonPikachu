@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author Daniela y Diego
  */
-public class WattsBet extends javax.swing.JFrame {
+public class WattsBet2 extends javax.swing.JFrame {
     Helpers help = new Helpers();
     Pictures pic = new Pictures();
     int  mainWatts;
@@ -19,7 +19,7 @@ public class WattsBet extends javax.swing.JFrame {
     /**
      * Creates new form JuegoCartaMasAlta
      */
-    public WattsBet() {
+    public WattsBet2() {
         initComponents();
         this.setLocationRelativeTo(null);
         pokemonLabel1.setIcon(pic.getPokemonPic());
@@ -34,7 +34,7 @@ public class WattsBet extends javax.swing.JFrame {
         watts.setText(String.valueOf(mainWatts));
     }
 
-    public WattsBet(int wattsGame) {
+    public WattsBet2(int wattsGame) {
         initComponents();
         this.setLocationRelativeTo(null);
         pokemonLabel1.setIcon(pic.getPokemonPic());
@@ -87,8 +87,8 @@ public class WattsBet extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Peace Sans", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(231, 231, 231));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("¡La Carta Más Alta!");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 610, 80));
+        jLabel1.setText("Adivina lo que Pienso");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 610, 80));
 
         pokemonLabel1.setText("jLabel3");
         jPanel1.add(pokemonLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 330, 120));
@@ -189,6 +189,7 @@ public class WattsBet extends javax.swing.JFrame {
     private void betAcceptedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betAcceptedActionPerformed
         int wattsBetted = (int) wattsBet.getValue();
         if (mainWatts>=wattsBetted) {
+            //cambiar el juego de carta al del pensamiento
             CartaAlta Carta = new CartaAlta();
             int wattsGanados;
             wattsGanados = Carta.cartaAlta(wattsBetted);
@@ -237,14 +238,22 @@ public class WattsBet extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WattsBet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WattsBet2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WattsBet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WattsBet2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WattsBet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WattsBet2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WattsBet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WattsBet2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -257,7 +266,7 @@ public class WattsBet extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WattsBet().setVisible(true);
+                new WattsBet2().setVisible(true);
             }
         });
     }

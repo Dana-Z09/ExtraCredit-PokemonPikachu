@@ -24,7 +24,7 @@ public class CartaAlta {
         String secondCard = convertToPoker(num2);
         
         if (num1>num2 && answer == 0) {
-            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Ganaste: " + watts*2 + "  ");
+            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Ganaste: " + watts + "  ");
             return watts;
             
         } else if (num1<num2 && answer == 0) {
@@ -36,7 +36,7 @@ public class CartaAlta {
             return -watts;
                    
         } else if (num1<num2 && answer == 1) {
-            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Ganaste: " + watts*2 + "  ");
+            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Ganaste: " + watts + "  ");
             return watts;
         } else {
             JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Perdiste los watts apostados  ");
@@ -46,17 +46,12 @@ public class CartaAlta {
     
     public String convertToPoker(int RandomNumber){
         
-         switch(RandomNumber) {
-            case 1:
-               return "A";
-            case 11:
-               return "J";
-            case 12:
-               return "Q";  
-            case 13:
-               return "K";
-            default:
-                return Integer.toString(RandomNumber);
-        }
+        return switch (RandomNumber) {
+            case 1 -> "A";
+            case 11 -> "J";
+            case 12 -> "Q";
+            case 13 -> "K";
+            default -> Integer.toString(RandomNumber);
+        };
     }
 }
