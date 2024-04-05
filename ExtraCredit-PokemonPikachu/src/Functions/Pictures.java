@@ -33,6 +33,7 @@ public class Pictures {
     /*Simbolos / logos / Fondos */
     private ImageIcon pokemonPic = new ImageIcon("pokemonlogo.png");
     private ImageIcon fondoPic = new ImageIcon("fondo.jpg");
+    private ImageIcon forestPic = new ImageIcon("forest1.png");
     private ImageIcon wattPic = new ImageIcon("watt.png");
     private ImageIcon storePic = new ImageIcon("tienda.png");
     
@@ -157,6 +158,10 @@ public class Pictures {
 
     public ImageIcon getStorePic() {
         return storePic;
+    }
+
+    public ImageIcon getForestPic() {
+        return forestPic;
     }
     
 }

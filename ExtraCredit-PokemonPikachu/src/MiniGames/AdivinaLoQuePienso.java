@@ -4,10 +4,17 @@
  */
 package MiniGames;
 
+import EDD.AVLTree;
+import java.util.ArrayList;
+
 /**
  *
  * @author Username
  */
 public class AdivinaLoQuePienso {
-    
+    public int Adivina(int wattsApostados, AVLTree historialObjetos) {
+        
+        
+        return 0;
+    }
 }

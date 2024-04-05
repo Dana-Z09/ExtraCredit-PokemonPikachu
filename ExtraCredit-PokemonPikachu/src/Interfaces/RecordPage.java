@@ -86,7 +86,7 @@ public class RecordPage extends javax.swing.JFrame {
     private void backButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtomActionPerformed
         mainClip.stop();
         this.setVisible(false);
-        InicialMenu menu = new InicialMenu();
+        MainMenu menu = new MainMenu();
         menu.setVisible(true);
     }//GEN-LAST:event_backButtomActionPerformed
 
