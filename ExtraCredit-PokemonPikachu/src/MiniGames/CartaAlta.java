@@ -14,34 +14,33 @@ import javax.swing.JOptionPane;
  * @author Diego Mendez
  */
 public class CartaAlta {
-    public boolean cartaAlta() {
+    public int cartaAlta(int watts) {
         Random randomNumber1 = new Random();
         int num1 = randomNumber1.nextInt(13)+1;
         String firstCard = convertToPoker(num1);
         String[] rango = {"Menor","Mayor"};
-        Icon icono = new ImageIcon(getClass().getResource("pichu.png"));
-        int answer = JOptionPane.showOptionDialog(null, "   Seleccione si la carta será mayor o menor que:    " +firstCard,"Juego carta mas alta" , JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, icono, rango, rango[0]);
+        int answer = JOptionPane.showOptionDialog(null, "   Seleccione si la carta será mayor o menor que:    " +firstCard,"Juego carta mas alta" , JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, rango, rango[0]);
         int num2 = randomNumber1.nextInt(13)+1;
         String secondCard = convertToPoker(num2);
         
         if (num1>num2 && answer == 0) {
-            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Ganaste!");
-            return true;
+            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Ganaste: " + watts*2 + "  ");
+            return watts;
             
         } else if (num1<num2 && answer == 0) {
-            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Perdiste!");
-            return false;
+            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Perdiste los watts apostados  ");
+            return -watts;
             
         } else if (num1>num2 && answer == 1) {
-            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Perdiste!");
-            return false;
+            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Perdiste los watts apostados  ");
+            return -watts;
                    
         } else if (num1<num2 && answer == 1) {
-            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Ganaste!");
-            return true;
+            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Ganaste: " + watts*2 + "  ");
+            return watts;
         } else {
-            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Perdiste!");
-            return false;
+            JOptionPane.showMessageDialog(null, "La segunda carta es " + secondCard + ", Perdiste los watts apostados  ");
+            return -watts;
         }
     }
     
