@@ -366,6 +366,7 @@ public class Game implements Serializable {
                 JOptionPane.showMessageDialog(null, "Ultimo objeto dado al pokemon");
 
             } else {
+                
                 this.increaseRelationShipRange(giftInNode.getRelationshipBoost());
                 
                 giftInNode.decreaseQuantity();
