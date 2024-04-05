@@ -310,6 +310,7 @@ public class MainMenu extends javax.swing.JFrame {
         int answer = JOptionPane.showOptionDialog(null, "¡Cuidado! Si sale al menú no se guardaran de manera automtáica los datos del juego hasta el momento.\n¿Esta segur@ que quiere salir al menú?\nPresionse sí, si quiere salir al menú.\nPresione no, en el caso contrario.", "Confirmación Ir al Menú Inicial", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
 
         if (answer == 0) {
+            mainClip.stop();
             MainMenu.running=false;
             MainMenu.threadToActualize.stopThread();
             this.setVisible(false);

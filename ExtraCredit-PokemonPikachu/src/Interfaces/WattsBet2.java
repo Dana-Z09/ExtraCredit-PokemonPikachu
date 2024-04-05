@@ -30,7 +30,7 @@ public class WattsBet2 extends javax.swing.JFrame {
         moneyLabelPic.setText("");
         moneyLabelPic.setIcon(pic.getWattPic());
         pruebaWatts.setText("El valor es: ");
-        mainClip=help.PlayMusic("juego1.wav");
+        mainClip=help.PlayMusic("juego2.wav");
         mainWatts=100;
         watts.setText(String.valueOf(mainWatts));
     }
@@ -47,7 +47,7 @@ public class WattsBet2 extends javax.swing.JFrame {
         pruebaWatts.setText("El valor es: ");
         watts.setText(String.valueOf(wattsGame));
         mainWatts=wattsGame;
-        mainClip=help.PlayMusic("juego1.wav");
+        mainClip=help.PlayMusic("juego2.wav");
     }
 
     /**
@@ -215,7 +215,7 @@ public class WattsBet2 extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasStateChanged
 
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
-       mainClip.stop();
+        mainClip.stop();
         MainMenu menu = new MainMenu();
         this.setVisible(false);
         menu.setVisible(true);
