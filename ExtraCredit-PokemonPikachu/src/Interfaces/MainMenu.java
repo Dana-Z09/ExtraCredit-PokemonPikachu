@@ -1,7 +1,7 @@
 package Interfaces;
 
 import Classes.Game;
-import Classes.ThreadForTime;
+import Classes.ThreadForActualize;
 import Functions.Helpers;
 import Functions.Pictures;
 import javax.sound.sampled.Clip;
@@ -15,7 +15,7 @@ import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 public class MainMenu extends javax.swing.JFrame {
 
     public static Game CurrentGame = new Game();
-    public static ThreadForTime threadToActualize;
+    public static ThreadForActualize threadToActualize;
     public static boolean running;
     Helpers help = new Helpers();
     Clip mainClip;
@@ -43,7 +43,7 @@ public class MainMenu extends javax.swing.JFrame {
         this.mainPhoto.setIcon(MainMenu.CurrentGame.getRelationship().getCurrentPokemon().getCurrentState().getImage());
 
         MainMenu.running = true;
-        MainMenu.threadToActualize = new ThreadForTime(this);
+        MainMenu.threadToActualize = new ThreadForActualize(this);
         MainMenu.threadToActualize.start(); // Inicia el hilo de actualización.
         
         
@@ -374,7 +374,7 @@ public class MainMenu extends javax.swing.JFrame {
                 MainMenu mainMenu = new MainMenu();
                 mainMenu.setVisible(true);
                 MainMenu.running = true;
-                MainMenu.threadToActualize = new ThreadForTime(mainMenu);
+                MainMenu.threadToActualize = new ThreadForActualize(mainMenu);
                 MainMenu.threadToActualize.start(); // Inicia el hilo de actualización.
             }
         });
