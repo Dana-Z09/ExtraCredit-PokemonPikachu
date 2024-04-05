@@ -4,10 +4,16 @@
  */
 package MiniGames;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Username
  */
 public class AdivinaLoQuePienso {
-    
+    public int Adivina(int wattsApostados, ArrayList historialObjetos) {
+        
+        
+        return 0;
+    }
 }
