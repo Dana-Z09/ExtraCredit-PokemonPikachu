@@ -332,11 +332,11 @@ public class Game implements Serializable {
 
                 try {
                     // Inserto en el arbol
-                    System.out.println(this.getRelationship().getCurrentPokemon().getInventory());
+                    
                     AVLTree temp = this.getRelationship().getCurrentPokemon().getInventory();
                     temp.insert(cost, newGift);
                     this.getRelationship().getCurrentPokemon().setInventory(temp);
-                    System.out.println(this.getRelationship().getCurrentPokemon().getInventory().summarizeTree());
+                    
                     JOptionPane.showMessageDialog(null, "Guardado en el inventario.");
 
                 } catch (Exception ex) {
@@ -351,31 +351,31 @@ public class Game implements Serializable {
         AVLTree inventory = this.getRelationship().getCurrentPokemon().getInventory();
 
         try {
-            System.out.println("llega 1");
+            
             NodeAVL node = inventory.SearchNodeInAVL(inventory.getRoot(), costOfGift);
 
             Gift giftInNode = (Gift) node.getContent();
-            System.out.println("llega 2");
+            
             if (giftInNode.getQuantity() == 1) {
                 this.increaseRelationShipRange(giftInNode.getRelationshipBoost());
-                System.out.println("llega 3");
+                
                 this.getRelationship().getCurrentPokemon().getInventory().delete(node.getNodeID());
-                System.out.println("llega 4");
+                
                 this.getRelationship().getCurrentPokemon().getRecordOfGifts().insert(giftInNode.getCost(), giftInNode);
-                System.out.println("llega 5");
+               
                 JOptionPane.showMessageDialog(null, "Ultimo objeto dado al pokemon");
 
             } else {
                 this.increaseRelationShipRange(giftInNode.getRelationshipBoost());
-                System.out.println("llega 6");
+                
                 giftInNode.decreaseQuantity();
-                System.out.println("llega 7");
+                
                 //Le doy el valor a nuevo al objeto a agregar
                 Gift GiftWithNewQuantity = giftInNode;
-                System.out.println("llega 8");
+                
                 //Agrego el nuevo objeto Gift al nodo en el arbol
                 this.getRelationship().getCurrentPokemon().getInventory().insertNewDataInNode(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), GiftWithNewQuantity.getCost(), GiftWithNewQuantity);
-                System.out.println("llega 9");
+                
                 JOptionPane.showMessageDialog(null, "Cantidad actualizada en el inventario.");
 
             }

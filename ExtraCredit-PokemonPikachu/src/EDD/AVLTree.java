@@ -112,16 +112,16 @@ public class AVLTree implements Serializable {
     }
 
     private NodeAVL insertAVL(NodeAVL root, int num, Object nodeContent, Logical h) throws Exception {
-        System.out.println("1");
+        
         NodeAVL auxNode;
         NodeAVL insertedNode = new NodeAVL(num,nodeContent);
 
         if (root == null) {
-            System.out.println("2");
+            
             root = insertedNode;
             h.setValue(true);
         } else if (insertedNode.isLessThan(root.getNodeID())) {
-            System.out.println("3");
+            
             NodeAVL leftNode;
             leftNode = insertAVL((NodeAVL) root.getpLeft(), num, nodeContent, h);
             root.setpLeft(leftNode);
@@ -157,7 +157,7 @@ public class AVLTree implements Serializable {
 
             }
         } else if (insertedNode.isGreaterThan(root.getNodeID())) {
-            System.out.println("4");
+            
             NodeAVL rightNode;
             rightNode = insertAVL((NodeAVL) root.getpRight(), num, nodeContent, h);
             root.setpRight(rightNode);
@@ -223,7 +223,7 @@ public class AVLTree implements Serializable {
                 root = balanceRightBranch(root, highChange);
             }
         } else {//Nodo encontrado
-            System.out.println("Entró");
+            
             NodeAVL theOne = root; // el nodo que se quiere eliminar del arbol   
 
             if (theOne.getpLeft() == null) { //no tiene rama izquierda
@@ -241,7 +241,7 @@ public class AVLTree implements Serializable {
                 }
 
             }
-            System.out.println("Eliminó");
+            
             theOne = null;
         }
 
@@ -384,7 +384,7 @@ public class AVLTree implements Serializable {
 
             inorden(root.getpLeft(), temp);
 
-            temp.append(root.getSummaryOfObjectGift(root));
+            temp.append(root.getSummaryOfObjectGift(root)).append("\n");
 
             inorden(root.getpRight(), temp);
         }

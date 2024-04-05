@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Classes;
 
 import Interfaces.MainMenu;
@@ -33,8 +30,6 @@ public class ThreadForActualize extends Thread {
                 }
 
                 MainMenu.CurrentGame.getRelationship().setRelationShipRange(currentRelationShip);
-
-                System.out.println(MainMenu.CurrentGame.getRelationship().getRelationShipRange());
 
                 // Actualiza la interfaz de usuario con los valores más recientes.
                 SwingUtilities.invokeLater(new Runnable() {

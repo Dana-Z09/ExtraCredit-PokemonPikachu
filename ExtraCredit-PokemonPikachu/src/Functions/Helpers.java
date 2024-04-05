@@ -49,7 +49,6 @@ public class Helpers {
         File archivo = new File(System.getProperty("user.dir") + "\\src\\Pokefile\\pokesave.txt");
         FileInputStream direccion = new FileInputStream(archivo);
         ObjectInputStream serializador = new ObjectInputStream(direccion);
-        System.out.println("a");
         Game Jueguino = (Game) serializador.readObject();
         Jueguino.prepareGame(1);
         serializador.close();
