@@ -121,7 +121,7 @@ public class Gift {
     }
 
     /**
-     *      HACER JAVADOC
+     *  Incrementa en uno el atributo quantity
      */
     public void increaseQuantity() {
 
@@ -131,6 +131,9 @@ public class Gift {
         this.setQuantity(newValue);
     }
     
+    /**
+     * Decrementa en uno el atributo quantity
+     */
     public void decreaseQuantity(){
         int current = this.getQuantity();
         current--;

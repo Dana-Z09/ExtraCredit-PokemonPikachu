@@ -4,9 +4,9 @@ import Functions.Pictures;
 import EDD.AVLTree;
 import EDD.NodeAVL;
 import Functions.Helpers;
+import Functions.Validations;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.InputMismatchException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -127,37 +127,37 @@ public class Game implements Serializable {
         int minutes = (timeInSeconds % 3600) / 60;
         int seconds = timeInSeconds % 60;
         this.timeToShow = formatTime(hours, minutes, seconds);
-        this.relationship.actualizateRelationShipRange();           //Actualiza el rango de la relacion
+
         this.updatePhoto(this.getWatts());
 
         if (!canSecondPokemon) {
             this.setCanSecondPokemon(this.verifyCanSecondPokemon());
         }
-
     }
 
     public void updatePhoto(int watts) {
 
-        switch (watts) {
-            case 2000 -> {
-                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[1];
-                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
-            }
-            case 4000 -> {
-                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[2];
-                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
-            }
-            case 6000 -> {
-                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[3];
-                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
-            }
-            case 8000 -> {
-                EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[4];
-                this.getRelationship().getCurrentPokemon().setCurrentState(newState);
-            }
-            default -> {
+        Validations temp = new Validations();
 
-            }
+        if (temp.numInRange(this.getRelationship().getRelationShipRange(), 2000, 0)) {
+            EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[0];
+            this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+
+        } else if (temp.numInRange(this.getRelationship().getRelationShipRange(), 4000, 2000)) {
+            EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[1];
+            this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+
+        } else if (temp.numInRange(this.getRelationship().getRelationShipRange(), 6000, 4000)) {
+            EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[2];
+            this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+
+        } else if (temp.numInRange(this.getRelationship().getRelationShipRange(), 8000, 6000)) {
+            EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[3];
+            this.getRelationship().getCurrentPokemon().setCurrentState(newState);
+
+        } else if (this.getRelationship().getRelationShipRange() >= 8000) {
+            EmotionalState newState = this.getRelationship().getCurrentPokemon().getPokemonStates()[4];
+            this.getRelationship().getCurrentPokemon().setCurrentState(newState);
         }
 
     }
@@ -351,30 +351,31 @@ public class Game implements Serializable {
         AVLTree inventory = this.getRelationship().getCurrentPokemon().getInventory();
 
         try {
+            System.out.println("llega 1");
             NodeAVL node = inventory.SearchNodeInAVL(inventory.getRoot(), costOfGift);
 
             Gift giftInNode = (Gift) node.getContent();
-
+            System.out.println("llega 2");
             if (giftInNode.getQuantity() == 1) {
                 this.increaseRelationShipRange(giftInNode.getRelationshipBoost());
-
-                this.getRelationship().getCurrentPokemon().getInventory().delete(node);
-
+                System.out.println("llega 3");
+                this.getRelationship().getCurrentPokemon().getInventory().delete(node.getNodeID());
+                System.out.println("llega 4");
                 this.getRelationship().getCurrentPokemon().getRecordOfGifts().insert(giftInNode.getCost(), giftInNode);
-
-                JOptionPane.showConfirmDialog(null, "Objeto dado al pokemon");
+                System.out.println("llega 5");
+                JOptionPane.showMessageDialog(null, "Ultimo objeto dado al pokemon");
 
             } else {
                 this.increaseRelationShipRange(giftInNode.getRelationshipBoost());
-
+                System.out.println("llega 6");
                 giftInNode.decreaseQuantity();
-
+                System.out.println("llega 7");
                 //Le doy el valor a nuevo al objeto a agregar
                 Gift GiftWithNewQuantity = giftInNode;
-
+                System.out.println("llega 8");
                 //Agrego el nuevo objeto Gift al nodo en el arbol
                 this.getRelationship().getCurrentPokemon().getInventory().insertNewDataInNode(this.getRelationship().getCurrentPokemon().getInventory().getRoot(), GiftWithNewQuantity.getCost(), GiftWithNewQuantity);
-
+                System.out.println("llega 9");
                 JOptionPane.showMessageDialog(null, "Cantidad actualizada en el inventario.");
 
             }

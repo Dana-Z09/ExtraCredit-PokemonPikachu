@@ -11,11 +11,11 @@ import javax.swing.SwingUtilities;
  *
  * @author AresR
  */
-public class ThreadForTime extends Thread {
+public class ThreadForActualize extends Thread {
 
     private MainMenu mainMenu;
 
-    public ThreadForTime(MainMenu mainMenu) {
+    public ThreadForActualize(MainMenu mainMenu) {
         super();
         this.mainMenu = mainMenu;
     }
@@ -26,14 +26,23 @@ public class ThreadForTime extends Thread {
             try {
                 // Actualiza los valores del juego.
                 MainMenu.CurrentGame.updateValues();
-                
+                int currentRelationShip = MainMenu.CurrentGame.getRelationship().getRelationShipRange();
+
+                if (currentRelationShip > 0) {
+                    currentRelationShip--;
+                }
+
+                MainMenu.CurrentGame.getRelationship().setRelationShipRange(currentRelationShip);
+
+                System.out.println(MainMenu.CurrentGame.getRelationship().getRelationShipRange());
+
                 // Actualiza la interfaz de usuario con los valores más recientes.
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         mainMenu.updateLabels();
                     }
                 });
-                
+
                 Thread.sleep(1000); // Espera un segundo antes de la próxima actualización.
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -42,11 +51,11 @@ public class ThreadForTime extends Thread {
             }
         }
     }
-    
+
     /**
      *
      */
-    public void stopThread(){
+    public void stopThread() {
         MainMenu.running = false;
     }
 }
