@@ -3,6 +3,7 @@ package Interfaces;
 
 import Functions.Helpers;
 import Functions.Pictures;
+import MiniGames.AdivinaLoQuePienso;
 import MiniGames.CartaAlta;
 import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
@@ -189,10 +190,9 @@ public class WattsBet2 extends javax.swing.JFrame {
     private void betAcceptedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betAcceptedActionPerformed
         int wattsBetted = (int) wattsBet.getValue();
         if (mainWatts>=wattsBetted) {
-            //cambiar el juego de carta al del pensamiento
-            CartaAlta Carta = new CartaAlta();
+            AdivinaLoQuePienso adivina = new AdivinaLoQuePienso();
             int wattsGanados;
-            wattsGanados = Carta.cartaAlta(wattsBetted);
+            wattsGanados = adivina.Adivina(wattsBetted,MainMenu.CurrentGame.getRelationship().getCurrentPokemon().getRecordOfGifts());
             MainMenu.CurrentGame.increaseWatts(wattsGanados);
             watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
             mainWatts=MainMenu.CurrentGame.getWatts();
