@@ -69,11 +69,11 @@
               <Color blue="e7" green="e7" red="e7" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&#xa1;La Carta M&#xe1;s Alta!"/>
+            <Property name="text" type="java.lang.String" value="Adivina lo que Pienso"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="110" width="610" height="80"/>
+              <AbsoluteConstraints x="0" y="130" width="610" height="80"/>
             </Constraint>
           </Constraints>
         </Component>
