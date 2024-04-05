@@ -1,6 +1,7 @@
 package Classes;
 
 import EDD.AVLTree;
+import java.io.Serializable;
 
 /**
  * Clase Pokemon. Esta clase define los atributos y el comportamiento de un
@@ -8,7 +9,7 @@ import EDD.AVLTree;
  *
  * @author AresR
  */
-public class Pokemon {
+public class Pokemon implements Serializable{
 
     /**
      * Nombre del Pokémon.

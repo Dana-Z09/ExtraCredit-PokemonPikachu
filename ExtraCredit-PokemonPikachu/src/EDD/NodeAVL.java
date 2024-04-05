@@ -1,12 +1,16 @@
 package EDD;
 
+
+
 import Classes.Gift;
+
+import java.io.Serializable;
 
 /**
  *
  * @author Daniela Zambrano
  */
-public class NodeAVL implements Comparator{
+public class NodeAVL implements Comparator, Serializable{
     private int balanceFactor; //Factor de Equilibrio
     private int nodeID;
     private Object content;
@@ -23,6 +27,7 @@ public class NodeAVL implements Comparator{
         this.balanceFactor = 0;
         this.content = content;
     }
+    
     public NodeAVL(int nodeID, Object content) {
         this.balanceFactor = 0;
         this.nodeID = nodeID;
@@ -110,5 +115,9 @@ public class NodeAVL implements Comparator{
         String toReturn = giftInNode.summaryForPrint();
         
         return toReturn;
+    }
+
+    public Object visit() {
+        return this.getContent();
     }
 }

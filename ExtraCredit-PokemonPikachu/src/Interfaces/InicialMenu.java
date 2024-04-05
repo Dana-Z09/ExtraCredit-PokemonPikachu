@@ -3,16 +3,18 @@ package Interfaces;
 import Classes.Game;
 import Functions.Helpers;
 import Functions.Pictures;
+import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
-
 /**
  *
  * @author Danna Star
  */
 public class InicialMenu extends javax.swing.JFrame {
     Pictures pic= new Pictures();
+    Helpers help = new Helpers();
+    Clip mainClip;
     
     /* Creates new form InicialMenu
      */
@@ -28,9 +30,11 @@ public class InicialMenu extends javax.swing.JFrame {
         fondoLabel.setIcon(pic.getFondoPic());
         fondoLabel.setText("");
         
+        mainClip=help.PlayMusic("inicio.wav");
+        
         
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,32 +140,36 @@ public class InicialMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void creditsButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditsButtomActionPerformed
+        mainClip.stop();
         this.setVisible(false);
         Credits creditos = new Credits();
         creditos.setVisible(true);
     }//GEN-LAST:event_creditsButtomActionPerformed
 
     private void howToPlayButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howToPlayButtomActionPerformed
+        mainClip.stop();
         this.setVisible(false);
         HowToPlay howToPlayPage = new HowToPlay();
         howToPlayPage.setVisible(true);
     }//GEN-LAST:event_howToPlayButtomActionPerformed
 
     private void newGameButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtomActionPerformed
+        
         Helpers help = new Helpers();
         String[] options= {"Sí","No"};
         if (help.saveExist()){
             int answer =JOptionPane.showOptionDialog(null, "¡Cuidado! Se borraran todos los datos guardados de su mascota.\nPresionse sí, si quiere continuar y reiniciar los valores del juego.\nPresione no, en el caso contrario.", "Confirmación de Inicio de Nuevo Juego", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
             if  (answer==0){
                 help.borrarArchivo();
+                mainClip.stop();
                 this.setVisible(false);
-                chooseMenu selection = new chooseMenu();
+                chooseMenu selection = new chooseMenu(this.mainClip);
                 selection.setVisible(true);
             }
         }
         else{
         this.setVisible(false);
-        chooseMenu selection = new chooseMenu();
+        chooseMenu selection = new chooseMenu(this.mainClip);
         selection.setVisible(true);
         }
     }//GEN-LAST:event_newGameButtomActionPerformed
@@ -169,9 +177,10 @@ public class InicialMenu extends javax.swing.JFrame {
     private void startGameButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtomActionPerformed
         Helpers help = new Helpers();
         if (help.saveExist()) {
-            MainMenu mainPage= new MainMenu();
             Game auxGame= MainMenu.CurrentGame.LoadGame();
             if(auxGame!=null){
+                mainClip.stop();
+            MainMenu mainPage= new MainMenu();
             this.setVisible(false);
             mainPage.setVisible(true);
             MainMenu.CurrentGame=auxGame;

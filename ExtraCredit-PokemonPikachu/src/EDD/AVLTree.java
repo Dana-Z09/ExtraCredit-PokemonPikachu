@@ -1,10 +1,14 @@
 package EDD;
 
+import Classes.Gift;
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  *
  * @author Daniela Zambrano
  */
-public class AVLTree {
+public class AVLTree implements Serializable {
 
     private NodeAVL root;
 
@@ -102,21 +106,24 @@ public class AVLTree {
         return n2;
     }
 
-    public void insert(Object content) throws Exception {
+    public void insert(int num, Object content) throws Exception {
         Logical h = new Logical(false);//intercambia un valor booleano
-        this.root = insertAVL(root, content, h);
+        this.root = insertAVL(root, num, content, h);
     }
 
-    private NodeAVL insertAVL(NodeAVL root, Object nodeContent, Logical h) throws Exception {
+    private NodeAVL insertAVL(NodeAVL root, int num, Object nodeContent, Logical h) throws Exception {
+        System.out.println("1");
         NodeAVL auxNode;
-        NodeAVL insertedNode = new NodeAVL(nodeContent);
+        NodeAVL insertedNode = new NodeAVL(num,nodeContent);
 
         if (root == null) {
+            System.out.println("2");
             root = insertedNode;
             h.setValue(true);
         } else if (insertedNode.isLessThan(root.getNodeID())) {
+            System.out.println("3");
             NodeAVL leftNode;
-            leftNode = insertAVL((NodeAVL) root.getpLeft(), nodeContent, h);
+            leftNode = insertAVL((NodeAVL) root.getpLeft(), num, nodeContent, h);
             root.setpLeft(leftNode);
 
             //regreso por los nodos del camino busqueda
@@ -150,8 +157,9 @@ public class AVLTree {
 
             }
         } else if (insertedNode.isGreaterThan(root.getNodeID())) {
+            System.out.println("4");
             NodeAVL rightNode;
-            rightNode = insertAVL((NodeAVL) root.getpRight(), nodeContent, h);
+            rightNode = insertAVL((NodeAVL) root.getpRight(), num, nodeContent, h);
             root.setpRight(rightNode);
 
             //regreso por los nodos del camino de busqueda
@@ -176,6 +184,7 @@ public class AVLTree {
                     case -1 -> {
                         root.setBalanceFactor(0);
                         h.setValue(false);
+                        break;
                     }
                 }
 
@@ -398,5 +407,57 @@ public class AVLTree {
         } else {
             return 1 + sizeTree(root.getpLeft()) + sizeTree(root.getpRight());
         }
+    }
+
+    /**
+     * Resumen del árbol binario de búsqueda en un String utilizando paréntesis
+     * en preorden.
+     *
+     * @return Un String que representa el árbol en preorden utilizando
+     * paréntesis.
+     */
+    public String summarizeTree() {
+        StringBuilder sb = new StringBuilder();
+        summarizeTreeRecursive(this.getRoot(), sb);
+        return sb.toString();
+    }
+
+    /**
+     * Método auxiliar recursivo para realizar el recorrido en inOrden del árbol
+     * y generar la representación en paréntesis
+     *
+     * @param pRootOfTree nodo raiz del arbol del cual se quiere obtener su
+     * resumen en forma de string.
+     * @param sb
+     */
+    private void summarizeTreeRecursive(NodeAVL pRootOfTree, StringBuilder sb) {
+        if (pRootOfTree != null) {
+
+            // Recorrer el subárbol izquierdo
+            summarizeTreeRecursive(pRootOfTree.getpLeft(), sb);
+
+            // Agregar el valor del nodo al String
+            sb.append("(").append(pRootOfTree.getNodeID()).append(" ");
+
+            // Recorrer el subárbol derecho
+            summarizeTreeRecursive(pRootOfTree.getpRight(), sb);
+
+            // Cerrar el paréntesis del nodo
+            sb.append(")");
+        }
+    }
+
+    
+    
+    public ArrayList inordenArray(NodeAVL root){
+        ArrayList lista = null;
+        
+        if(root!=null){
+        inordenArray(root.getpLeft());
+        Gift regalo= (Gift) root.visit();
+        lista.add(regalo);
+        inordenArray(root.getpRight());
+        }
+        return lista;
     }
 }

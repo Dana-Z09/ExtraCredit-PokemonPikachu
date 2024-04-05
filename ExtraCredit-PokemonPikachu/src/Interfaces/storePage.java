@@ -1,6 +1,8 @@
 package Interfaces;
 
+import Functions.Helpers;
 import Functions.Pictures;
+import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 
@@ -10,6 +12,8 @@ import static javax.swing.JOptionPane.QUESTION_MESSAGE;
  */
 public class storePage extends javax.swing.JFrame {
     Pictures pic= new Pictures();
+    Helpers help = new Helpers();
+    Clip mainClip;
     /**
      * Creates new form InicialMenu
      */
@@ -27,6 +31,9 @@ public class storePage extends javax.swing.JFrame {
         BayaZrezaLabel.setIcon(pic.getBayaZrezaPic());
         pokeballLabel.setIcon(pic.getPokeballPic());
         candyLabel.setIcon(pic.getCarameloPic());
+        tienda.setIcon(pic.getStorePic());
+        tienda.setText("");
+        mainClip=help.PlayMusic("tienda.wav");
         
         moneyLabelPic.setText("");
         moneyLabelPic.setIcon(pic.getWattPic());
@@ -71,6 +78,7 @@ public class storePage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        tienda = new javax.swing.JLabel();
 
         BayaZidraLabel6.setText("jLabel2");
 
@@ -101,7 +109,7 @@ public class storePage extends javax.swing.JFrame {
         tiendaTitle.setForeground(new java.awt.Color(213, 213, 213));
         tiendaTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tiendaTitle.setText("Tienda");
-        jPanel2.add(tiendaTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 230, 80));
+        jPanel2.add(tiendaTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 230, 80));
 
         aranja.setBackground(new java.awt.Color(222, 222, 222));
         aranja.setFont(new java.awt.Font("Pokemon Solid", 0, 14)); // NOI18N
@@ -159,7 +167,7 @@ public class storePage extends javax.swing.JFrame {
         jPanel2.add(pokeball, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 130, 40));
 
         moneyLabelPic.setText("jLabel2");
-        jPanel2.add(moneyLabelPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 40, 50));
+        jPanel2.add(moneyLabelPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 40, 50));
 
         enigma.setBackground(new java.awt.Color(222, 222, 222));
         enigma.setFont(new java.awt.Font("Pokemon Solid", 0, 14)); // NOI18N
@@ -203,12 +211,12 @@ public class storePage extends javax.swing.JFrame {
                 backButtom1ActionPerformed(evt);
             }
         });
-        jPanel2.add(backButtom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 100, -1));
+        jPanel2.add(backButtom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, 100, -1));
 
-        watts.setFont(new java.awt.Font("Peace Sans", 0, 17)); // NOI18N
+        watts.setFont(new java.awt.Font("Peace Sans", 0, 22)); // NOI18N
         watts.setForeground(new java.awt.Color(213, 213, 213));
-        watts.setText("...");
-        jPanel2.add(watts, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 100, 30));
+        watts.setText("12");
+        jPanel2.add(watts, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 90, 30));
 
         candyLabel.setText("jLabel2");
         jPanel2.add(candyLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 510, 90, 70));
@@ -237,10 +245,10 @@ public class storePage extends javax.swing.JFrame {
         BayaCaquicLabel.setText("jLabel2");
         jPanel2.add(BayaCaquicLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 90, 90));
 
-        title2.setFont(new java.awt.Font("Peace Sans", 0, 18)); // NOI18N
+        title2.setFont(new java.awt.Font("Peace Sans", 0, 20)); // NOI18N
         title2.setForeground(new java.awt.Color(213, 213, 213));
         title2.setText("Watts: ");
-        jPanel2.add(title2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
+        jPanel2.add(title2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(97, 42, 7));
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 600, 40));
@@ -250,6 +258,9 @@ public class storePage extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(97, 42, 7));
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 600, 40));
+
+        tienda.setText("jLabel1");
+        jPanel2.add(tienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 120, 120));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 650));
 
@@ -262,6 +273,7 @@ public class storePage extends javax.swing.JFrame {
 
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Ziuela", 600, 850);
+            
             watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
     }//GEN-LAST:event_ziuelaActionPerformed
@@ -269,11 +281,12 @@ public class storePage extends javax.swing.JFrame {
     private void aranjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aranjaActionPerformed
        String[] options = {"Sí", "No"};
         int answer = JOptionPane.showOptionDialog(null, "Baya Aranja.\nCosto: 100 Watts.\nEfecto: +100 relación.\n¿Desea comprar una Baya Aranja?\nPresionse sí, para realizar la compra.\nPresione no, en el caso contrario.", "Confirmación de Compra", JOptionPane.YES_NO_CANCEL_OPTION, QUESTION_MESSAGE, null, options, options[0]);
-
+        
         if (answer == 0) {
             MainMenu.CurrentGame.buyGiftInShop("Baya Aranja", 100, 100);
             watts.setText(String.valueOf(MainMenu.CurrentGame.getWatts()));
         }
+        
     }//GEN-LAST:event_aranjaActionPerformed
 
     private void caquicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caquicActionPerformed
@@ -347,6 +360,7 @@ public class storePage extends javax.swing.JFrame {
     }//GEN-LAST:event_enigmaActionPerformed
 
     private void backButtom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtom1ActionPerformed
+        mainClip.stop();
         MainMenu menu = new MainMenu();
         this.setVisible(false);
         menu.setVisible(true);
@@ -665,6 +679,7 @@ public class storePage extends javax.swing.JFrame {
     private javax.swing.JLabel moneyLabelPic;
     private javax.swing.JButton pokeball;
     private javax.swing.JLabel pokeballLabel;
+    private javax.swing.JLabel tienda;
     private javax.swing.JLabel tiendaTitle;
     private javax.swing.JLabel title2;
     private javax.swing.JLabel watts;

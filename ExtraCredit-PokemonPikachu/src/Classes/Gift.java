@@ -123,10 +123,17 @@ public class Gift {
     /**
      *      HACER JAVADOC
      */
-    public void upgradeQuantity() {
+    public void increaseQuantity() {
 
         int current = this.getQuantity();
         current++;
+        int newValue = current;
+        this.setQuantity(newValue);
+    }
+    
+    public void decreaseQuantity(){
+        int current = this.getQuantity();
+        current--;
         int newValue = current;
         this.setQuantity(newValue);
     }

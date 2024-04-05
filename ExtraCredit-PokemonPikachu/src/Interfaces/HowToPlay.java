@@ -1,6 +1,8 @@
 package Interfaces;
 
+import Functions.Helpers;
 import Functions.Pictures;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,6 +14,8 @@ public class HowToPlay extends javax.swing.JFrame {
     ImageIcon mareepPic = pic.getMareepPic();
     ImageIcon pokemonPic = pic.getPokemonPic();
     ImageIcon fondoPic = pic.getFondoPic();
+    Helpers help = new Helpers();
+    Clip mainClip;
     /**
      * Creates new form InicialMenu
      */
@@ -24,6 +28,7 @@ public class HowToPlay extends javax.swing.JFrame {
         pokemonLabel.setText("");
         fondoLabel.setIcon(fondoPic);
         fondoLabel.setText("");
+        mainClip=help.PlayMusic("inicio.wav");
         texto.setText("""
                         Este programa es un tamagotchi. Donde puedes escoger a Pikachu
                         o a Shinx como tu mascota virtual. 
@@ -114,6 +119,7 @@ public class HowToPlay extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        mainClip.stop();
         this.setVisible(false);
         InicialMenu menu = new InicialMenu();
         menu.setVisible(true);

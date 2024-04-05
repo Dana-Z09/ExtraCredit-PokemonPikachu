@@ -1,6 +1,7 @@
 package Interfaces;
 
 
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,10 +13,12 @@ public class chooseMenu extends javax.swing.JFrame {
     ImageIcon pokemonPic = new ImageIcon("pokemonlogo.png");
     ImageIcon shinxPic = new ImageIcon("shinx1.png");
     ImageIcon fondoPic = new ImageIcon("fondo.jpg");
+    Clip mainClip;
     /**
      * Creates new form InicialMenu
      */
-    public chooseMenu() {
+    public chooseMenu() {}
+    public chooseMenu(Clip clip) {
         initComponents();
         this.setLocationRelativeTo(null);
         pikachulabel1.setIcon(pikachuPic);
@@ -28,6 +31,7 @@ public class chooseMenu extends javax.swing.JFrame {
         fondoLabel.setText("");
         fondoLabel1.setIcon(fondoPic);
         fondoLabel1.setText("");
+        mainClip=clip;
     }
 
     /**
@@ -134,6 +138,7 @@ public class chooseMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void shinxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shinxActionPerformed
+        mainClip.stop();
         MainMenu.CurrentGame.prepareGame(1);
         MainMenu mainPage= new MainMenu();
         this.setVisible(false);
@@ -141,6 +146,7 @@ public class chooseMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_shinxActionPerformed
 
     private void pikachuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pikachuActionPerformed
+        mainClip.stop();
         MainMenu.CurrentGame.prepareGame(2);
         MainMenu mainPage= new MainMenu();
         this.setVisible(false);
@@ -148,6 +154,7 @@ public class chooseMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_pikachuActionPerformed
 
     private void backButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtomActionPerformed
+        mainClip.stop();
         this.setVisible(false);
         InicialMenu menu = new InicialMenu();
         menu.setVisible(true);

@@ -1,6 +1,8 @@
 package Interfaces;
 
+import Functions.Helpers;
 import Functions.Pictures;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,6 +14,8 @@ public class Credits extends javax.swing.JFrame {
     ImageIcon pachirisuPic = pic.getPachirisuPic();
     ImageIcon pokemonPic = pic.getPokemonPic();
     ImageIcon fondoPic = pic.getFondoPic();
+    Helpers help = new Helpers();
+    Clip mainClip;
     /**
      * Creates new form InicialMenu
      */
@@ -24,9 +28,24 @@ public class Credits extends javax.swing.JFrame {
         pokemonLabel.setText("");
         fondoLabel.setIcon(fondoPic);
         fondoLabel.setText("");
+        mainClip=help.PlayMusic("inicio.wav");
         texto.setText("""
                         Música:
-
+                        Nombre de las canciones utilizadas en el juego:
+                         -Friendly shop
+                         -Contest!
+                         -Contest Lobby
+                         -Gym
+                         -Route 101
+                         -Mishiro town  
+                         -Drifveil City
+                      
+                        Todas las canciones fueron extraidas de esta página:
+                        https://downloads.khinsider.com/game-soundtracks/album/pokemon-ruby-sapphire-music-super-complete                    
+                      
+                        Se reservan los derechos de autor de cada canción a su respectivo
+                        autor, compositor, productor, y equipo de creación, en nombre de
+                        Nintendo y Pokemon. 
 
                         Imagenes:
                         -https://pokemon.fandom.com/wiki/Pikachu
@@ -41,6 +60,23 @@ public class Credits extends javax.swing.JFrame {
                       
                         -https://www.pokemon.com/el/pokedex/mareep
                       
+                        -https://www.wikidex.net/wiki/Baya_Aranja
+                      
+                        -https://www.wikidex.net/wiki/Baya_Caquic
+                                              
+                        -https://www.wikidex.net/wiki/Pok%C3%A9_Ball
+
+                        -https://www.wikidex.net/wiki/Baya_Zreza
+
+                        -https://www.wikidex.net/wiki/Baya_Zanama
+                      
+                        -https://www.wikidex.net/wiki/Baya_Ziuela
+                        
+                        -https://www.wikidex.net/wiki/Baya_Zidra
+                      
+                        -https://www.wikidex.net/wiki/Baya_Enigma
+                      
+                        -https://www.wikidex.net/wiki/Caramelo_raro                    
 
 
                         Todos los derechos de autor son recervados a Nintendo
@@ -132,6 +168,7 @@ public class Credits extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        mainClip.stop();
         this.setVisible(false);
         InicialMenu menu = new InicialMenu();
         menu.setVisible(true);
