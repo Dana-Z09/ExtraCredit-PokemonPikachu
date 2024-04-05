@@ -28,7 +28,7 @@ public class HowToPlay extends javax.swing.JFrame {
         pokemonLabel.setText("");
         fondoLabel.setIcon(fondoPic);
         fondoLabel.setText("");
-        mainClip=help.PlayMusic("menunormal.wav");
+        mainClip=help.PlayMusic("inicio.wav");
         texto.setText("""
                         Este programa es un tamagotchi. Donde puedes escoger a Pikachu
                         o a Shinx como tu mascota virtual. 

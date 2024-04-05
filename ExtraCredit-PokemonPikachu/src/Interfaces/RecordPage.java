@@ -1,5 +1,7 @@
 package Interfaces;
 
+import javax.sound.sampled.Clip;
+
 
 
 /**
@@ -7,13 +9,16 @@ package Interfaces;
  * @author Danna Star
  */
 public class RecordPage extends javax.swing.JFrame {
+    Clip mainClip;
     /**
      * Creates new form InicialMenu
      */
-    public RecordPage() {
+    public RecordPage() {}
+    public RecordPage(Clip clip) {
         initComponents();
         this.setLocationRelativeTo(null);
         texto.setText(MainMenu.CurrentGame.makeSummaryForRecord());
+        mainClip=clip;
         
     }
 
@@ -62,6 +67,7 @@ public class RecordPage extends javax.swing.JFrame {
         jLabel1.setText("Historial de Regalos");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 540, 80));
 
+        texto.setEditable(false);
         texto.setBackground(new java.awt.Color(0, 32, 42));
         texto.setColumns(20);
         texto.setFont(new java.awt.Font("Bodoni Bd BT", 0, 18)); // NOI18N
@@ -78,6 +84,7 @@ public class RecordPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtomActionPerformed
+        mainClip.stop();
         this.setVisible(false);
         InicialMenu menu = new InicialMenu();
         menu.setVisible(true);

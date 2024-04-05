@@ -30,7 +30,7 @@ public class InicialMenu extends javax.swing.JFrame {
         fondoLabel.setIcon(pic.getFondoPic());
         fondoLabel.setText("");
         
-        mainClip=help.PlayMusic("menunormal.wav");
+        mainClip=help.PlayMusic("inicio.wav");
         
         
     }

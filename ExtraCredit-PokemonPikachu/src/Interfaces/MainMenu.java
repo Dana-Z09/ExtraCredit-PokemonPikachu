@@ -318,7 +318,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void Historial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Historial1ActionPerformed
         mainClip.stop();
         MainMenu.running=false;
-        RecordPage historial = new RecordPage();
+        RecordPage historial = new RecordPage(this.mainClip);
         this.setVisible(false);
         historial.setVisible(true);
         
