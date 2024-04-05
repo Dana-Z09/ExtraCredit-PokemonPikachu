@@ -10,6 +10,8 @@ import java.io.ObjectOutputStream;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  *
@@ -66,7 +68,7 @@ public class Helpers {
     }
     
     
-    public void PlayMusic(String path){
+    public Clip PlayMusic(String path){
     
     try {
     File musicpath = new File(System.getProperty("user.dir") + "\\src\\Music\\"+path);   
@@ -76,37 +78,19 @@ public class Helpers {
         Clip clip= AudioSystem.getClip();
         clip.open(audioinput);
         clip.start();
-    
+        return clip;
+                
     }else{
-        System.out.println("no");}
+        JOptionPane.showMessageDialog(null,"El archivo no se encuentra en la carpeta asignada para la musica","Error de lectura",ERROR_MESSAGE,null);
+        return null;
     }
-    
+    }
     catch(Exception e){
-        System.out.println("no mira vale");}
-    
-    
+        JOptionPane.showMessageDialog(null,"La lectura del archivo dio error.","Error de lectura",ERROR_MESSAGE,null);
+        return null;
+            }
     }
     
+ 
     
-    
-    public void StopMusic(String path){
-    
-    try {
-    File musicpath = new File(System.getProperty("user.dir") + "\\src\\Music\\"+path);   
-    
-    if(musicpath.exists()){
-        AudioInputStream audioinput = AudioSystem.getAudioInputStream(musicpath);
-        Clip clip= AudioSystem.getClip();
-        clip.open(audioinput);
-        clip.stop();
-    
-    }else{
-        System.out.println("no");}
-    }
-    
-    catch(Exception e){
-        System.out.println("no mira vale");}
-    
-    
-    }
 }

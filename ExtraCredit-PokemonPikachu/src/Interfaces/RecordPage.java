@@ -14,6 +14,7 @@ public class RecordPage extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         texto.setText(MainMenu.CurrentGame.makeSummaryForRecord());
+        
     }
 
     /**
