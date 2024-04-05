@@ -452,7 +452,7 @@ public class AVLTree implements Serializable {
     
     
     public ArrayList inordenArray(NodeAVL root){
-        ArrayList lista = null;
+        ArrayList lista = new ArrayList();
         
         if(root!=null){
         inordenArray(root.getpLeft());
