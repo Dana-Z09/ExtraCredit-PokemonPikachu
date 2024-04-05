@@ -38,8 +38,8 @@ public class RelationShip implements Serializable {
     public RelationShip(Pokemon currentPokemon) {
         this.relationShipRange = 0;
         this.currentPokemon = currentPokemon;
-        this.pokemons=new Pokemon[2];
-        this.pokemons[0]= currentPokemon;
+        this.pokemons = new Pokemon[2];
+        this.pokemons[0] = currentPokemon;
     }
 
     /**
@@ -86,7 +86,7 @@ public class RelationShip implements Serializable {
     public Pokemon[] getPokemons() {
         return pokemons;
     }
-    
+
     /**
      * Establece el arreglo de Pokémon.
      *
@@ -99,28 +99,30 @@ public class RelationShip implements Serializable {
             throw new IllegalArgumentException("Debe haber exactamente dos Pokémon.");
         }
     }
-    
-    public void actualizateRelationShipRange(){
-        if(this.relationShipRange>0){
-        int current = this.getRelationShipRange();
-        int newCurrent = current--;
-        this.setRelationShipRange(newCurrent);
-        } 
+
+    public int actualizateRelationShipRange(RelationShip r) {
+        int newCurrent = r.getRelationShipRange();
+        if(r.getRelationShipRange()>0){
+        int current = r.getRelationShipRange();
+        newCurrent = current--;
+        }
+        return newCurrent;
+
     }
-    
-    public void increaseRelationShipRange(int numToIncrease){
-        
+
+    public void increaseRelationShipRange(int numToIncrease) {
+
     }
-    
+
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
-    public String summaryForPrint(){
+    public String summaryForPrint() {
         String toReturn;
-        
+
         toReturn = "";                      //terminar
-        
+
         return toReturn;
     }
 }

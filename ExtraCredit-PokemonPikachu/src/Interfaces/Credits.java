@@ -76,7 +76,9 @@ public class Credits extends javax.swing.JFrame {
                       
                         -https://www.wikidex.net/wiki/Baya_Enigma
                       
-                        -https://www.wikidex.net/wiki/Caramelo_raro                    
+                        -https://www.wikidex.net/wiki/Caramelo_raro         
+                      
+                        -https://www.deviantart.com/bunnsp/art/Forest-of-Pixels-842434134           
 
 
                         Todos los derechos de autor son recervados a Nintendo

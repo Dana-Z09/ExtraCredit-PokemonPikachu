@@ -1,4 +1,4 @@
-package EDD;
+ package EDD;
 
 import Classes.Gift;
 import java.io.Serializable;
@@ -197,19 +197,19 @@ public class AVLTree implements Serializable {
         return root;
     }
 
-    public void delete(Object nodeContent) throws Exception {
+    public void delete(int numOfNode) throws Exception {
         Logical flag = new Logical(false);
-        root = removeAVL(root, nodeContent, flag);
+        root = removeAVL(this.getRoot(), numOfNode, flag);
     }
 
-    private NodeAVL removeAVL(NodeAVL root, Object nodeContent, Logical highChange) throws Exception {
-        NodeAVL auxNode = new NodeAVL(nodeContent);
+    private NodeAVL removeAVL(NodeAVL root, int numOfNode, Logical highChange) throws Exception {
+        NodeAVL auxNode = new NodeAVL(numOfNode,null);
 
         if (root == null) {
             throw new Exception("Nodo no encontrado");
         } else if (auxNode.isLessThan(root.getNodeID())) {//el nodo a insertar es menor que el valor del nodo raiz
             NodeAVL leftNode;
-            leftNode = removeAVL((NodeAVL) root.getpLeft(), nodeContent, highChange);
+            leftNode = removeAVL((NodeAVL) root.getpLeft(), numOfNode, highChange);
             root.setpLeft(leftNode);
 
             if (highChange.getValue()) {
@@ -217,12 +217,13 @@ public class AVLTree implements Serializable {
             }
         } else if (auxNode.isGreaterThan(root.getNodeID())) {
             NodeAVL rightNode;
-            rightNode = removeAVL((NodeAVL) root.getpRight(), nodeContent, highChange);
+            rightNode = removeAVL((NodeAVL) root.getpRight(), numOfNode, highChange);
             root.setpRight(rightNode);
             if (highChange.getValue()) {
                 root = balanceRightBranch(root, highChange);
             }
         } else {//Nodo encontrado
+            System.out.println("Entró");
             NodeAVL theOne = root; // el nodo que se quiere eliminar del arbol   
 
             if (theOne.getpLeft() == null) { //no tiene rama izquierda
@@ -240,6 +241,7 @@ public class AVLTree implements Serializable {
                 }
 
             }
+            System.out.println("Eliminó");
             theOne = null;
         }
 

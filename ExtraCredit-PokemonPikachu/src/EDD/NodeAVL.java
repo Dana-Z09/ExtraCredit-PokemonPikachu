@@ -17,9 +17,6 @@ public class NodeAVL implements Comparator, Serializable{
     private NodeAVL pLeft;
     private NodeAVL pRight;
     
-    /**
-    * Constructores 
-    */
     public NodeAVL(){
         
     }
