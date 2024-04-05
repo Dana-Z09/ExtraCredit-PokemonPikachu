@@ -262,7 +262,15 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+
                 mainClip.stop();
+        if (MainMenu.CurrentGame.getNamePokemonOfRelationShip() == "Shinx") {
+            WattsBet ne = new WattsBet();
+            ne.setVisible(true);
+            
+        } else if (MainMenu.CurrentGame.getNamePokemonOfRelationShip() == "Pikachu"){
+            
+        }
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void saveButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtomActionPerformed
